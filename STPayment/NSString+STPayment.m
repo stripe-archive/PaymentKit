@@ -94,8 +94,12 @@
     NSString* monthStr = [digits objectAtIndex:0];
     NSString* yearStr = [digits objectAtIndex:1];
     
+    // If shorthand year, prepend the current year
     if (yearStr.length == 2) {
-        
+        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yy"];
+        NSString* prefix = [formatter stringFromDate:[NSDate date]];
+        yearStr = [NSString stringWithFormat:@"%@%@", prefix, yearStr];
     }
     
     NSNumber* month = [NSNumber numberWithInteger:[monthStr integerValue]];
