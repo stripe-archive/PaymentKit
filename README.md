@@ -61,34 +61,34 @@ Available types are:
     STCardTypeDinersClub
     STCardTypeUnknown
 
-#### - (NSString *)string
+#### `- (NSString *)string`
 
 Returns the card number as a string.
 
-#### - (NSString *)formattedString
+#### `- (NSString *)formattedString`
 
 Returns a formatted card number, in the same space format as it appears on the card.
 
     NSString* number = [[STCardNumber cardNumberWithString:@"4242424242424242"] formattedString];
     number //=> '4242 4242 4242 4242'
 
-#### - (NSString *)formattedStringWithTrail
+#### `- (NSString *)formattedStringWithTrail`
 
 Returns a formatted card number with a trailing space, if appropriate. Useful for formatting `UITextField` input.
 
-#### - (BOOL)isValid
+#### `- (BOOL)isValid`
 
 Helper method which calls `isValidLength` and `isValidLuhn`.
 
-#### - (BOOL)isValidLength
+#### `- (BOOL)isValidLength`
 
 Returns a `BOOL` depending on whether the card number is a valid length. Takes into account the different lengths of Amex and Visa, for example.
 
-#### - (BOOL)isValidLuhn
+#### `- (BOOL)isValidLuhn`
 
 Returns a `BOOL` indicating whether the number passed a [Luhn check](http://en.wikipedia.org/wiki/Luhn_algorithm).
 
-#### - (BOOL)isPartiallyValid
+#### `- (BOOL)isPartiallyValid`
 
 Returns a `BOOL` indicating whether the number is too long or not.
 
