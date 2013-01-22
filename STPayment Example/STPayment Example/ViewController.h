@@ -10,4 +10,8 @@
 
 @interface ViewController : UIViewController
 
+@property IBOutlet UITextField* creditCardNumber;
+@property IBOutlet UITextField* creditCardCVC;
+@property IBOutlet UITextField* creditCardExpiry;
+
 @end

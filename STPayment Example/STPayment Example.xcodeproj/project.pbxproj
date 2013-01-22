@@ -17,9 +17,14 @@
 		FA45AC8516AE350D0003A41D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA45AC8416AE350D0003A41D /* Default@2x.png */; };
 		FA45AC8716AE350E0003A41D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA45AC8616AE350E0003A41D /* Default-568h@2x.png */; };
 		FA45AC8A16AE350E0003A41D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45AC8916AE350E0003A41D /* ViewController.m */; };
-		FA45AC8D16AE350E0003A41D /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA45AC8B16AE350E0003A41D /* ViewController_iPhone.xib */; };
-		FA45AC9016AE350E0003A41D /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA45AC8E16AE350E0003A41D /* ViewController_iPad.xib */; };
+		FA45AC8D16AE350E0003A41D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA45AC8B16AE350E0003A41D /* ViewController.xib */; };
 		FA45AC9916AE35210003A41D /* NSString+STPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45AC9816AE35210003A41D /* NSString+STPayment.m */; };
+		FA45ACA416AF1EE80003A41D /* STCardNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACA316AF1EE80003A41D /* STCardNumber.m */; };
+		FA45ACA716AF33750003A41D /* STCardCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACA616AF33750003A41D /* STCardCVC.m */; };
+		FA45ACAC16AF37420003A41D /* STCardExpiry.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACAB16AF37420003A41D /* STCardExpiry.m */; };
+		FA45ACAF16AF38BB0003A41D /* STCardNumberDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACAE16AF38BA0003A41D /* STCardNumberDelegate.m */; };
+		FA45ACB216AF3B250003A41D /* STCardCVCDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACB116AF3B250003A41D /* STCardCVCDelegate.m */; };
+		FA45ACB516AF3CA40003A41D /* STCardExpiryDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACB416AF3CA40003A41D /* STCardExpiryDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,10 +43,22 @@
 		FA45AC8616AE350E0003A41D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		FA45AC8816AE350E0003A41D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		FA45AC8916AE350E0003A41D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		FA45AC8C16AE350E0003A41D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		FA45AC8F16AE350E0003A41D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		FA45AC8C16AE350E0003A41D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		FA45AC9716AE35210003A41D /* NSString+STPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+STPayment.h"; sourceTree = "<group>"; };
 		FA45AC9816AE35210003A41D /* NSString+STPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+STPayment.m"; sourceTree = "<group>"; };
+		FA45ACA216AF1EE80003A41D /* STCardNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardNumber.h; sourceTree = "<group>"; };
+		FA45ACA316AF1EE80003A41D /* STCardNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardNumber.m; sourceTree = "<group>"; };
+		FA45ACA516AF33750003A41D /* STCardCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardCVC.h; sourceTree = "<group>"; };
+		FA45ACA616AF33750003A41D /* STCardCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardCVC.m; sourceTree = "<group>"; };
+		FA45ACA916AF367B0003A41D /* STCardType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STCardType.h; sourceTree = "<group>"; };
+		FA45ACAA16AF37420003A41D /* STCardExpiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardExpiry.h; sourceTree = "<group>"; };
+		FA45ACAB16AF37420003A41D /* STCardExpiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardExpiry.m; sourceTree = "<group>"; };
+		FA45ACAD16AF38BA0003A41D /* STCardNumberDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardNumberDelegate.h; sourceTree = "<group>"; };
+		FA45ACAE16AF38BA0003A41D /* STCardNumberDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardNumberDelegate.m; sourceTree = "<group>"; };
+		FA45ACB016AF3B250003A41D /* STCardCVCDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardCVCDelegate.h; sourceTree = "<group>"; };
+		FA45ACB116AF3B250003A41D /* STCardCVCDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardCVCDelegate.m; sourceTree = "<group>"; };
+		FA45ACB316AF3CA40003A41D /* STCardExpiryDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardExpiryDelegate.h; sourceTree = "<group>"; };
+		FA45ACB416AF3CA40003A41D /* STCardExpiryDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardExpiryDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +110,7 @@
 				FA45AC8016AE350D0003A41D /* AppDelegate.m */,
 				FA45AC8816AE350E0003A41D /* ViewController.h */,
 				FA45AC8916AE350E0003A41D /* ViewController.m */,
-				FA45AC8B16AE350E0003A41D /* ViewController_iPhone.xib */,
-				FA45AC8E16AE350E0003A41D /* ViewController_iPad.xib */,
+				FA45AC8B16AE350E0003A41D /* ViewController.xib */,
 				FA45AC7716AE350D0003A41D /* Supporting Files */,
 			);
 			path = "STPayment Example";
@@ -119,6 +135,19 @@
 			children = (
 				FA45AC9716AE35210003A41D /* NSString+STPayment.h */,
 				FA45AC9816AE35210003A41D /* NSString+STPayment.m */,
+				FA45ACA216AF1EE80003A41D /* STCardNumber.h */,
+				FA45ACA316AF1EE80003A41D /* STCardNumber.m */,
+				FA45ACA516AF33750003A41D /* STCardCVC.h */,
+				FA45ACA616AF33750003A41D /* STCardCVC.m */,
+				FA45ACA916AF367B0003A41D /* STCardType.h */,
+				FA45ACAA16AF37420003A41D /* STCardExpiry.h */,
+				FA45ACAB16AF37420003A41D /* STCardExpiry.m */,
+				FA45ACAD16AF38BA0003A41D /* STCardNumberDelegate.h */,
+				FA45ACAE16AF38BA0003A41D /* STCardNumberDelegate.m */,
+				FA45ACB016AF3B250003A41D /* STCardCVCDelegate.h */,
+				FA45ACB116AF3B250003A41D /* STCardCVCDelegate.m */,
+				FA45ACB316AF3CA40003A41D /* STCardExpiryDelegate.h */,
+				FA45ACB416AF3CA40003A41D /* STCardExpiryDelegate.m */,
 			);
 			name = STPayment;
 			path = ../STPayment;
@@ -179,8 +208,7 @@
 				FA45AC8316AE350D0003A41D /* Default.png in Resources */,
 				FA45AC8516AE350D0003A41D /* Default@2x.png in Resources */,
 				FA45AC8716AE350E0003A41D /* Default-568h@2x.png in Resources */,
-				FA45AC8D16AE350E0003A41D /* ViewController_iPhone.xib in Resources */,
-				FA45AC9016AE350E0003A41D /* ViewController_iPad.xib in Resources */,
+				FA45AC8D16AE350E0003A41D /* ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +223,12 @@
 				FA45AC8116AE350D0003A41D /* AppDelegate.m in Sources */,
 				FA45AC8A16AE350E0003A41D /* ViewController.m in Sources */,
 				FA45AC9916AE35210003A41D /* NSString+STPayment.m in Sources */,
+				FA45ACA416AF1EE80003A41D /* STCardNumber.m in Sources */,
+				FA45ACA716AF33750003A41D /* STCardCVC.m in Sources */,
+				FA45ACAC16AF37420003A41D /* STCardExpiry.m in Sources */,
+				FA45ACAF16AF38BB0003A41D /* STCardNumberDelegate.m in Sources */,
+				FA45ACB216AF3B250003A41D /* STCardCVCDelegate.m in Sources */,
+				FA45ACB516AF3CA40003A41D /* STCardExpiryDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,20 +243,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		FA45AC8B16AE350E0003A41D /* ViewController_iPhone.xib */ = {
+		FA45AC8B16AE350E0003A41D /* ViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				FA45AC8C16AE350E0003A41D /* en */,
 			);
-			name = ViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		FA45AC8E16AE350E0003A41D /* ViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FA45AC8F16AE350E0003A41D /* en */,
-			);
-			name = ViewController_iPad.xib;
+			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -287,6 +313,7 @@
 				GCC_PREFIX_HEADER = "STPayment Example/STPayment Example-Prefix.pch";
 				INFOPLIST_FILE = "STPayment Example/STPayment Example-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -298,6 +325,7 @@
 				GCC_PREFIX_HEADER = "STPayment Example/STPayment Example-Prefix.pch";
 				INFOPLIST_FILE = "STPayment Example/STPayment Example-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

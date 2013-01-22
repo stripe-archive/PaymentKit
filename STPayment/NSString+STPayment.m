@@ -10,28 +10,31 @@
 
 @implementation NSString (STPayment)
 
-- (NSPaymentCardType)cardType
+- (STPaymentCardType)cardType
 {
     NSString* number = [self stringByStrippingNonDigits];
+    
+    if (number.length < 2) return STPaymentCardTypeUnknown;
+    
     number = [number substringWithRange:NSMakeRange(0, 2)];
     
     int range = [number integerValue];
     
     if (range >= 40 && range <= 49) {
-        return NSPaymentCardTypeVisa;
+        return STPaymentCardTypeVisa;
     } else if (range >= 50 && range <= 59) {
-        return NSPaymentCardTypeMasterCard;
+        return STPaymentCardTypeMasterCard;
     } else if (range == 34 || range == 37) {
-        return NSPaymentCardTypeAmex;
+        return STPaymentCardTypeAmex;
     } else if (range == 60 || range == 62 || range == 64 || range == 65) {
-        return NSPaymentCardTypeDiscover;
+        return STPaymentCardTypeDiscover;
     } else if (range == 35) {
-        return NSPaymentCardTypeJCB;
+        return STPaymentCardTypeJCB;
     } else if (range == 30 || range == 36 || range == 38 || range == 39) {
-        return NSPaymentCardTypeDinersClub;
+        return STPaymentCardTypeDinersClub;
+    } else {
+        return STPaymentCardTypeUnknown;   
     }
-    
-    return NSPaymentCardTypeUnknown;
 }
 
 - (NSString *)stringByStrippingNonDigits
@@ -44,19 +47,26 @@
 
 - (NSString *)formattedCardNumber
 {
-    NSString* result = [self stringByStrippingNonDigits];
+    NSString* string = [self stringByStrippingNonDigits];
+    NSRegularExpression* regex;
     
-    if ([self cardType] == NSPaymentCardTypeAmex) {
-        return [result stringByReplacingOccurrencesOfString:@"(\\d{4})(\\d{6})(\\d{5})"
-                                                 withString:@"$1 $2 $3"
-                                                    options:NSRegularExpressionSearch
-                                                      range:NSMakeRange(0, self.length)];
+    if ([self cardType] == STPaymentCardTypeAmex) {
+        regex = [NSRegularExpression regularExpressionWithPattern:@"(\\d{1,4})(\\d{1,6})(\\d{1,5})" options:0 error:NULL];
     } else {
-        return [result stringByReplacingOccurrencesOfString:@"(\\d{4})(\\d{4})(\\d{4})(\\d{4})"
-                                                 withString:@"$1 $2 $3 $4"
-                                                    options:NSRegularExpressionSearch
-                                                      range:NSMakeRange(0, self.length)];
+        regex = [NSRegularExpression regularExpressionWithPattern:@"(\\d{1,4})" options:0 error:NULL];
     }
+    
+    NSArray* matches = [regex matchesInString:string options:0 range:NSMakeRange(0, string.length)];
+    NSMutableArray* result = [NSMutableArray arrayWithCapacity:matches.count];
+    
+    for (NSTextCheckingResult *match in matches) {
+        for (int i=1; i < [match numberOfRanges]; i++) {
+            NSString* matchText = [string substringWithRange:[match rangeAtIndex:i]];
+            [result addObject:matchText];
+        }
+    }
+    
+    return [result componentsJoinedByString:@" "];
 }
 
 - (BOOL)isValidCardNumber

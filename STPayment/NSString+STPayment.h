@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    NSPaymentCardTypeVisa,
-    NSPaymentCardTypeMasterCard,
-    NSPaymentCardTypeAmex,
-    NSPaymentCardTypeDiscover,
-    NSPaymentCardTypeJCB,
-    NSPaymentCardTypeDinersClub,
-    NSPaymentCardTypeUnknown
-} NSPaymentCardType;
+    STPaymentCardTypeVisa,
+    STPaymentCardTypeMasterCard,
+    STPaymentCardTypeAmex,
+    STPaymentCardTypeDiscover,
+    STPaymentCardTypeJCB,
+    STPaymentCardTypeDinersClub,
+    STPaymentCardTypeUnknown
+} STPaymentCardType;
 
 @interface NSString (STPayment)
 
-- (NSPaymentCardType) cardType;
+- (STPaymentCardType) cardType;
 - (NSString *) stringByStrippingNonDigits;
 - (NSString *) formattedCardNumber;
 - (BOOL) isValidCardNumber;

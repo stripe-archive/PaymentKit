@@ -7,7 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "NSString+STPayment.h"
+#import "STCardType.h"
+#import "STCardNumber.h"
+#import "STCardExpiryDelegate.h"
 
 @interface ViewController ()
 
@@ -15,16 +17,22 @@
 
 @implementation ViewController
 
+@synthesize creditCardNumber;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    NSLog(@"Visa: %@;", [@"4242424242424242" formattedCardNumber]);
-    NSLog(@"Amex: %@;", [@"378282246310005" formattedCardNumber]);
+    NSLog(@"Visa: %@;", [[STCardNumber cardNumberWithString:@"4242424242424242"] formattedString]);
+    NSLog(@"Visa: %@;", [[STCardNumber cardNumberWithString:@"4242424242"] formattedString]);
+
+    NSLog(@"Amex: %@;", [[STCardNumber cardNumberWithString:@"378282246310005"] formattedString]);
+    NSLog(@"Is Amex: %d;", [[STCardNumber cardNumberWithString:@"378282246310005"] cardType] == STCardTypeAmex);
+
     
-    NSLog(@"Valid: %d;", [@"4242424242424242" isValidCardNumber]);
-    NSLog(@"Not Valid: %d;", [@"4242424242424243" isValidCardNumber]);
+    NSLog(@"Valid: %d;", [[STCardNumber cardNumberWithString:@"4242424242424242"] isValid]);
+    NSLog(@"Not Valid: %d;", [[STCardNumber cardNumberWithString:@"4242424242424243"] isValid]);
 }
 
 - (void)didReceiveMemoryWarning
