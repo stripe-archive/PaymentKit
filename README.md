@@ -39,19 +39,17 @@ STPayment is a utility library for writing payment forms in iOS and Mac apps. It
     // Return a card expiry's month
     [[STCardExpiry cardExpiryWithString:@"05 / 02"] month]; //=> 5
 
+For more, see the included example.
+
 ## Delegates
 
-Included are a number of `UITextFieldDelegate` delegates: `STCardCVCDelegate`, `STCardExpiryDelegate` and `STCardNumberDelegate`.
-
-You can set these as the delegates of `UITextField` inputs, which ensures that input is limited and formatted.
-
+Included are a number of `UITextFieldDelegate` delegates: `STCardCVCDelegate`, `STCardExpiryDelegate` and `STCardNumberDelegate`. You can set these as the delegates of `UITextField` inputs, which ensures that input is limited and formatted.
 
 ----------
 
+# Full API
 
-## Full API
-
-### STCardNumber
+## STCardNumber
 
 #### `+ (id) cardNumberWithString:(NSString *)string`
 #### `- (id) initWithString:(NSString *)string`
@@ -111,7 +109,9 @@ Returns a `BOOL` indicating whether the number passed a [Luhn check](http://en.w
 
 Returns a `BOOL` indicating whether the number is too long or not.
 
-### STCardCVC
+------------
+
+## STCardCVC
 
 #### `+ (id) cardCVCWithString:(NSString *)string`
 #### `- (id) initWithString:(NSString *)string`
@@ -136,7 +136,9 @@ Returns a `BOOL` indicating whether the CVC is valid for a particular card type.
 
 Returns a `BOOL` indicating whether the cvc is too long or not.
 
-### STCardExpiry
+------------
+
+## STCardExpiry
 
 #### `+ (id)cardExpiryWithString:(NSString *)string`
 #### `- (id)initWithString:(NSString *)string`
