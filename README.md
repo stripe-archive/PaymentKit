@@ -109,8 +109,6 @@ Returns a `BOOL` indicating whether the number passed a [Luhn check](http://en.w
 
 Returns a `BOOL` indicating whether the number is too long or not.
 
-------------
-
 ## STCardCVC
 
 #### `+ (id) cardCVCWithString:(NSString *)string`
@@ -135,8 +133,6 @@ Returns a `BOOL` indicating whether the CVC is valid for a particular card type.
 #### `- (BOOL)isPartiallyValid`
 
 Returns a `BOOL` indicating whether the cvc is too long or not.
-
-------------
 
 ## STCardExpiry
 
