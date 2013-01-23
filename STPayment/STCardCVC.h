@@ -14,11 +14,11 @@
     NSString* _number;
 }
 
-+ (id) cardCVCWithString:(NSString *)string;
-- (id) initWithString:(NSString *)string;
-- (NSString*) string;
-- (BOOL) isValid;
-- (BOOL) isValidWithType:(STCardType)type;
-- (BOOL) isPartiallyValid;
++ (id)cardCVCWithString:(NSString *)string;
+- (id)initWithString:(NSString *)string;
+- (NSString*)string;
+- (BOOL)isValid;
+- (BOOL)isValidWithType:(STCardType)type;
+- (BOOL)isPartiallyValid;
 
 @end

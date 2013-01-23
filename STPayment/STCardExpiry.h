@@ -10,11 +10,16 @@
 
 @interface STCardExpiry : NSObject {
     @private
-    NSString* _expiry;
+    NSString* _month;
+    NSString* _year;
 }
 
-+ (id) cardExpiryWithString:(NSString *)string;
-- (id) initWithString:(NSString *)string;
-- (BOOL) isValid;
++ (id)cardExpiryWithString:(NSString *)string;
+- (id)initWithString:(NSString *)string;
+- (NSString *)formattedString;
+- (NSString *)formattedStringWithTrail;
+- (BOOL)isValid;
+- (NSUInteger)month;
+- (NSUInteger)year;
 
 @end

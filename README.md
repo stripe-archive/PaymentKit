@@ -32,6 +32,25 @@ STPayment is a utility library for writing payment forms in iOS and Mac apps. It
     [[STCardNumber cardNumberWithString:@"4242424242424242"] isValid]; //=> YES
     [[STCardNumber cardNumberWithString:@"4242424242424243"] isValid]; //=> NO
 
+    // Check to see if a card expiry is valid
+    [[STCardExpiry cardExpiryWithString:@"05 / 20"] isValid]; //=> YES
+    [[STCardExpiry cardExpiryWithString:@"05 / 02"] isValid]; //=> NO
+
+    // Return a card expiry's month
+    [[STCardExpiry cardExpiryWithString:@"05 / 02"] month]; //=> 5
+
+## Delegates
+
+Included are a number of `UITextFieldDelegate` delegates: `STCardCVCDelegate`, `STCardExpiryDelegate` and `STCardNumberDelegate`.
+
+You can set these as the delegates of `UITextField` inputs, which ensures that input is limited and formatted.
+
+
+----------
+
+
+## Full API
+
 ### STCardNumber
 
 #### `+ (id) cardNumberWithString:(NSString *)string`
@@ -93,7 +112,57 @@ Returns a `BOOL` indicating whether the number passed a [Luhn check](http://en.w
 Returns a `BOOL` indicating whether the number is too long or not.
 
 ### STCardCVC
+
+#### `+ (id) cardCVCWithString:(NSString *)string`
+#### `- (id) initWithString:(NSString *)string`
+
+Returns a `STCardCVC` instance, representing the card CVC. For example:
+
+    STCardCVC* cardCVC = [STCardCVC cardCVCWithString:@"123"];
+
+#### `- (NSString*)string`
+
+Returns the CVC as a string.
+
+#### `- (BOOL)isValid`
+
+Returns a `BOOL` indicating whether the CVC is valid universally.
+
+#### `- (BOOL)isValidWithType:(STCardType)type`
+
+Returns a `BOOL` indicating whether the CVC is valid for a particular card type.
+
+#### `- (BOOL)isPartiallyValid`
+
+Returns a `BOOL` indicating whether the cvc is too long or not.
+
 ### STCardExpiry
-### STCardNumberDelegate
-### STCardCVCDelegate
-### STCardExpiryDelegate
+
+#### `+ (id)cardExpiryWithString:(NSString *)string`
+#### `- (id)initWithString:(NSString *)string`
+
+Create a `STCardExpiry` object, passing a `NSString` representing the card expiry. For example:
+
+    STCardExpiry* cardExpiry = [STCardExpiry cardExpiryWithString:@"10 / 2015"];
+
+#### `- (NSString *)formattedString`
+
+Returns a formatted representation of the card expiry. For example:
+
+    [[STCardExpiry cardExpiryWithString:@"10/2015"] formattedString]; //=> "10 / 2015"
+
+#### `- (NSString *)formattedStringWithTrail`
+
+Returns a formatted representation of the card expiry, with a trailing slash if appropriate. Useful for formatting `UITextField` inputs.
+
+#### `- (BOOL)isValid`
+
+Returns a `BOOL` if the expiry has a valid month, a valid year and is in the future.
+
+#### `- (NSUInteger)month`
+
+Returns an integer representing the expiry's month. Returns `0` if the month can't be determined.
+
+#### `- (NSUInteger)year`
+
+Returns an integer representing the expiry's year. Returns `0` if the year can't be determined.

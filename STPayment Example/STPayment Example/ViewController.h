@@ -7,11 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "STCardNumberDelegate.h"
+#import "STCardCVCDelegate.h"
+#import "STCardExpiryDelegate.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController {
+    @private
+    STCardNumberDelegate* _cardNumberDelegate;
+    STCardCVCDelegate* _cardCVCDelegate;
+    STCardExpiryDelegate* _cardExpiryDelegate;
+}
 
-@property IBOutlet UITextField* creditCardNumber;
-@property IBOutlet UITextField* creditCardCVC;
-@property IBOutlet UITextField* creditCardExpiry;
+@property IBOutlet UITextField* cardNumber;
+@property IBOutlet UITextField* cardCVC;
+@property IBOutlet UITextField* cardExpiry;
+
+- (IBAction)submit:(id) sender;
 
 @end

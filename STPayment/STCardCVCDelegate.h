@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "STCardCVC.h"
 
-@interface STCardCVCDelegate : NSObject
+@interface STCardCVCDelegate : NSObject <UITextFieldDelegate>
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
 

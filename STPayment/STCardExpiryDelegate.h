@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "STCardExpiry.h"
 
 @interface STCardExpiryDelegate : NSObject <UITextFieldDelegate>
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
 
 @end

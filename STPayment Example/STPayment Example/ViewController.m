@@ -10,6 +10,7 @@
 #import "STCardType.h"
 #import "STCardNumber.h"
 #import "STCardExpiryDelegate.h"
+#import "STCardExpiry.h"
 
 @interface ViewController ()
 
@@ -17,7 +18,7 @@
 
 @implementation ViewController
 
-@synthesize creditCardNumber;
+@synthesize cardNumber;
 
 - (void)viewDidLoad
 {
@@ -33,6 +34,21 @@
     
     NSLog(@"Valid: %d;", [[STCardNumber cardNumberWithString:@"4242424242424242"] isValid]);
     NSLog(@"Not Valid: %d;", [[STCardNumber cardNumberWithString:@"4242424242424243"] isValid]);
+    
+    _cardNumberDelegate = [[STCardNumberDelegate alloc] init];
+    self.cardNumber.delegate = _cardNumberDelegate;
+    
+    _cardCVCDelegate = [[STCardCVCDelegate alloc] init];
+    self.cardCVC.delegate = _cardCVCDelegate;
+    
+    _cardExpiryDelegate = [[STCardExpiryDelegate alloc] init];
+    self.cardExpiry.delegate = _cardExpiryDelegate;
+}
+
+- (IBAction)submit:(id) sender {
+    STCardExpiry* expiry = [STCardExpiry cardExpiryWithString:self.cardExpiry.text];
+    
+    NSLog(@"Expiry is valid: %d", [expiry isValid]);
 }
 
 - (void)didReceiveMemoryWarning
