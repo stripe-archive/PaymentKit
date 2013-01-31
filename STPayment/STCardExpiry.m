@@ -56,10 +56,10 @@
 - (NSString *)formattedString
 {
     if (_month.length > 0 && _year.length > 0)
-        return [NSString stringWithFormat:@"%@ / %@", _month, _year];
+        return [NSString stringWithFormat:@"%@/%@", _month, _year];
     
     if (_month.length == 0 && _year.length > 0)
-        return [NSString stringWithFormat:@" / %@", _year];
+        return [NSString stringWithFormat:@"/%@", _year];
 
     if (_month.length > 0)
         return [NSString stringWithFormat:@"%@", _month];
@@ -69,26 +69,33 @@
 
 - (NSString *)formattedStringWithTrail
 {
-    if (_month.length == 2 && _year)
-        return [NSString stringWithFormat:@"%@ / %@", _month, _year];
-
-    if (_month.length == 0 && _year.length > 0)
-        return [NSString stringWithFormat:@" / %@", _year];
-    
-    if (_month.length == 2)
-        return [NSString stringWithFormat:@"%@ / ", _month];
-    
-    return [NSString stringWithFormat:@"%@", _month];
+    if (_month.length == 2 && _year.length == 0) {
+        return [NSString stringWithFormat:@"%@/", [self formattedString]];
+    } else {
+        return [self formattedString];
+    }
 }
 
-- (BOOL) isValid {
+- (BOOL)isValid
+{
+    return [self isValidLength] && [self isValidDate];
+}
+
+- (BOOL)isValidLength
+{
+    return _month.length == 2 && (_year.length == 2 || _year.length == 4);
+}
+
+- (BOOL)isValidDate
+{
     if ([self month] <= 0 || [self month] >= 12) return false;
     
     NSDate* now = [NSDate date];
     return [[self expiryDate] compare:now] == NSOrderedDescending;
 }
 
-- (NSDate*) expiryDate {
+- (NSDate*)expiryDate
+{
     NSDateComponents *comps = [[NSDateComponents alloc] init];
     [comps setDay:1];    
     [comps setMonth:[self month]];
@@ -99,13 +106,14 @@
     return [gregorian dateFromComponents:comps];
 }
 
-- (NSUInteger) month {
+- (NSUInteger)month
+{
     if (!_month) return 0;
-
     return [_month integerValue];
 }
 
-- (NSUInteger) year {
+- (NSUInteger)year
+{
     if (!_year) return 0;
     
     NSString* yearStr = [NSString stringWithString:_year];

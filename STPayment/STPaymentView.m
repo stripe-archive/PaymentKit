@@ -210,7 +210,9 @@
     // Strip non-digits
     cardCVCField.text = [cardCVC string];
     
-    if ([cardCVC isValid]) {
+    STCardType cardType = [[STCardNumber cardNumberWithString:cardNumberField.text] cardType];
+    
+    if ([cardCVC isValidWithType:cardType]) {
         NSLog(@"CVC valid");
         [self stateZip];
     }

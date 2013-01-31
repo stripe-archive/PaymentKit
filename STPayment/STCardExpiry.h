@@ -19,6 +19,8 @@
 - (NSString *)formattedString;
 - (NSString *)formattedStringWithTrail;
 - (BOOL)isValid;
+- (BOOL)isValidLength;
+- (BOOL)isValidDate;
 - (NSUInteger)month;
 - (NSUInteger)year;
 
