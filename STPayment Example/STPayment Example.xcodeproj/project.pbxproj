@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA06D14C16AFC0AA00C46291 /* STPaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA06D14B16AFC0AA00C46291 /* STPaymentView.m */; };
 		FA45AC7116AE350D0003A41D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA45AC7016AE350D0003A41D /* UIKit.framework */; };
 		FA45AC7316AE350D0003A41D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA45AC7216AE350D0003A41D /* Foundation.framework */; };
 		FA45AC7516AE350D0003A41D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA45AC7416AE350D0003A41D /* CoreGraphics.framework */; };
@@ -28,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA06D14A16AFC0AA00C46291 /* STPaymentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPaymentView.h; sourceTree = "<group>"; };
+		FA06D14B16AFC0AA00C46291 /* STPaymentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPaymentView.m; sourceTree = "<group>"; };
 		FA45AC6C16AE350D0003A41D /* STPayment Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "STPayment Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA45AC7016AE350D0003A41D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FA45AC7216AE350D0003A41D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -148,6 +151,8 @@
 				FA45ACB116AF3B250003A41D /* STCardCVCDelegate.m */,
 				FA45ACB316AF3CA40003A41D /* STCardExpiryDelegate.h */,
 				FA45ACB416AF3CA40003A41D /* STCardExpiryDelegate.m */,
+				FA06D14A16AFC0AA00C46291 /* STPaymentView.h */,
+				FA06D14B16AFC0AA00C46291 /* STPaymentView.m */,
 			);
 			name = STPayment;
 			path = ../STPayment;
@@ -229,6 +234,7 @@
 				FA45ACAF16AF38BB0003A41D /* STCardNumberDelegate.m in Sources */,
 				FA45ACB216AF3B250003A41D /* STCardCVCDelegate.m in Sources */,
 				FA45ACB516AF3CA40003A41D /* STCardExpiryDelegate.m in Sources */,
+				FA06D14C16AFC0AA00C46291 /* STPaymentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +355,7 @@
 				FA45AC9516AE350E0003A41D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
