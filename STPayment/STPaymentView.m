@@ -6,23 +6,39 @@
 //  Copyright (c) 2013 Stripe. All rights reserved.
 //
 
+#define RGB(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
 #define DarkGreyColor [UIColor colorWithRed:59/255.0f green:61/255.0f blue:66/255.0f alpha:1.0f];
 #define DefaultBoldFont [UIFont boldSystemFontOfSize:16];
 
-#import "STPaymentView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "STPaymentView.h"
+
+@interface STPaymentView ()
+- (void)constructor;
+- (void)constructCardTypeImageView;
+- (void)constructCardNumberField;
+- (void)constructCardNumberLast4Label;
+- (void)constructCardExpiryField;
+- (void)constructCardCVCField;
+- (void)constructZipField;
+- (void)stateCardNumber;
+- (void)stateMeta;
+- (void)stateCardCVC;
+- (void)stateZip;
+- (void)stateComplete;
+@end
 
 @implementation STPaymentView
 
 @synthesize cardNumberField, cardNumberLast4Label,
-            cardExpiryField, cardCVCField, zipField,
+            cardExpiryField, cardCVCField, addressZipField,
             cardTypeImageView, delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self _constructor];
+        [self constructor];
     }
     return self;
 }
@@ -30,29 +46,34 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self _constructor];
+    [self constructor];
 }
 
-- (void)_constructor
+- (void)constructor
 {
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 292, 55);
+    self.backgroundColor = [UIColor whiteColor];
+    self.layer.cornerRadius = 8.0f;
+    self.layer.borderWidth = 1.0f;
+    self.layer.borderColor = [RGB(153,153,153) CGColor];
     
-    [self _constructCardTypeImageView];
-    [self _constructCardNumberField];
-    [self _constructCardNumberLast4Label];
-    [self _constructCardExpiryField];
-    [self _constructCardCVCField];
-    [self _constructZipField];
+    
+    [self constructCardTypeImageView];
+    [self constructCardNumberField];
+    [self constructCardNumberLast4Label];
+    [self constructCardExpiryField];
+    [self constructCardCVCField];
+    [self constructZipField];
     [self stateCardNumber];
 }
 
 
-- (void)_constructCardTypeImageView {
+- (void)constructCardTypeImageView {
     cardTypeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 17, 32, 20)];
     cardTypeImageView.image = [UIImage imageNamed:@"placeholder"];
 }
 
-- (void)_constructCardNumberField
+- (void)constructCardNumberField
 {
     cardNumberField = [[UITextField alloc] initWithFrame:CGRectMake(52,16,228,20)];
     
@@ -68,12 +89,12 @@
     [cardNumberField.layer setMasksToBounds:YES];
 }
 
-- (void)_constructCardNumberLast4Label
+- (void)constructCardNumberLast4Label
 {
     cardNumberLast4Label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,50,40)];
 }
 
-- (void)_constructCardExpiryField
+- (void)constructCardExpiryField
 {
     cardExpiryField = [[UITextField alloc] initWithFrame:CGRectMake(110,16,62,20)];
 
@@ -87,7 +108,7 @@
     [cardExpiryField.layer setMasksToBounds:YES];
 }
 
-- (void)_constructCardCVCField
+- (void)constructCardCVCField
 {
     cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(179,16,55,20)];
     
@@ -101,18 +122,40 @@
     [cardCVCField.layer setMasksToBounds:YES];
 }
 
-- (void)_constructZipField
+- (void)constructZipField
 {
-    zipField = [[UITextField alloc] initWithFrame:CGRectMake(240,16,50,20)];
+    addressZipField = [[UITextField alloc] initWithFrame:CGRectMake(240,16,50,20)];
     
-    zipField.delegate = self;
+    addressZipField.delegate = self;
     
-    zipField.placeholder = @"ZIP";
-    zipField.keyboardType = UIKeyboardTypeNumberPad;
-    zipField.textColor = DarkGreyColor;
-    zipField.font = DefaultBoldFont;
+    addressZipField.placeholder = @"ZIP";
+    addressZipField.keyboardType = UIKeyboardTypeNumberPad;
+    addressZipField.textColor = DarkGreyColor;
+    addressZipField.font = DefaultBoldFont;
     
-    [zipField.layer setMasksToBounds:YES];
+    [addressZipField.layer setMasksToBounds:YES];
+}
+
+// Accessors
+
+- (STCardNumber*)cardNumber
+{
+    return [STCardNumber cardNumberWithString:cardNumberField.text];
+}
+
+- (STCardExpiry*)cardExpiry
+{
+    return [STCardExpiry cardExpiryWithString:cardExpiryField.text];
+}
+
+- (STCardCVC*)cardCVC
+{
+    return [STCardCVC cardCVCWithString:cardCVCField.text];
+}
+
+- (STAddressZip*)addressZip
+{
+    return [STAddressZip addressZipWithString:addressZipField.text];
 }
 
 // State
@@ -122,7 +165,7 @@
     [cardNumberLast4Label removeFromSuperview];
     [cardExpiryField removeFromSuperview];
     [cardCVCField removeFromSuperview];
-    [zipField removeFromSuperview];
+    [addressZipField removeFromSuperview];
     [self addSubview:cardTypeImageView];
     [self addSubview:cardNumberField];    
 }
@@ -133,7 +176,7 @@
     [self addSubview:cardTypeImageView];
     [self addSubview:cardExpiryField];
     [self addSubview:cardCVCField];
-    [self addSubview:zipField];
+    [self addSubview:addressZipField];
     [cardExpiryField becomeFirstResponder];
 }
 
@@ -144,23 +187,29 @@
 
 - (void)stateZip
 {
-    [zipField becomeFirstResponder];
+    [addressZipField becomeFirstResponder];
 }
 
 - (void)stateComplete
 {
-    STCardNumber *cardNumber = [STCardNumber cardNumberWithString:cardNumberField.text];
-    STCardExpiry *cardExpiry = [STCardExpiry cardExpiryWithString:cardExpiryField.text];
-    STCardCVC       *cardCVC = [STCardCVC cardCVCWithString:cardCVCField.text];
+    [delegate didInputCard:self.card];
+}
 
+- (BOOL)isValid
+{
+    return [self.cardNumber isValid] && [self.cardExpiry isValid] && [self.cardCVC isValid] && [self.addressZip isValid];
+}
+
+- (STCard*)card
+{
     STCard* card    = [[STCard alloc] init];
-    card.number     = [cardNumber string];
-    card.cvc        = [cardCVC string];
-    card.expMonth   = [cardExpiry month];
-    card.expYear    = [cardExpiry year];
-    card.addressZip = [zipField text];
+    card.number     = [self.cardNumber string];
+    card.cvc        = [self.cardCVC string];
+    card.expMonth   = [self.cardExpiry month];
+    card.expYear    = [self.cardExpiry year];
+    card.addressZip = [self.addressZip string];
     
-    [delegate didInputCard:card];
+    return card;
 }
 
 - (void)updateCardTypeImageView {
@@ -210,8 +259,8 @@
         return [self cardCVCShouldChangeCharactersInRange:range replacementString:replacementString];
     }
     
-    if ([textField isEqual:zipField]) {
-        return [self zipShouldChangeCharactersInRange:range replacementString:replacementString];
+    if ([textField isEqual:addressZipField]) {
+        return [self addressZipShouldChangeCharactersInRange:range replacementString:replacementString];
     }
     
     return YES;
@@ -293,15 +342,17 @@
     return NO;
 }
 
-- (BOOL)zipShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString
+- (BOOL)addressZipShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString
 {
-    NSString *zipString = [zipField.text stringByReplacingCharactersInRange:range withString:replacementString];
+    NSString *resultString = [addressZipField.text stringByReplacingCharactersInRange:range withString:replacementString];
+    STAddressZip *addressZip = [STAddressZip addressZipWithString:resultString];
+
+    // Restrict length
+    if ( ![addressZip isPartiallyValid] ) return NO;
     
-    if (zipString.length > 5) return NO;
+    addressZipField.text = [addressZip string];
     
-    zipField.text = zipString;
-    
-    if (zipString.length == 5) {
+    if ([addressZip isValid]) {
         NSLog(@"Zip Valid");
         [self stateComplete];
     }

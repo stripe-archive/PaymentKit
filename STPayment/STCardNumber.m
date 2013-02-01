@@ -10,12 +10,12 @@
 
 @implementation STCardNumber
 
-+ (id) cardNumberWithString:(NSString *)string
++ (id)cardNumberWithString:(NSString *)string
 {
     return [[self alloc] initWithString:string];
 }
 
-- (id) initWithString:(NSString *)string
+- (id)initWithString:(NSString *)string
 {
     self = [super init];
     if (self) {
@@ -58,7 +58,7 @@
     if (_number.length >= 4) {
         return [_number substringFromIndex:([_number length] - 4)];
     } else {
-        return NULL;
+        return nil;
     }
 }
 
@@ -137,7 +137,7 @@
 - (BOOL)isValidLuhn
 {
     BOOL odd = true;
-    int sum = false;
+    int sum  = 0;
     NSMutableArray* digits = [NSMutableArray arrayWithCapacity:_number.length];
     
     for (int i=0; i < _number.length; i++) {

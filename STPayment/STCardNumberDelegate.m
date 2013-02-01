@@ -12,11 +12,10 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString
 {
-    NSString *resultString = [textField.text stringByReplacingCharactersInRange:range withString:replacementString];
+    NSString *resultString   = [textField.text stringByReplacingCharactersInRange:range withString:replacementString];
     STCardNumber *cardNumber = [STCardNumber cardNumberWithString:resultString];
     
-    if ( ![cardNumber isPartiallyValid] )
-        return NO;
+    if ( ![cardNumber isPartiallyValid] ) return NO;
     
     if (replacementString.length > 0) {
         textField.text = [cardNumber formattedStringWithTrail];

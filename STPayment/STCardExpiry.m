@@ -21,32 +21,32 @@
 
     NSTextCheckingResult* match = [regex firstMatchInString:string options:0 range:NSMakeRange(0, string.length)];
 
-    NSString* month = [NSString string];
-    NSString* year  = [NSString string];
+    NSString* monthStr = [NSString string];
+    NSString* yearStr  = [NSString string];
     
     if (match) {
         NSRange monthRange = [match rangeAtIndex:1];
         if (monthRange.length > 0)
-            month = [string substringWithRange:monthRange];
+            monthStr = [string substringWithRange:monthRange];
         
         NSRange yearRange  = [match rangeAtIndex:2];
         if (yearRange.length > 0)
-            year = [string substringWithRange:yearRange];
+            yearStr = [string substringWithRange:yearRange];
     }
     
-    return [self initWithMonth:month andYear:year];
+    return [self initWithMonth:monthStr andYear:yearStr];
 }
 
-- (id) initWithMonth:(NSString*)month andYear:(NSString*)year
+- (id) initWithMonth:(NSString*)monthStr andYear:(NSString*)yearStr
 {
     self = [super init];
     if (self) {
-        _month = month;
-        _year  = year;
+        month = monthStr;
+        year  = yearStr;
         
-        if (_month.length == 1) {
-            if ( !([_month isEqualToString:@"0"] || [_month isEqualToString:@"1"]) ){
-                _month = [NSString stringWithFormat:@"0%@", _month];
+        if (month.length == 1) {
+            if ( !([month isEqualToString:@"0"] || [month isEqualToString:@"1"]) ){
+                month = [NSString stringWithFormat:@"0%@", month];
             }
         }
     }
@@ -55,15 +55,15 @@
 
 - (NSString *)formattedString
 {
-    if (_year.length > 0)
-        return [NSString stringWithFormat:@"%@/%@", _month, _year];
+    if (year.length > 0)
+        return [NSString stringWithFormat:@"%@/%@", month, year];
 
-    return [NSString stringWithFormat:@"%@", _month];    
+    return [NSString stringWithFormat:@"%@", month];    
 }
 
 - (NSString *)formattedStringWithTrail
 {
-    if (_month.length == 2 && _year.length == 0) {
+    if (month.length == 2 && year.length == 0) {
         return [NSString stringWithFormat:@"%@/", [self formattedString]];
     } else {
         return [self formattedString];
@@ -77,7 +77,7 @@
 
 - (BOOL)isValidLength
 {
-    return _month.length == 2 && (_year.length == 2 || _year.length == 4);
+    return month.length == 2 && (year.length == 2 || year.length == 4);
 }
 
 - (BOOL)isValidDate
@@ -93,7 +93,7 @@
     if ([self isValidLength]) {
         return [self isValidDate];
     } else {
-        return [self month] <= 12 && _year.length <= 4;
+        return [self month] <= 12 && year.length <= 4;
     }
 }
 
@@ -111,15 +111,15 @@
 
 - (NSUInteger)month
 {
-    if (!_month) return 0;
-    return [_month integerValue];
+    if (!month) return 0;
+    return [month integerValue];
 }
 
 - (NSUInteger)year
 {
-    if (!_year) return 0;
+    if (!year) return 0;
     
-    NSString* yearStr = [NSString stringWithString:_year];
+    NSString* yearStr = [NSString stringWithString:year];
     
     if (yearStr.length == 2) {
         NSDateFormatter* formatter = [[NSDateFormatter alloc] init];

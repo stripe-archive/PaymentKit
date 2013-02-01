@@ -1,24 +1,22 @@
 //
-//  STCardCVC.h
+//  STZip.h
 //  STPayment Example
 //
-//  Created by Alex MacCaw on 1/22/13.
+//  Created by Alex MacCaw on 2/1/13.
 //  Copyright (c) 2013 Stripe. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "STCardType.h"
 
-@interface STCardCVC : NSObject {
-    @private
-    NSString* cvc;
+@interface STAddressZip : NSObject {
+@private
+    NSString* zip;
 }
 
-+ (id)cardCVCWithString:(NSString *)string;
++ (id)addressZipWithString:(NSString *)string;
 - (id)initWithString:(NSString *)string;
 - (NSString*)string;
 - (BOOL)isValid;
-- (BOOL)isValidWithType:(STCardType)type;
 - (BOOL)isPartiallyValid;
 
 @end

@@ -10,8 +10,8 @@
 
 @interface STCardExpiry : NSObject {
     @private
-    NSString* _month;
-    NSString* _year;
+    NSString* month;
+    NSString* year;
 }
 
 + (id)cardExpiryWithString:(NSString *)string;

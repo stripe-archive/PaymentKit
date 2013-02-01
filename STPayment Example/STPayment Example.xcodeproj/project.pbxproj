@@ -43,6 +43,7 @@
 		FA45ACAF16AF38BB0003A41D /* STCardNumberDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACAE16AF38BA0003A41D /* STCardNumberDelegate.m */; };
 		FA45ACB216AF3B250003A41D /* STCardCVCDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACB116AF3B250003A41D /* STCardCVCDelegate.m */; };
 		FA45ACB516AF3CA40003A41D /* STCardExpiryDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACB416AF3CA40003A41D /* STCardExpiryDelegate.m */; };
+		FAADE6CF16BC44D9006FF4D1 /* STAddressZip.m in Sources */ = {isa = PBXBuildFile; fileRef = FAADE6CE16BC44D9006FF4D1 /* STAddressZip.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,8 @@
 		FA45ACB116AF3B250003A41D /* STCardCVCDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardCVCDelegate.m; sourceTree = "<group>"; };
 		FA45ACB316AF3CA40003A41D /* STCardExpiryDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardExpiryDelegate.h; sourceTree = "<group>"; };
 		FA45ACB416AF3CA40003A41D /* STCardExpiryDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardExpiryDelegate.m; sourceTree = "<group>"; };
+		FAADE6CD16BC44D9006FF4D1 /* STAddressZip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAddressZip.h; sourceTree = "<group>"; };
+		FAADE6CE16BC44D9006FF4D1 /* STAddressZip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAddressZip.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +227,8 @@
 				FA06D14B16AFC0AA00C46291 /* STPaymentView.m */,
 				FA2A749E16BB1EDD00AF0078 /* STCard.h */,
 				FA2A749F16BB1EDD00AF0078 /* STCard.m */,
+				FAADE6CD16BC44D9006FF4D1 /* STAddressZip.h */,
+				FAADE6CE16BC44D9006FF4D1 /* STAddressZip.m */,
 			);
 			name = STPayment;
 			path = ../STPayment;
@@ -323,6 +328,7 @@
 				FA06D14C16AFC0AA00C46291 /* STPaymentView.m in Sources */,
 				FA2A74A016BB1EDD00AF0078 /* STCard.m in Sources */,
 				FA2A74A416BB21AB00AF0078 /* CustomViewController.m in Sources */,
+				FAADE6CF16BC44D9006FF4D1 /* STAddressZip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

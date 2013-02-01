@@ -16,8 +16,7 @@
     STCardCVC *cardCVC = [STCardCVC cardCVCWithString:resultString];
     
     // Restrict length
-    if ( ![cardCVC isPartiallyValid] )
-        return NO;
+    if ( ![cardCVC isPartiallyValid] ) return NO;
     
     // Strip non-digits
     textField.text = [cardCVC string];
