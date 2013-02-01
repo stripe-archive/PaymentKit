@@ -17,6 +17,7 @@
 + (id) cardNumberWithString:(NSString *)string;
 - (id) initWithString:(NSString *)string;
 - (STCardType)cardType;
+- (NSString *)last4;
 - (NSString *)string;
 - (NSString *)formattedString;
 - (NSString *)formattedStringWithTrail;

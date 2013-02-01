@@ -6,12 +6,17 @@
 //  Copyright (c) 2013 Stripe. All rights reserved.
 //
 
+#define DarkGreyColor [UIColor colorWithRed:59/255.0f green:61/255.0f blue:66/255.0f alpha:1.0f];
+#define DefaultBoldFont [UIFont boldSystemFontOfSize:16];
+
 #import "STPaymentView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation STPaymentView
 
-@synthesize cardNumberField, cardExpiryField, cardCVCField, zipField;
+@synthesize cardNumberField, cardNumberLast4Label,
+            cardExpiryField, cardCVCField, zipField,
+            cardTypeImageView, delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -30,98 +35,163 @@
 
 - (void)_constructor
 {
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 292, 55);
+    
+    [self _constructCardTypeImageView];
     [self _constructCardNumberField];
+    [self _constructCardNumberLast4Label];
     [self _constructCardExpiryField];
     [self _constructCardCVCField];
     [self _constructZipField];
     [self stateCardNumber];
 }
 
+
+- (void)_constructCardTypeImageView {
+    cardTypeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 17, 32, 20)];
+    cardTypeImageView.image = [UIImage imageNamed:@"placeholder"];
+}
+
 - (void)_constructCardNumberField
 {
-    cardNumberField = [[UITextField alloc] initWithFrame:CGRectMake(0,0,200,40)];
+    cardNumberField = [[UITextField alloc] initWithFrame:CGRectMake(52,16,228,20)];
     
     cardNumberField.delegate = self;
     
     cardNumberField.placeholder = @"1234 5678 9012 3456";
     cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
+    cardNumberField.textColor = DarkGreyColor;
+    cardNumberField.font = DefaultBoldFont;
+
     // cardNumberField.secureTextEntry = YES;
     
-    cardNumberField.layer.backgroundColor = [[UIColor whiteColor] CGColor];
-    cardNumberField.layer.borderColor = [[UIColor grayColor] CGColor];
-    cardNumberField.layer.borderWidth = 1.0;
-    cardNumberField.layer.cornerRadius = 8.0f;
     [cardNumberField.layer setMasksToBounds:YES];
+}
+
+- (void)_constructCardNumberLast4Label
+{
+    cardNumberLast4Label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,50,40)];
 }
 
 - (void)_constructCardExpiryField
 {
-    cardExpiryField = [[UITextField alloc] initWithFrame:CGRectMake(0,0,100,40)];
+    cardExpiryField = [[UITextField alloc] initWithFrame:CGRectMake(110,16,62,20)];
 
     cardExpiryField.delegate = self;
     
     cardExpiryField.placeholder = @"MM/YY";
     cardExpiryField.keyboardType = UIKeyboardTypeNumberPad;
+    cardExpiryField.textColor = DarkGreyColor;
+    cardExpiryField.font = DefaultBoldFont;
     
-    cardExpiryField.layer.backgroundColor = [[UIColor whiteColor] CGColor];
-    cardExpiryField.layer.borderColor = [[UIColor grayColor] CGColor];
-    cardExpiryField.layer.borderWidth = 1.0;
-    cardExpiryField.layer.cornerRadius = 8.0f;
     [cardExpiryField.layer setMasksToBounds:YES];
 }
 
 - (void)_constructCardCVCField
 {
-    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(120,0,100,40)];
+    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(179,16,55,20)];
     
     cardCVCField.delegate = self;
     
     cardCVCField.placeholder = @"CVC";
     cardCVCField.keyboardType = UIKeyboardTypeNumberPad;
+    cardCVCField.textColor = DarkGreyColor;
+    cardCVCField.font = DefaultBoldFont;
     
-    cardCVCField.layer.backgroundColor = [[UIColor whiteColor] CGColor];
-    cardCVCField.layer.borderColor = [[UIColor grayColor] CGColor];
-    cardCVCField.layer.borderWidth = 1.0;
-    cardCVCField.layer.cornerRadius = 8.0f;
     [cardCVCField.layer setMasksToBounds:YES];
 }
 
 - (void)_constructZipField
 {
-    zipField = [[UITextField alloc] initWithFrame:CGRectMake(220,0,100,40)];
+    zipField = [[UITextField alloc] initWithFrame:CGRectMake(240,16,50,20)];
     
     zipField.delegate = self;
     
     zipField.placeholder = @"ZIP";
     zipField.keyboardType = UIKeyboardTypeNumberPad;
+    zipField.textColor = DarkGreyColor;
+    zipField.font = DefaultBoldFont;
     
-    zipField.layer.backgroundColor = [[UIColor whiteColor] CGColor];
-    zipField.layer.borderColor = [[UIColor grayColor] CGColor];
-    zipField.layer.borderWidth = 1.0;
-    zipField.layer.cornerRadius = 8.0f;
     [zipField.layer setMasksToBounds:YES];
 }
 
 // State
 
-- (void)stateCardNumber {
+- (void)stateCardNumber
+{
+    [cardNumberLast4Label removeFromSuperview];
+    [cardExpiryField removeFromSuperview];
+    [cardCVCField removeFromSuperview];
+    [zipField removeFromSuperview];
+    [self addSubview:cardTypeImageView];
     [self addSubview:cardNumberField];    
 }
 
-- (void)stateMeta {
+- (void)stateMeta
+{
     [cardNumberField removeFromSuperview];
+    [self addSubview:cardTypeImageView];
     [self addSubview:cardExpiryField];
     [self addSubview:cardCVCField];
     [self addSubview:zipField];
     [cardExpiryField becomeFirstResponder];
 }
 
-- (void)stateCardCVC {
+- (void)stateCardCVC
+{
     [cardCVCField becomeFirstResponder];
 }
 
-- (void)stateZip {
+- (void)stateZip
+{
     [zipField becomeFirstResponder];
+}
+
+- (void)stateComplete
+{
+    STCardNumber *cardNumber = [STCardNumber cardNumberWithString:cardNumberField.text];
+    STCardExpiry *cardExpiry = [STCardExpiry cardExpiryWithString:cardExpiryField.text];
+    STCardCVC       *cardCVC = [STCardCVC cardCVCWithString:cardCVCField.text];
+
+    STCard* card    = [[STCard alloc] init];
+    card.number     = [cardNumber string];
+    card.cvc        = [cardCVC string];
+    card.expMonth   = [cardExpiry month];
+    card.expYear    = [cardExpiry year];
+    card.addressZip = [zipField text];
+    
+    [delegate didInputCard:card];
+}
+
+- (void)updateCardTypeImageView {
+    STCardNumber *cardNumber = [STCardNumber cardNumberWithString:cardNumberField.text];
+    STCardType cardType      = [cardNumber cardType];
+    NSString* cardTypeName   = @"placeholder";
+    
+    switch (cardType) {
+        case STCardTypeAmex:
+            cardTypeName = @"amex";
+            break;
+        case STCardTypeDinersClub:
+            cardTypeName = @"diners";
+            break;
+        case STCardTypeDiscover:
+            cardTypeName = @"discover";
+            break;
+        case STCardTypeJCB:
+            cardTypeName = @"jcb";
+            break;
+        case STCardTypeMasterCard:
+            cardTypeName = @"mastercard";
+            break;
+        case STCardTypeVisa:
+            cardTypeName = @"visa";
+            break;
+        default:
+            break;
+    }
+    
+    cardTypeImageView.image  = [UIImage imageNamed:cardTypeName];
 }
 
 // Text Field Delegates
@@ -161,6 +231,9 @@
         cardNumberField.text = [cardNumber formattedString];
     }
     
+    self.cardNumberLast4Label.text = [cardNumber last4];
+    [self updateCardTypeImageView];
+    
     if ([cardNumber isValid]) {
         NSLog(@"Card Number valid");
         [self stateMeta];
@@ -177,7 +250,7 @@
     NSString *resultString = [cardExpiryField.text stringByReplacingCharactersInRange:range withString:replacementString];
     STCardExpiry *cardExpiry = [STCardExpiry cardExpiryWithString:resultString];
     
-    if ([cardExpiry month] > 12) return NO;
+    if (![cardExpiry isPartiallyValid]) return NO;
     
     // Only support shorthand year
     if ([cardExpiry formattedString].length > 5) return NO;
@@ -230,8 +303,10 @@
     
     if (zipString.length == 5) {
         NSLog(@"Zip Valid");
+        [self stateComplete];
     }
     
     return NO;
 }
+
 @end

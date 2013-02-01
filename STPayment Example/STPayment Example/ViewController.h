@@ -7,21 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "STCardNumberDelegate.h"
-#import "STCardCVCDelegate.h"
-#import "STCardExpiryDelegate.h"
+#import "STPaymentView.h"
 
-@interface ViewController : UIViewController {
-    @private
-    STCardNumberDelegate* _cardNumberDelegate;
-    STCardCVCDelegate* _cardCVCDelegate;
-    STCardExpiryDelegate* _cardExpiryDelegate;
-}
+@interface ViewController : UIViewController <STPaymentViewDelegate>
 
-@property IBOutlet UITextField* cardNumber;
-@property IBOutlet UITextField* cardCVC;
-@property IBOutlet UITextField* cardExpiry;
+@property IBOutlet STPaymentView* paymentView;
 
-- (IBAction)submit:(id) sender;
+- (void) didInputCard:(STCard*)card;
 
 @end

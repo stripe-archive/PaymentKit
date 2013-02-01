@@ -55,16 +55,10 @@
 
 - (NSString *)formattedString
 {
-    if (_month.length > 0 && _year.length > 0)
+    if (_year.length > 0)
         return [NSString stringWithFormat:@"%@/%@", _month, _year];
-    
-    if (_month.length == 0 && _year.length > 0)
-        return [NSString stringWithFormat:@"/%@", _year];
 
-    if (_month.length > 0)
-        return [NSString stringWithFormat:@"%@", _month];
-    
-    return [NSString string];
+    return [NSString stringWithFormat:@"%@", _month];    
 }
 
 - (NSString *)formattedStringWithTrail
@@ -88,10 +82,19 @@
 
 - (BOOL)isValidDate
 {
-    if ([self month] <= 0 || [self month] >= 12) return false;
+    if ([self month] <= 0 || [self month] > 12) return false;
     
     NSDate* now = [NSDate date];
     return [[self expiryDate] compare:now] == NSOrderedDescending;
+}
+
+- (BOOL)isPartiallyValid
+{
+    if ([self isValidLength]) {
+        return [self isValidDate];
+    } else {
+        return [self month] <= 12 && _year.length <= 4;
+    }
 }
 
 - (NSDate*)expiryDate
@@ -119,7 +122,6 @@
     NSString* yearStr = [NSString stringWithString:_year];
     
     if (yearStr.length == 2) {
-        
         NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy"];
         NSString* prefix = [formatter stringFromDate:[NSDate date]];

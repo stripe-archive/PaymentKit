@@ -53,6 +53,15 @@
     }
 }
 
+- (NSString *)last4
+{
+    if (_number.length >= 4) {
+        return [_number substringFromIndex:([_number length] - 4)];
+    } else {
+        return NULL;
+    }
+}
+
 - (NSString *)string
 {
     return _number;

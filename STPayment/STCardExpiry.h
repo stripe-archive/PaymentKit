@@ -21,6 +21,7 @@
 - (BOOL)isValid;
 - (BOOL)isValidLength;
 - (BOOL)isValidDate;
+- (BOOL)isPartiallyValid;
 - (NSUInteger)month;
 - (NSUInteger)year;
 

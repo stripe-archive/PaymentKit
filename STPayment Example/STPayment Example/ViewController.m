@@ -7,48 +7,19 @@
 //
 
 #import "ViewController.h"
-#import "STCardType.h"
-#import "STCardNumber.h"
-#import "STCardExpiryDelegate.h"
-#import "STCardExpiry.h"
-
-@interface ViewController ()
-
-@end
 
 @implementation ViewController
 
-@synthesize cardNumber;
+@synthesize paymentView;
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    
-    NSLog(@"Visa: %@;", [[STCardNumber cardNumberWithString:@"4242424242424242"] formattedString]);
-    NSLog(@"Visa: %@;", [[STCardNumber cardNumberWithString:@"4242424242"] formattedString]);
-
-    NSLog(@"Amex: %@;", [[STCardNumber cardNumberWithString:@"378282246310005"] formattedString]);
-    NSLog(@"Is Amex: %d;", [[STCardNumber cardNumberWithString:@"378282246310005"] cardType] == STCardTypeAmex);
-
-    
-    NSLog(@"Valid: %d;", [[STCardNumber cardNumberWithString:@"4242424242424242"] isValid]);
-    NSLog(@"Not Valid: %d;", [[STCardNumber cardNumberWithString:@"4242424242424243"] isValid]);
-    
-    _cardNumberDelegate = [[STCardNumberDelegate alloc] init];
-    self.cardNumber.delegate = _cardNumberDelegate;
-    
-    _cardCVCDelegate = [[STCardCVCDelegate alloc] init];
-    self.cardCVC.delegate = _cardCVCDelegate;
-    
-    _cardExpiryDelegate = [[STCardExpiryDelegate alloc] init];
-    self.cardExpiry.delegate = _cardExpiryDelegate;
+    self.paymentView.delegate = self;
 }
 
-- (IBAction)submit:(id) sender {
-    STCardExpiry* expiry = [STCardExpiry cardExpiryWithString:self.cardExpiry.text];
-    
-    NSLog(@"Expiry is valid: %d", [expiry isValid]);
+- (void) didInputCard:(STCard*)card
+{
+    NSLog(@"didInputCard: %@", card.number);
 }
 
 - (void)didReceiveMemoryWarning
