@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../STPayment/STPaymentView.m"
-         timestampString = "381439053.329869"
+         timestampString = "381440807.308706"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "48"
-         endingLineNumber = "48"
+         startingLineNumber = "56"
+         endingLineNumber = "56"
          landmarkName = "-awakeFromNib"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../STPayment/STPaymentView.m"
-         timestampString = "381439053.329869"
+         timestampString = "381440807.308706"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "242"
-         endingLineNumber = "242"
+         startingLineNumber = "250"
+         endingLineNumber = "250"
          landmarkName = "-updateCardTypeImageView"
          landmarkType = "5">
       </FileBreakpoint>

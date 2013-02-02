@@ -20,5 +20,6 @@
 - (BOOL)isValid;
 - (BOOL)isValidWithType:(STCardType)type;
 - (BOOL)isPartiallyValid;
+- (BOOL)isPartiallyValidWithType:(STCardType)type;
 
 @end

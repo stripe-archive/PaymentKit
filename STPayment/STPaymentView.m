@@ -21,11 +21,19 @@
 - (void)constructCardExpiryField;
 - (void)constructCardCVCField;
 - (void)constructZipField;
+
 - (void)stateCardNumber;
 - (void)stateMeta;
 - (void)stateCardCVC;
 - (void)stateZip;
 - (void)stateComplete;
+- (void)updateCardTypeImageView;
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
+- (BOOL)cardNumberFieldShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
+- (BOOL)cardExpiryShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
+- (BOOL)cardCVCShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
+- (BOOL)addressZipShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
 @end
 
 @implementation STPaymentView
@@ -56,7 +64,6 @@
     self.layer.cornerRadius = 8.0f;
     self.layer.borderWidth = 1.0f;
     self.layer.borderColor = [RGB(153,153,153) CGColor];
-    
     
     [self constructCardTypeImageView];
     [self constructCardNumberField];
@@ -197,7 +204,8 @@
 
 - (BOOL)isValid
 {
-    return [self.cardNumber isValid] && [self.cardExpiry isValid] && [self.cardCVC isValid] && [self.addressZip isValid];
+    return [self.cardNumber isValid] && [self.cardExpiry isValid] &&
+           [self.cardCVC isValid] && [self.addressZip isValid];
 }
 
 - (STCard*)card
@@ -286,6 +294,7 @@
     if ([cardNumber isValid]) {
         NSLog(@"Card Number valid");
         [self stateMeta];
+        
     } else if ([cardNumber isValidLength] && ![cardNumber isValidLuhn]) {
         // Shake
         NSLog(@"Card number failed luhn");
@@ -313,6 +322,7 @@
     if ([cardExpiry isValid]) {
         NSLog(@"Expiry valid");
         [self stateCardCVC];
+        
     } else if ([cardExpiry isValidLength] && ![cardExpiry isValidDate]) {
         // Shake
         NSLog(@"Card expiry invalid date");
@@ -325,14 +335,13 @@
 {
     NSString *resultString = [cardCVCField.text stringByReplacingCharactersInRange:range withString:replacementString];
     STCardCVC *cardCVC = [STCardCVC cardCVCWithString:resultString];
+    STCardType cardType = [[STCardNumber cardNumberWithString:cardNumberField.text] cardType];
     
     // Restrict length
-    if ( ![cardCVC isPartiallyValid] ) return NO;
+    if ( ![cardCVC isPartiallyValidWithType:cardType] ) return NO;
     
     // Strip non-digits
     cardCVCField.text = [cardCVC string];
-    
-    STCardType cardType = [[STCardNumber cardNumberWithString:cardNumberField.text] cardType];
     
     if ([cardCVC isValidWithType:cardType]) {
         NSLog(@"CVC valid");

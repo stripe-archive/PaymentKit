@@ -33,12 +33,12 @@
     return cvc;
 }
 
-- (BOOL) isValid
+- (BOOL)isValid
 {
     return cvc.length >= 3 && cvc.length <= 4;
 }
 
-- (BOOL) isValidWithType:(STCardType)type {
+- (BOOL)isValidWithType:(STCardType)type {
     if (type == STCardTypeAmex) {
         return cvc.length == 4;
     } else {
@@ -51,4 +51,11 @@
     return cvc.length <= 4;
 }
 
+- (BOOL)isPartiallyValidWithType:(STCardType)type {
+    if (type == STCardTypeAmex) {
+        return cvc.length <= 4;
+    } else {
+        return cvc.length <= 3;
+    }
+}
 @end
