@@ -3,7 +3,6 @@
 STPayment is a utility library for writing payment forms in iOS apps.
 
 Just add STPaymentView to your application, and it'll take care accepting card numbers, expiry, cvc and zip.
-
 Alternatively, we've provided a bunch of classes that you can use yourself to add formatting, validation and restricting input of `UITextField`s.
 
 In short, STPayment should greatly simplify your life when dealing with iOS payments.
