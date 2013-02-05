@@ -45,23 +45,23 @@ Notice we're importing `STPaymentView.h`, the class conforms to `STPaymentViewDe
 
     - (void)viewDidLoad
     {
-    [super viewDidLoad];
+        [super viewDidLoad];
 
-    self.paymentView = [[STPaymentView alloc] initWithFrame:CGRectMake(15, 25, 290, 55)];
-    self.paymentView.delegate = self;
-    [self.view addSubview:self.paymentView];
+        self.paymentView = [[STPaymentView alloc] initWithFrame:CGRectMake(15, 25, 290, 55)];
+        self.paymentView.delegate = self;
+        [self.view addSubview:self.paymentView];
     }
 
 **3)** Implement `STPaymentViewDelegate` method `card:isValid:`. This gets passed a `STCard` instance, and a `BOOL` indicating whether the card is valid. You can enable or disable a navigational button depending on the value of `valid`, for example.
 
     - (void) card:(STCard *)card isValid:(BOOL)valid
     {
-    NSLog(@"Card number: %@", card.number);
-    NSLog(@"Card expiry: %lu/%lu", (unsigned long)card.expMonth, (unsigned long)card.expYear);
-    NSLog(@"Card cvc: %@", card.cvc);
-    NSLog(@"Address zip: %@", card.addressZip);
+        NSLog(@"Card number: %@", card.number);
+        NSLog(@"Card expiry: %lu/%lu", (unsigned long)card.expMonth, (unsigned long)card.expYear);
+        NSLog(@"Card cvc: %@", card.cvc);
+        NSLog(@"Address zip: %@", card.addressZip);
 
-    // self.navigationItem.rightBarButtonItem.enabled = valid;
+        // self.navigationItem.rightBarButtonItem.enabled = valid;
     }
 
 That's all! No further reading is required, unless you want more flexibility by using the raw API. For more, please see the included example.
