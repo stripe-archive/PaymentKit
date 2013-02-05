@@ -14,7 +14,7 @@
 
 - (void)viewDidLoad
 {
-    self.paymentView = [[STPaymentView alloc] initWithFrame:CGRectMake(15, 25, 292, 55)];
+    self.paymentView = [[STPaymentView alloc] initWithFrame:CGRectMake(15, 25, 290, 55)];
     self.paymentView.delegate = self;
     
     [self.view addSubview:self.paymentView];

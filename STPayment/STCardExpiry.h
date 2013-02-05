@@ -14,6 +14,11 @@
     NSString* year;
 }
 
+@property (readonly) NSUInteger month;
+@property (readonly) NSUInteger year;
+@property (readonly) NSString* formattedString;
+@property (readonly) NSString* formattedStringWithTrail;
+
 + (id)cardExpiryWithString:(NSString *)string;
 - (id)initWithString:(NSString *)string;
 - (NSString *)formattedString;

@@ -14,6 +14,8 @@
     NSString* cvc;
 }
 
+@property (readonly) NSString* string;
+
 + (id)cardCVCWithString:(NSString *)string;
 - (id)initWithString:(NSString *)string;
 - (NSString*)string;

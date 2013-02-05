@@ -7,20 +7,19 @@
 //
 
 #define RGB(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
-#define DarkGreyColor [UIColor colorWithRed:59/255.0f green:61/255.0f blue:66/255.0f alpha:1.0f];
-#define DefaultBoldFont [UIFont boldSystemFontOfSize:16];
+#define DarkGreyColor [UIColor colorWithRed:59/255.0f green:61/255.0f blue:66/255.0f alpha:1.0f]
+#define DefaultBoldFont [UIFont boldSystemFontOfSize:16]
 
 #import <QuartzCore/QuartzCore.h>
 #import "STPaymentView.h"
 
 @interface STPaymentView ()
-- (void)constructor;
-- (void)constructCardTypeImageView;
-- (void)constructCardNumberField;
-- (void)constructCardNumberLast4Label;
-- (void)constructCardExpiryField;
-- (void)constructCardCVCField;
-- (void)constructZipField;
+- (void)setup;
+- (void)setupCardTypeImageView;
+- (void)setupCardNumberField;
+- (void)setupCardExpiryField;
+- (void)setupCardCVCField;
+- (void)setupZipField;
 
 - (void)stateCardNumber;
 - (void)stateMeta;
@@ -38,7 +37,7 @@
 
 @implementation STPaymentView
 
-@synthesize cardNumberField, cardNumberLast4Label,
+@synthesize innerView, cardNumberField,
             cardExpiryField, cardCVCField, addressZipField,
             cardTypeImageView, delegate;
 
@@ -46,7 +45,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self constructor];
+        [self setup];
     }
     return self;
 }
@@ -54,35 +53,47 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self constructor];
+    [self setup];
 }
 
-- (void)constructor
+- (void)setup
 {
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 292, 55);
+    isInitialState = YES;
+    
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 55);
     self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 8.0f;
     self.layer.borderWidth = 1.0f;
     self.layer.borderColor = [RGB(153,153,153) CGColor];
+    self.clipsToBounds = YES;
     
-    [self constructCardTypeImageView];
-    [self constructCardNumberField];
-    [self constructCardNumberLast4Label];
-    [self constructCardExpiryField];
-    [self constructCardCVCField];
-    [self constructZipField];
+    self.innerView = [[UIView alloc] initWithFrame:CGRectMake(12, 18, 290 - 12, 20)];
+    self.innerView.clipsToBounds = YES;
+    
+    [self setupCardTypeImageView];
+    [self setupCardNumberField];
+    [self setupCardExpiryField];
+    [self setupCardCVCField];
+    [self setupZipField];
+    
+    [self.innerView addSubview:cardNumberField];
+    [self.innerView addSubview:cardTypeImageView];
+    [self addSubview:self.innerView];
+    
     [self stateCardNumber];
 }
 
 
-- (void)constructCardTypeImageView {
-    cardTypeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 17, 32, 20)];
+- (void)setupCardTypeImageView
+{
+    cardTypeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32, 20)];
+    cardTypeImageView.backgroundColor = [UIColor whiteColor];
     cardTypeImageView.image = [UIImage imageNamed:@"placeholder"];
 }
 
-- (void)constructCardNumberField
+- (void)setupCardNumberField
 {
-    cardNumberField = [[UITextField alloc] initWithFrame:CGRectMake(52,16,228,20)];
+    cardNumberField = [[UITextField alloc] initWithFrame:CGRectMake(39,0,160,20)];
     
     cardNumberField.delegate = self;
     
@@ -91,19 +102,14 @@
     cardNumberField.textColor = DarkGreyColor;
     cardNumberField.font = DefaultBoldFont;
 
-    // cardNumberField.secureTextEntry = YES;
+//    cardNumberField.secureTextEntry = YES;
     
     [cardNumberField.layer setMasksToBounds:YES];
 }
 
-- (void)constructCardNumberLast4Label
+- (void)setupCardExpiryField
 {
-    cardNumberLast4Label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,50,40)];
-}
-
-- (void)constructCardExpiryField
-{
-    cardExpiryField = [[UITextField alloc] initWithFrame:CGRectMake(110,16,62,20)];
+    cardExpiryField = [[UITextField alloc] initWithFrame:CGRectMake(95,0,60,20)];
 
     cardExpiryField.delegate = self;
     
@@ -115,9 +121,9 @@
     [cardExpiryField.layer setMasksToBounds:YES];
 }
 
-- (void)constructCardCVCField
+- (void)setupCardCVCField
 {
-    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(179,16,55,20)];
+    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(160,0,55,20)];
     
     cardCVCField.delegate = self;
     
@@ -129,9 +135,9 @@
     [cardCVCField.layer setMasksToBounds:YES];
 }
 
-- (void)constructZipField
+- (void)setupZipField
 {
-    addressZipField = [[UITextField alloc] initWithFrame:CGRectMake(240,16,50,20)];
+    addressZipField = [[UITextField alloc] initWithFrame:CGRectMake(210,0,50,20)];
     
     addressZipField.delegate = self;
     
@@ -139,6 +145,7 @@
     addressZipField.keyboardType = UIKeyboardTypeNumberPad;
     addressZipField.textColor = DarkGreyColor;
     addressZipField.font = DefaultBoldFont;
+    addressZipField.textAlignment = NSTextAlignmentCenter;
     
     [addressZipField.layer setMasksToBounds:YES];
 }
@@ -169,21 +176,39 @@
 
 - (void)stateCardNumber
 {
-    [cardNumberLast4Label removeFromSuperview];
     [cardExpiryField removeFromSuperview];
     [cardCVCField removeFromSuperview];
     [addressZipField removeFromSuperview];
-    [self addSubview:cardTypeImageView];
-    [self addSubview:cardNumberField];    
+    
+    if (!isInitialState) {
+        // Animate left
+        isInitialState = YES;
+        
+        [UIView animateWithDuration:0.300 animations:^{
+            cardNumberField.frame = CGRectMake(32 + 7, cardNumberField.frame.origin.y, cardNumberField.frame.size.width, cardNumberField.frame.size.height);
+        }];
+    }
+    
+    [self.cardNumberField becomeFirstResponder];
 }
 
 - (void)stateMeta
 {
-    [cardNumberField removeFromSuperview];
-    [self addSubview:cardTypeImageView];
-    [self addSubview:cardExpiryField];
-    [self addSubview:cardCVCField];
-    [self addSubview:addressZipField];
+    isInitialState = NO;
+    
+    CGSize cardNumberSize = [self.cardNumber.formattedString sizeWithFont:DefaultBoldFont];
+    CGSize last4Size = [self.cardNumber.last4 sizeWithFont:DefaultBoldFont];
+    
+    CGFloat frameX = self.cardNumberField.frame.origin.x - (cardNumberSize.width - last4Size.width) - 2;
+        
+    [UIView animateWithDuration:0.300 animations:^{
+        cardNumberField.frame = CGRectMake(frameX, cardNumberField.frame.origin.y, cardNumberField.frame.size.width, cardNumberField.frame.size.height);
+    }];
+    
+    [self.innerView addSubview:cardTypeImageView];
+    [self.innerView addSubview:cardExpiryField];
+    [self.innerView addSubview:cardCVCField];
+    [self.innerView addSubview:addressZipField];
     [cardExpiryField becomeFirstResponder];
 }
 
@@ -288,7 +313,6 @@
         cardNumberField.text = [cardNumber formattedString];
     }
     
-    self.cardNumberLast4Label.text = [cardNumber last4];
     [self updateCardTypeImageView];
     
     if ([cardNumber isValid]) {
@@ -368,5 +392,12 @@
     
     return NO;
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if ([textField isEqual:cardNumberField]) {
+        if ( !isInitialState ) [self stateCardNumber];
+    }
+}
+
 
 @end

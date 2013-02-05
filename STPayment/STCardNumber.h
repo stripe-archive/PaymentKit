@@ -14,6 +14,12 @@
     NSString* _number;
 }
 
+@property (readonly) STCardType cardType;
+@property (readonly) NSString * last4;
+@property (readonly) NSString * string;
+@property (readonly) NSString * formattedString;
+@property (readonly) NSString * formattedStringWithTrail;
+
 + (id) cardNumberWithString:(NSString *)string;
 - (id) initWithString:(NSString *)string;
 - (STCardType)cardType;

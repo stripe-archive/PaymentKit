@@ -18,15 +18,19 @@
 - (void) didInputCard:(STCard*)card;
 @end
 
-@interface STPaymentView : UIView <UITextFieldDelegate>
+@interface STPaymentView : UIView <UITextFieldDelegate> {
+    @private
+    BOOL isInitialState;
+}
 
 @property (readonly) STCardNumber* cardNumber;
 @property (readonly) STCardExpiry* cardExpiry;
 @property (readonly) STCardCVC* cardCVC;
 @property (readonly) STAddressZip* addressZip;
 
+@property IBOutlet UIView* innerView;
+@property IBOutlet UIView* clipView;
 @property IBOutlet UITextField* cardNumberField;
-@property IBOutlet UILabel* cardNumberLast4Label;
 @property IBOutlet UITextField* cardExpiryField;
 @property IBOutlet UITextField* cardCVCField;
 @property IBOutlet UITextField* addressZipField;

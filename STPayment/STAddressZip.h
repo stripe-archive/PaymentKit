@@ -13,6 +13,8 @@
     NSString* zip;
 }
 
+@property (readonly) NSString* string;
+
 + (id)addressZipWithString:(NSString *)string;
 - (id)initWithString:(NSString *)string;
 - (NSString*)string;
