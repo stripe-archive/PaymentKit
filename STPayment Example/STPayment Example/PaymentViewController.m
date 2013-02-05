@@ -41,7 +41,14 @@
 
 - (IBAction)save:(id)sender
 {
-    [[NSUserDefaults standardUserDefaults] setValue:self.paymentView.card.last4 forKey:@"card.last4"];
+    STCard* card = self.paymentView.card;
+    
+    NSLog(@"Card number: %@", card.number);
+    NSLog(@"Card expiry: %lu/%lu", (unsigned long)card.expMonth, (unsigned long)card.expYear);
+    NSLog(@"Card cvc: %@", card.cvc);
+    NSLog(@"Address zip: %@", card.addressZip);
+    
+    [[NSUserDefaults standardUserDefaults] setValue:card.last4 forKey:@"card.last4"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

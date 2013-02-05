@@ -1,6 +1,16 @@
 # STPayment
 
-STPayment is a utility library for writing payment forms in iOS and Mac apps. It includes methods to format card numbers, validate card expiries, and restrict the input of `UITextField`s. In short, it should greatly simplify your life when dealing with mobile payments.
+STPayment is a utility library for writing payment forms in iOS apps.
+
+Just add STPaymentView to your application, and it'll take care accepting card numbers, expiry, cvc and zip.
+
+Alternatively, we've provided a bunch of classes that you can use yourself to add formatting, validation and restricting input of `UITextField`s.
+
+In short, STPayment should greatly simplify your life when dealing with iOS payments.
+
+![STPaymentView](http://stripe.github.com/STPayment/screenshot.png)
+
+*For purchases related to the app, such as premium features, Apple's TOS require that you use their native In-App Purchase API. STPayments is only for purchasing products or services outside the app.*
 
 ## Installation
 
@@ -18,7 +28,49 @@ STPayment is a utility library for writing payment forms in iOS and Mac apps. It
 1. Make sure "Copy items into destination group's folder (if needed)" is checked"
 1. Click "Add"
 
-## Example
+## STPaymentView
+
+**1)** Create a new `ViewController`, for example `PaymentViewController`.
+
+    #import <UIKit/UIKit.h>
+    #import "STPaymentView.h"
+
+    @interface PaymentViewController : UIViewController <STPaymentViewDelegate>
+    @property IBOutlet STPaymentView* paymentView;
+    @end
+
+Notice we're importing `STPaymentView.h`, the class conforms to `STPaymentViewDelegate`, and lastly we have a `paymentView` property.
+
+**2)** Instantiate and add `STPaymentView`. We recommend you use the same frame.
+
+    - (void)viewDidLoad
+    {
+    [super viewDidLoad];
+
+    self.paymentView = [[STPaymentView alloc] initWithFrame:CGRectMake(15, 25, 290, 55)];
+    self.paymentView.delegate = self;
+    [self.view addSubview:self.paymentView];
+    }
+
+**3)** Implement `STPaymentViewDelegate` method `card:isValid:`. This gets passed a `STCard` instance, and a `BOOL` indicating whether the card is valid. You can enable or disable a navigational button depending on the value of `valid`, for example.
+
+    - (void) card:(STCard *)card isValid:(BOOL)valid
+    {
+    NSLog(@"Card number: %@", card.number);
+    NSLog(@"Card expiry: %lu/%lu", (unsigned long)card.expMonth, (unsigned long)card.expYear);
+    NSLog(@"Card cvc: %@", card.cvc);
+    NSLog(@"Address zip: %@", card.addressZip);
+
+    // self.navigationItem.rightBarButtonItem.enabled = valid;
+    }
+
+That's all! No further reading is required, unless you want more flexibility by using the raw API. For more, please see the included example.
+
+----------
+
+# Full API
+
+## API Example
 
     // Format a card number
     [[STCardNumber cardNumberWithString:@"4242424242424242"] formattedString]; //=> '4242 4242 4242 4242'
@@ -39,15 +91,9 @@ STPayment is a utility library for writing payment forms in iOS and Mac apps. It
     // Return a card expiry's month
     [[STCardExpiry cardExpiryWithString:@"05 / 02"] month]; //=> 5
 
-For more, see the included example.
-
-## Delegates
+## API Delegates
 
 Included are a number of `UITextFieldDelegate` delegates: `STCardCVCDelegate`, `STCardExpiryDelegate` and `STCardNumberDelegate`. You can set these as the delegates of `UITextField` inputs, which ensures that input is limited and formatted.
-
-----------
-
-# Full API
 
 ## STCardNumber
 
