@@ -15,5 +15,6 @@
 @property (copy) NSString *addressZip;
 @property (assign) NSUInteger expMonth;
 @property (assign) NSUInteger expYear;
+@property (readonly) NSString* last4;
 
 @end

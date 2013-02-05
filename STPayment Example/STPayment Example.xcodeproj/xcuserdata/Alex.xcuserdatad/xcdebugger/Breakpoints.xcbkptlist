@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../STPayment/STCardExpiry.m"
-         timestampString = "381365476.619146"
+         timestampString = "381787902.87799"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "110"
-         endingLineNumber = "110"
+         startingLineNumber = "114"
+         endingLineNumber = "114"
          landmarkName = "-expiryDate"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../STPayment/STCardExpiry.m"
-         timestampString = "381365476.619146"
+         timestampString = "381787902.87799"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "129"
-         endingLineNumber = "129"
+         startingLineNumber = "133"
+         endingLineNumber = "133"
          landmarkName = "-year"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../STPayment/STPaymentView.m"
-         timestampString = "381744857.016209"
+         timestampString = "381788509.572169"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "55"
-         endingLineNumber = "55"
+         startingLineNumber = "59"
+         endingLineNumber = "59"
          landmarkName = "-awakeFromNib"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../STPayment/STCardExpiry.m"
-         timestampString = "381365574.099626"
+         timestampString = "381787902.87799"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "94"
-         endingLineNumber = "94"
+         startingLineNumber = "98"
+         endingLineNumber = "98"
          landmarkName = "-isPartiallyValid"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../STPayment/STCardExpiry.m"
-         timestampString = "381365575.438491"
+         timestampString = "381787902.87799"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "93"
-         endingLineNumber = "93"
+         startingLineNumber = "97"
+         endingLineNumber = "97"
          landmarkName = "-isPartiallyValid"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../STPayment/STPaymentView.m"
-         timestampString = "381747817.659704"
+         timestampString = "381788920.28673"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "275"
-         endingLineNumber = "275"
+         startingLineNumber = "284"
+         endingLineNumber = "284"
          landmarkName = "-updateCardTypeImageView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../STPayment/STPaymentView.m"
-         timestampString = "381747817.659704"
+         timestampString = "381788509.572169"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "187"
-         endingLineNumber = "187"
+         startingLineNumber = "191"
+         endingLineNumber = "191"
          landmarkName = "-stateCardNumber"
          landmarkType = "5">
       </FileBreakpoint>
@@ -164,24 +164,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../STPayment/STPaymentView.m"
-         timestampString = "381747817.659704"
+         timestampString = "381788920.28673"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "186"
-         endingLineNumber = "186"
-         landmarkName = "-stateCardNumber"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../STPayment/STPaymentView.m"
-         timestampString = "381747817.659704"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "204"
-         endingLineNumber = "204"
+         startingLineNumber = "215"
+         endingLineNumber = "215"
          landmarkName = "-stateMeta"
          landmarkType = "5">
       </FileBreakpoint>
@@ -190,12 +177,77 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../STPayment/STPaymentView.m"
-         timestampString = "381747817.659704"
+         timestampString = "381788920.28673"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "203"
-         endingLineNumber = "203"
+         startingLineNumber = "214"
+         endingLineNumber = "214"
          landmarkName = "-stateMeta"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../STPayment/STPaymentView.m"
+         timestampString = "381791318.636576"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "419"
+         endingLineNumber = "419"
+         landmarkName = "-checkValid"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../STPayment/STPaymentView.m"
+         timestampString = "381788920.28673"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "241"
+         endingLineNumber = "241"
+         landmarkName = "-isValid"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../STPayment/STCardExpiry.m"
+         timestampString = "381787902.87799"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "84"
+         endingLineNumber = "84"
+         landmarkName = "-isValidLength"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../STPayment/STCardExpiry.m"
+         timestampString = "381787902.87799"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "25"
+         endingLineNumber = "25"
+         landmarkName = "-initWithString:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../STPayment/STCardCVC.m"
+         timestampString = "381789213.499687"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "24"
+         endingLineNumber = "24"
+         landmarkName = "-initWithString:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

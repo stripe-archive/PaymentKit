@@ -13,15 +13,19 @@
 #import "STCardCVC.h"
 #import "STAddressZip.h"
 
-@protocol STPaymentViewDelegate
+@protocol STPaymentViewDelegate <NSObject>
 @optional
 - (void) didInputCard:(STCard*)card;
+- (void) card:(STCard*)card isValid:(BOOL)valid;
 @end
 
 @interface STPaymentView : UIView <UITextFieldDelegate> {
     @private
     BOOL isInitialState;
+    BOOL isValidState;
 }
+
+- (BOOL)isValid;
 
 @property (readonly) STCardNumber* cardNumber;
 @property (readonly) STCardExpiry* cardExpiry;

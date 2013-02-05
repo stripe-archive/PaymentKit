@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		FA06D14C16AFC0AA00C46291 /* STPaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA06D14B16AFC0AA00C46291 /* STPaymentView.m */; };
 		FA2A74A016BB1EDD00AF0078 /* STCard.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A749F16BB1EDD00AF0078 /* STCard.m */; };
-		FA2A74A416BB21AB00AF0078 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A74A216BB21AB00AF0078 /* CustomViewController.m */; };
-		FA2A74A516BB21AB00AF0078 /* CustomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2A74A316BB21AB00AF0078 /* CustomViewController.xib */; };
 		FA2A74B616BB2F4B00AF0078 /* amex.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2A74A816BB2F4B00AF0078 /* amex.png */; };
 		FA2A74B716BB2F4B00AF0078 /* amex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2A74A916BB2F4B00AF0078 /* amex@2x.png */; };
 		FA2A74B816BB2F4B00AF0078 /* diners.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2A74AA16BB2F4B00AF0078 /* diners.png */; };
@@ -34,8 +32,8 @@
 		FA45AC8316AE350D0003A41D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FA45AC8216AE350D0003A41D /* Default.png */; };
 		FA45AC8516AE350D0003A41D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA45AC8416AE350D0003A41D /* Default@2x.png */; };
 		FA45AC8716AE350E0003A41D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA45AC8616AE350E0003A41D /* Default-568h@2x.png */; };
-		FA45AC8A16AE350E0003A41D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45AC8916AE350E0003A41D /* ViewController.m */; };
-		FA45AC8D16AE350E0003A41D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA45AC8B16AE350E0003A41D /* ViewController.xib */; };
+		FA45AC8A16AE350E0003A41D /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45AC8916AE350E0003A41D /* PaymentViewController.m */; };
+		FA45AC8D16AE350E0003A41D /* PaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA45AC8B16AE350E0003A41D /* PaymentViewController.xib */; };
 		FA45AC9916AE35210003A41D /* NSString+STPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45AC9816AE35210003A41D /* NSString+STPayment.m */; };
 		FA45ACA416AF1EE80003A41D /* STCardNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACA316AF1EE80003A41D /* STCardNumber.m */; };
 		FA45ACA716AF33750003A41D /* STCardCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACA616AF33750003A41D /* STCardCVC.m */; };
@@ -43,6 +41,9 @@
 		FA45ACAF16AF38BB0003A41D /* STCardNumberDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACAE16AF38BA0003A41D /* STCardNumberDelegate.m */; };
 		FA45ACB216AF3B250003A41D /* STCardCVCDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACB116AF3B250003A41D /* STCardCVCDelegate.m */; };
 		FA45ACB516AF3CA40003A41D /* STCardExpiryDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACB416AF3CA40003A41D /* STCardExpiryDelegate.m */; };
+		FA6F1A5A16C19BF700835C75 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F1A5916C19BF700835C75 /* QuartzCore.framework */; };
+		FA6F1A5E16C1B21000835C75 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6F1A5C16C1B21000835C75 /* ViewController.m */; };
+		FA6F1A5F16C1B21000835C75 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6F1A5D16C1B21000835C75 /* ViewController.xib */; };
 		FAADE6CF16BC44D9006FF4D1 /* STAddressZip.m in Sources */ = {isa = PBXBuildFile; fileRef = FAADE6CE16BC44D9006FF4D1 /* STAddressZip.m */; };
 /* End PBXBuildFile section */
 
@@ -51,9 +52,6 @@
 		FA06D14B16AFC0AA00C46291 /* STPaymentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPaymentView.m; sourceTree = "<group>"; };
 		FA2A749E16BB1EDD00AF0078 /* STCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCard.h; sourceTree = "<group>"; };
 		FA2A749F16BB1EDD00AF0078 /* STCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCard.m; sourceTree = "<group>"; };
-		FA2A74A116BB21AB00AF0078 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
-		FA2A74A216BB21AB00AF0078 /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
-		FA2A74A316BB21AB00AF0078 /* CustomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomViewController.xib; sourceTree = "<group>"; };
 		FA2A74A816BB2F4B00AF0078 /* amex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = amex.png; sourceTree = "<group>"; };
 		FA2A74A916BB2F4B00AF0078 /* amex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "amex@2x.png"; sourceTree = "<group>"; };
 		FA2A74AA16BB2F4B00AF0078 /* diners.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diners.png; sourceTree = "<group>"; };
@@ -81,9 +79,9 @@
 		FA45AC8216AE350D0003A41D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		FA45AC8416AE350D0003A41D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		FA45AC8616AE350E0003A41D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		FA45AC8816AE350E0003A41D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		FA45AC8916AE350E0003A41D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		FA45AC8C16AE350E0003A41D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		FA45AC8816AE350E0003A41D /* PaymentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
+		FA45AC8916AE350E0003A41D /* PaymentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
+		FA45AC8C16AE350E0003A41D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PaymentViewController.xib; sourceTree = "<group>"; };
 		FA45AC9716AE35210003A41D /* NSString+STPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+STPayment.h"; sourceTree = "<group>"; };
 		FA45AC9816AE35210003A41D /* NSString+STPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+STPayment.m"; sourceTree = "<group>"; };
 		FA45ACA216AF1EE80003A41D /* STCardNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardNumber.h; sourceTree = "<group>"; };
@@ -99,6 +97,10 @@
 		FA45ACB116AF3B250003A41D /* STCardCVCDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardCVCDelegate.m; sourceTree = "<group>"; };
 		FA45ACB316AF3CA40003A41D /* STCardExpiryDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardExpiryDelegate.h; sourceTree = "<group>"; };
 		FA45ACB416AF3CA40003A41D /* STCardExpiryDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardExpiryDelegate.m; sourceTree = "<group>"; };
+		FA6F1A5916C19BF700835C75 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		FA6F1A5B16C1B21000835C75 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		FA6F1A5C16C1B21000835C75 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FA6F1A5D16C1B21000835C75 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		FAADE6CD16BC44D9006FF4D1 /* STAddressZip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAddressZip.h; sourceTree = "<group>"; };
 		FAADE6CE16BC44D9006FF4D1 /* STAddressZip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAddressZip.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA6F1A5A16C19BF700835C75 /* QuartzCore.framework in Frameworks */,
 				FA45AC7116AE350D0003A41D /* UIKit.framework in Frameworks */,
 				FA45AC7316AE350D0003A41D /* Foundation.framework in Frameworks */,
 				FA45AC7516AE350D0003A41D /* CoreGraphics.framework in Frameworks */,
@@ -167,6 +170,7 @@
 		FA45AC6F16AE350D0003A41D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA6F1A5916C19BF700835C75 /* QuartzCore.framework */,
 				FA45AC7016AE350D0003A41D /* UIKit.framework */,
 				FA45AC7216AE350D0003A41D /* Foundation.framework */,
 				FA45AC7416AE350D0003A41D /* CoreGraphics.framework */,
@@ -179,13 +183,13 @@
 			children = (
 				FA45AC7F16AE350D0003A41D /* AppDelegate.h */,
 				FA45AC8016AE350D0003A41D /* AppDelegate.m */,
-				FA45AC8816AE350E0003A41D /* ViewController.h */,
-				FA45AC8916AE350E0003A41D /* ViewController.m */,
-				FA45AC8B16AE350E0003A41D /* ViewController.xib */,
+				FA45AC8816AE350E0003A41D /* PaymentViewController.h */,
+				FA45AC8916AE350E0003A41D /* PaymentViewController.m */,
+				FA45AC8B16AE350E0003A41D /* PaymentViewController.xib */,
 				FA45AC7716AE350D0003A41D /* Supporting Files */,
-				FA2A74A116BB21AB00AF0078 /* CustomViewController.h */,
-				FA2A74A216BB21AB00AF0078 /* CustomViewController.m */,
-				FA2A74A316BB21AB00AF0078 /* CustomViewController.xib */,
+				FA6F1A5B16C1B21000835C75 /* ViewController.h */,
+				FA6F1A5C16C1B21000835C75 /* ViewController.m */,
+				FA6F1A5D16C1B21000835C75 /* ViewController.xib */,
 			);
 			path = "STPayment Example";
 			sourceTree = "<group>";
@@ -289,8 +293,7 @@
 				FA45AC8316AE350D0003A41D /* Default.png in Resources */,
 				FA45AC8516AE350D0003A41D /* Default@2x.png in Resources */,
 				FA45AC8716AE350E0003A41D /* Default-568h@2x.png in Resources */,
-				FA45AC8D16AE350E0003A41D /* ViewController.xib in Resources */,
-				FA2A74A516BB21AB00AF0078 /* CustomViewController.xib in Resources */,
+				FA45AC8D16AE350E0003A41D /* PaymentViewController.xib in Resources */,
 				FA2A74B616BB2F4B00AF0078 /* amex.png in Resources */,
 				FA2A74B716BB2F4B00AF0078 /* amex@2x.png in Resources */,
 				FA2A74B816BB2F4B00AF0078 /* diners.png in Resources */,
@@ -305,6 +308,7 @@
 				FA2A74C116BB2F4B00AF0078 /* placeholder@2x.png in Resources */,
 				FA2A74C216BB2F4B00AF0078 /* visa.png in Resources */,
 				FA2A74C316BB2F4B00AF0078 /* visa@2x.png in Resources */,
+				FA6F1A5F16C1B21000835C75 /* ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,7 +321,7 @@
 			files = (
 				FA45AC7D16AE350D0003A41D /* main.m in Sources */,
 				FA45AC8116AE350D0003A41D /* AppDelegate.m in Sources */,
-				FA45AC8A16AE350E0003A41D /* ViewController.m in Sources */,
+				FA45AC8A16AE350E0003A41D /* PaymentViewController.m in Sources */,
 				FA45AC9916AE35210003A41D /* NSString+STPayment.m in Sources */,
 				FA45ACA416AF1EE80003A41D /* STCardNumber.m in Sources */,
 				FA45ACA716AF33750003A41D /* STCardCVC.m in Sources */,
@@ -327,8 +331,8 @@
 				FA45ACB516AF3CA40003A41D /* STCardExpiryDelegate.m in Sources */,
 				FA06D14C16AFC0AA00C46291 /* STPaymentView.m in Sources */,
 				FA2A74A016BB1EDD00AF0078 /* STCard.m in Sources */,
-				FA2A74A416BB21AB00AF0078 /* CustomViewController.m in Sources */,
 				FAADE6CF16BC44D9006FF4D1 /* STAddressZip.m in Sources */,
+				FA6F1A5E16C1B21000835C75 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,12 +347,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		FA45AC8B16AE350E0003A41D /* ViewController.xib */ = {
+		FA45AC8B16AE350E0003A41D /* PaymentViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				FA45AC8C16AE350E0003A41D /* en */,
 			);
-			name = ViewController.xib;
+			name = PaymentViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

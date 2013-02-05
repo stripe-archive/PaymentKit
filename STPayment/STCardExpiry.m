@@ -17,6 +17,10 @@
 
 - (id) initWithString:(NSString *)string
 {
+    if ( !string ) {
+        return [self initWithMonth:@"" andYear:@""];
+    }
+    
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d{1,2})?[\\s/]*(\\d{1,4})?" options:0 error:NULL];
 
     NSTextCheckingResult* match = [regex firstMatchInString:string options:0 range:NSMakeRange(0, string.length)];

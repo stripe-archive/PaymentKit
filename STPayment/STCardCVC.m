@@ -20,10 +20,14 @@
     self = [super init];
     if (self) {
         // Strip non-digits
-        cvc = [string stringByReplacingOccurrencesOfString:@"\\D"
-                                                    withString:@""
-                                                       options:NSRegularExpressionSearch
-                                                         range:NSMakeRange(0, string.length)];
+        if (string) {
+            cvc = [string stringByReplacingOccurrencesOfString:@"\\D"
+                                                        withString:@""
+                                                           options:NSRegularExpressionSearch
+                                                             range:NSMakeRange(0, string.length)];
+        } else {
+            cvc = [NSString string];
+        }
     }
     return self;
 }

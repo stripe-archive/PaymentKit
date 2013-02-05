@@ -7,7 +7,8 @@
 //
 
 #define RGB(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
-#define DarkGreyColor [UIColor colorWithRed:59/255.0f green:61/255.0f blue:66/255.0f alpha:1.0f]
+#define DarkGreyColor RGB(59,61,66)
+#define RedColor RGB(253,0,17)
 #define DefaultBoldFont [UIFont boldSystemFontOfSize:16]
 
 #import <QuartzCore/QuartzCore.h>
@@ -25,7 +26,6 @@
 - (void)stateMeta;
 - (void)stateCardCVC;
 - (void)stateZip;
-- (void)stateComplete;
 - (void)updateCardTypeImageView;
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
@@ -33,6 +33,10 @@
 - (BOOL)cardExpiryShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
 - (BOOL)cardCVCShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
 - (BOOL)addressZipShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
+
+- (void)checkValid;
+- (void)textFieldIsValid:(UITextField *)textField;
+- (void)textFieldIsInvalid:(UITextField *)textField withErrors:(BOOL)errors;
 @end
 
 @implementation STPaymentView
@@ -59,6 +63,7 @@
 - (void)setup
 {
     isInitialState = YES;
+    isValidState   = NO;
     
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 55);
     self.backgroundColor = [UIColor whiteColor];
@@ -184,9 +189,16 @@
         // Animate left
         isInitialState = YES;
         
-        [UIView animateWithDuration:0.300 animations:^{
-            cardNumberField.frame = CGRectMake(32 + 7, cardNumberField.frame.origin.y, cardNumberField.frame.size.width, cardNumberField.frame.size.height);
-        }];
+        [UIView animateWithDuration:0.400
+                              delay:0
+                            options:(UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction)
+                         animations:^{
+                            cardNumberField.frame = CGRectMake(32 + 7,
+                                                               cardNumberField.frame.origin.y,
+                                                               cardNumberField.frame.size.width,
+                                                               cardNumberField.frame.size.height);
+                         }
+                         completion:nil];
     }
     
     [self.cardNumberField becomeFirstResponder];
@@ -198,12 +210,14 @@
     
     CGSize cardNumberSize = [self.cardNumber.formattedString sizeWithFont:DefaultBoldFont];
     CGSize lastGroupSize = [self.cardNumber.lastGroup sizeWithFont:DefaultBoldFont];
-    
-    CGFloat frameX = self.cardNumberField.frame.origin.x - (cardNumberSize.width - lastGroupSize.width) - 2;
+    CGFloat frameX = self.cardNumberField.frame.origin.x - (cardNumberSize.width - lastGroupSize.width) - 3;
         
-    [UIView animateWithDuration:0.300 animations:^{
-        cardNumberField.frame = CGRectMake(frameX, cardNumberField.frame.origin.y, cardNumberField.frame.size.width, cardNumberField.frame.size.height);
-    }];
+    [UIView animateWithDuration:0.400 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        cardNumberField.frame = CGRectMake(frameX,
+                                           cardNumberField.frame.origin.y,
+                                           cardNumberField.frame.size.width,
+                                           cardNumberField.frame.size.height);
+    } completion:nil];
     
     [self.innerView addSubview:cardTypeImageView];
     [self.innerView addSubview:cardExpiryField];
@@ -222,13 +236,8 @@
     [addressZipField becomeFirstResponder];
 }
 
-- (void)stateComplete
-{
-    [delegate didInputCard:self.card];
-}
-
 - (BOOL)isValid
-{
+{    
     return [self.cardNumber isValid] && [self.cardExpiry isValid] &&
            [self.cardCVC isValid] && [self.addressZip isValid];
 }
@@ -276,7 +285,7 @@
     cardTypeImageView.image  = [UIImage imageNamed:cardTypeName];
 }
 
-// Text Field Delegates
+// Delegates
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString
 {
@@ -316,12 +325,14 @@
     [self updateCardTypeImageView];
     
     if ([cardNumber isValid]) {
-        NSLog(@"Card Number valid");
+        [self textFieldIsValid:cardNumberField];
         [self stateMeta];
         
     } else if ([cardNumber isValidLength] && ![cardNumber isValidLuhn]) {
-        // Shake
-        NSLog(@"Card number failed luhn");
+        [self textFieldIsInvalid:cardNumberField withErrors:YES];
+        
+    } else if (![cardNumber isValidLength]) {
+        [self textFieldIsInvalid:cardNumberField withErrors:NO];
     }
     
     return NO;
@@ -344,12 +355,13 @@
     }
     
     if ([cardExpiry isValid]) {
-        NSLog(@"Expiry valid");
+        [self textFieldIsValid:cardExpiryField];
         [self stateCardCVC];
         
     } else if ([cardExpiry isValidLength] && ![cardExpiry isValidDate]) {
-        // Shake
-        NSLog(@"Card expiry invalid date");
+        [self textFieldIsInvalid:cardExpiryField withErrors:YES];
+    } else if (![cardExpiry isValidLength]) {
+        [self textFieldIsInvalid:cardExpiryField withErrors:NO];
     }
     
     return NO;
@@ -368,8 +380,10 @@
     cardCVCField.text = [cardCVC string];
     
     if ([cardCVC isValidWithType:cardType]) {
-        NSLog(@"CVC valid");
+        [self textFieldIsValid:cardCVCField];
         [self stateZip];
+    } else {
+        [self textFieldIsInvalid:cardCVCField withErrors:NO];
     }
     
     return NO;
@@ -386,8 +400,9 @@
     addressZipField.text = [addressZip string];
     
     if ([addressZip isValid]) {
-        NSLog(@"Zip Valid");
-        [self stateComplete];
+        [self textFieldIsValid:addressZipField];
+    } else {
+        [self textFieldIsInvalid:addressZipField withErrors:NO];
     }
     
     return NO;
@@ -399,17 +414,51 @@
     }
 }
 
-- (void)textFieldIsInvalid:(UITextField *)textField {
-    CABasicAnimation *animation =
-    [CABasicAnimation animationWithKeyPath:@"position"];
-    [animation setDuration:0.05];
-    [animation setRepeatCount:8];
-    [animation setAutoreverses:YES];
-    [animation setFromValue:[NSValue valueWithCGPoint:
-                             CGPointMake([textField center].x - 20.0f, [textField center].y)]];
-    [animation setToValue:[NSValue valueWithCGPoint:
-                           CGPointMake([textField center].x + 20.0f, [textField center].y)]];
-    [[textField layer] addAnimation:animation forKey:@"position"];
+- (void)checkValid
+{
+    if ([self isValid] && !isValidState) {
+        isValidState = YES;
+
+        if ([self.delegate respondsToSelector:@selector(card:isValid:)]) {
+            [self.delegate card:self.card isValid:YES];
+        }
+        
+        if ([self.delegate respondsToSelector:@selector(didInputCard:)]) {
+            [self.delegate didInputCard:self.card];
+        }
+        
+    } else if (![self isValid] && isValidState) {
+        isValidState = NO;
+        
+        if ([self.delegate respondsToSelector:@selector(card:isValid:)]) {
+            [self.delegate card:self.card isValid:NO];            
+        }
+    }
+}
+
+- (void)textFieldIsValid:(UITextField *)textField {
+    textField.textColor = DarkGreyColor;
+    [self checkValid];
+}
+
+- (void)textFieldIsInvalid:(UITextField *)textField withErrors:(BOOL)errors {
+    if (errors) {
+        textField.textColor = RedColor;
+        
+        // Shake view
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+        [animation setDuration:0.05];
+        [animation setRepeatCount:3];
+        [animation setAutoreverses:YES];
+        [animation setFromValue:[NSValue valueWithCGPoint:CGPointMake([textField center].x - 6.0f, [textField center].y)]];
+        [animation setToValue:[NSValue valueWithCGPoint:CGPointMake([textField center].x + 6.0f, [textField center].y)]];
+        [[textField layer] addAnimation:animation forKey:@"position"];
+        
+    } else {
+        textField.textColor = DarkGreyColor;        
+    }
+
+    [self checkValid];
 }
 
 
