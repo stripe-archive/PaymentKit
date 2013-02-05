@@ -62,7 +62,7 @@
     
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 55);
     self.backgroundColor = [UIColor whiteColor];
-    self.layer.cornerRadius = 8.0f;
+    self.layer.cornerRadius = 5.0f;
     self.layer.borderWidth = 1.0f;
     self.layer.borderColor = [RGB(153,153,153) CGColor];
     self.clipsToBounds = YES;
@@ -109,7 +109,7 @@
 
 - (void)setupCardExpiryField
 {
-    cardExpiryField = [[UITextField alloc] initWithFrame:CGRectMake(95,0,60,20)];
+    cardExpiryField = [[UITextField alloc] initWithFrame:CGRectMake(98,0,60,20)];
 
     cardExpiryField.delegate = self;
     
@@ -123,7 +123,7 @@
 
 - (void)setupCardCVCField
 {
-    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(160,0,55,20)];
+    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(163,0,55,20)];
     
     cardCVCField.delegate = self;
     
@@ -137,7 +137,7 @@
 
 - (void)setupZipField
 {
-    addressZipField = [[UITextField alloc] initWithFrame:CGRectMake(210,0,50,20)];
+    addressZipField = [[UITextField alloc] initWithFrame:CGRectMake(213,0,50,20)];
     
     addressZipField.delegate = self;
     
@@ -197,9 +197,9 @@
     isInitialState = NO;
     
     CGSize cardNumberSize = [self.cardNumber.formattedString sizeWithFont:DefaultBoldFont];
-    CGSize last4Size = [self.cardNumber.last4 sizeWithFont:DefaultBoldFont];
+    CGSize lastGroupSize = [self.cardNumber.lastGroup sizeWithFont:DefaultBoldFont];
     
-    CGFloat frameX = self.cardNumberField.frame.origin.x - (cardNumberSize.width - last4Size.width) - 2;
+    CGFloat frameX = self.cardNumberField.frame.origin.x - (cardNumberSize.width - lastGroupSize.width) - 2;
         
     [UIView animateWithDuration:0.300 animations:^{
         cardNumberField.frame = CGRectMake(frameX, cardNumberField.frame.origin.y, cardNumberField.frame.size.width, cardNumberField.frame.size.height);

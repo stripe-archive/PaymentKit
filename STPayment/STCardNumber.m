@@ -62,6 +62,22 @@
     }
 }
 
+- (NSString *)lastGroup
+{
+    if (self.cardType == STCardTypeAmex) {
+        if (_number.length >= 5) {
+            return [_number substringFromIndex:([_number length] - 5)];
+        }
+    } else {
+        if (_number.length >= 4) {
+            return [_number substringFromIndex:([_number length] - 4)];
+        }
+    }
+    
+    return nil;
+}
+
+
 - (NSString *)string
 {
     return _number;
@@ -127,7 +143,7 @@
 
 - (BOOL)isValidLength
 {
-    if ([self cardType] == STCardTypeAmex) {
+    if (self.cardType == STCardTypeAmex) {
         return _number.length == 15;
     } else {
         return _number.length == 16;
@@ -156,7 +172,7 @@
 
 - (BOOL)isPartiallyValid
 {
-    if ([self cardType] == STCardTypeAmex) {
+    if (self.cardType == STCardTypeAmex) {
         return _number.length <= 15;
     } else {
         return _number.length <= 16;

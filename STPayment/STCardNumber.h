@@ -16,6 +16,7 @@
 
 @property (readonly) STCardType cardType;
 @property (readonly) NSString * last4;
+@property (readonly) NSString * lastGroup;
 @property (readonly) NSString * string;
 @property (readonly) NSString * formattedString;
 @property (readonly) NSString * formattedStringWithTrail;
@@ -24,6 +25,7 @@
 - (id) initWithString:(NSString *)string;
 - (STCardType)cardType;
 - (NSString *)last4;
+- (NSString *)lastGroup;
 - (NSString *)string;
 - (NSString *)formattedString;
 - (NSString *)formattedStringWithTrail;
