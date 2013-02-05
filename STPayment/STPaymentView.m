@@ -67,7 +67,7 @@
     self.layer.borderColor = [RGB(153,153,153) CGColor];
     self.clipsToBounds = YES;
     
-    self.innerView = [[UIView alloc] initWithFrame:CGRectMake(12, 18, 290 - 12, 20)];
+    self.innerView = [[UIView alloc] initWithFrame:CGRectMake(12, 18, self.frame.size.width - 12, 20)];
     self.innerView.clipsToBounds = YES;
     
     [self setupCardTypeImageView];
@@ -397,6 +397,19 @@
     if ([textField isEqual:cardNumberField]) {
         if ( !isInitialState ) [self stateCardNumber];
     }
+}
+
+- (void)textFieldIsInvalid:(UITextField *)textField {
+    CABasicAnimation *animation =
+    [CABasicAnimation animationWithKeyPath:@"position"];
+    [animation setDuration:0.05];
+    [animation setRepeatCount:8];
+    [animation setAutoreverses:YES];
+    [animation setFromValue:[NSValue valueWithCGPoint:
+                             CGPointMake([textField center].x - 20.0f, [textField center].y)]];
+    [animation setToValue:[NSValue valueWithCGPoint:
+                           CGPointMake([textField center].x + 20.0f, [textField center].y)]];
+    [[textField layer] addAnimation:animation forKey:@"position"];
 }
 
 
