@@ -29,7 +29,9 @@ In short, STPayment should greatly simplify your life when dealing with iOS paym
 
 ## STPaymentView
 
-**1)** Create a new `ViewController`, for example `PaymentViewController`.
+**1)** Add the `QuartzCore` framework to your application
+
+**2)** Create a new `ViewController`, for example `PaymentViewController`.
 
     #import <UIKit/UIKit.h>
     #import "STPaymentView.h"
@@ -40,7 +42,7 @@ In short, STPayment should greatly simplify your life when dealing with iOS paym
 
 Notice we're importing `STPaymentView.h`, the class conforms to `STPaymentViewDelegate`, and lastly we have a `paymentView` property.
 
-**2)** Instantiate and add `STPaymentView`. We recommend you use the same frame.
+**3)** Instantiate and add `STPaymentView`. We recommend you use the same frame.
 
     - (void)viewDidLoad
     {
@@ -51,7 +53,7 @@ Notice we're importing `STPaymentView.h`, the class conforms to `STPaymentViewDe
         [self.view addSubview:self.paymentView];
     }
 
-**3)** Implement `STPaymentViewDelegate` method `card:isValid:`. This gets passed a `STCard` instance, and a `BOOL` indicating whether the card is valid. You can enable or disable a navigational button depending on the value of `valid`, for example.
+**4)** Implement `STPaymentViewDelegate` method `card:isValid:`. This gets passed a `STCard` instance, and a `BOOL` indicating whether the card is valid. You can enable or disable a navigational button depending on the value of `valid`, for example.
 
     - (void) card:(STCard *)card isValid:(BOOL)valid
     {
