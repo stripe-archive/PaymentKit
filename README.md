@@ -29,7 +29,7 @@ In short, STPayment should greatly simplify your life when dealing with iOS paym
 
 ## STPaymentView
 
-**1)** Add the `QuartzCore` framework to your application
+**1)** Add the `QuartzCore` framework to your application.
 
 **2)** Create a new `ViewController`, for example `PaymentViewController`.
 
@@ -40,7 +40,7 @@ In short, STPayment should greatly simplify your life when dealing with iOS paym
     @property IBOutlet STPaymentView* paymentView;
     @end
 
-Notice we're importing `STPaymentView.h`, the class conforms to `STPaymentViewDelegate`, and lastly we have a `paymentView` property.
+Notice we're importing `STPaymentView.h`, the class conforms to `STPaymentViewDelegate`, and lastly we have a `paymentView` property of type `STPaymentView`.
 
 **3)** Instantiate and add `STPaymentView`. We recommend you use the same frame.
 
@@ -53,9 +53,9 @@ Notice we're importing `STPaymentView.h`, the class conforms to `STPaymentViewDe
         [self.view addSubview:self.paymentView];
     }
 
-**4)** Implement `STPaymentViewDelegate` method `card:isValid:`. This gets passed a `STCard` instance, and a `BOOL` indicating whether the card is valid. You can enable or disable a navigational button depending on the value of `valid`, for example.
+**4)** Implement `STPaymentViewDelegate` method `paymentView:withCard:isValid:`. This gets passed a `STCard` instance, and a `BOOL` indicating whether the card is valid. You can enable or disable a navigational button depending on the value of `valid`, for example:
 
-    - (void) card:(STCard *)card isValid:(BOOL)valid
+    - (void) paymentView:(STPaymentView*)paymentView withCard:(STCard *)card isValid:(BOOL)valid
     {
         NSLog(@"Card number: %@", card.number);
         NSLog(@"Card expiry: %lu/%lu", (unsigned long)card.expMonth, (unsigned long)card.expYear);

@@ -419,19 +419,15 @@
     if ([self isValid] && !isValidState) {
         isValidState = YES;
 
-        if ([self.delegate respondsToSelector:@selector(card:isValid:)]) {
-            [self.delegate card:self.card isValid:YES];
-        }
-        
-        if ([self.delegate respondsToSelector:@selector(didInputCard:)]) {
-            [self.delegate didInputCard:self.card];
+        if ([self.delegate respondsToSelector:@selector(paymentView:withCard:isValid:)]) {
+            [self.delegate paymentView:self withCard:self.card isValid:YES];
         }
         
     } else if (![self isValid] && isValidState) {
         isValidState = NO;
         
-        if ([self.delegate respondsToSelector:@selector(card:isValid:)]) {
-            [self.delegate card:self.card isValid:NO];            
+        if ([self.delegate respondsToSelector:@selector(paymentView:withCard:isValid:)]) {
+            [self.delegate paymentView:self withCard:self.card isValid:NO];
         }
     }
 }

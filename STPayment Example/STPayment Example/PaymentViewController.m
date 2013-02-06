@@ -28,7 +28,8 @@
     [self.view addSubview:self.paymentView];
 }
 
-- (void) card:(STCard *)card isValid:(BOOL)valid
+
+- (void) paymentView:(STPaymentView *)paymentView withCard:(STCard *)card isValid:(BOOL)valid
 {
     self.navigationItem.rightBarButtonItem.enabled = valid;
 }
@@ -43,7 +44,7 @@
 {
     STCard* card = self.paymentView.card;
     
-    NSLog(@"Card number: %@", card.number);
+    NSLog(@"Card last4: %@", card.last4);
     NSLog(@"Card expiry: %lu/%lu", (unsigned long)card.expMonth, (unsigned long)card.expYear);
     NSLog(@"Card cvc: %@", card.cvc);
     NSLog(@"Address zip: %@", card.addressZip);
