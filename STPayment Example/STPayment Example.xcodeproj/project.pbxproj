@@ -41,6 +41,17 @@
 		FA45ACAF16AF38BB0003A41D /* STCardNumberDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACAE16AF38BA0003A41D /* STCardNumberDelegate.m */; };
 		FA45ACB216AF3B250003A41D /* STCardCVCDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACB116AF3B250003A41D /* STCardCVCDelegate.m */; };
 		FA45ACB516AF3CA40003A41D /* STCardExpiryDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACB416AF3CA40003A41D /* STCardExpiryDelegate.m */; };
+		FA6A2F8C16C2D6F400915AEB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6A2F8B16C2D6F400915AEB /* SenTestingKit.framework */; };
+		FA6A2F8D16C2D6F400915AEB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA45AC7016AE350D0003A41D /* UIKit.framework */; };
+		FA6A2F8E16C2D6F400915AEB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA45AC7216AE350D0003A41D /* Foundation.framework */; };
+		FA6A2F9416C2D6F400915AEB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA6A2F9216C2D6F400915AEB /* InfoPlist.strings */; };
+		FA6A2F9716C2D6F400915AEB /* STPaymentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6A2F9616C2D6F400915AEB /* STPaymentTest.m */; };
+		FA6A2F9E16C2D89600915AEB /* STCardNumberTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6A2F9D16C2D89600915AEB /* STCardNumberTest.m */; };
+		FA6A2F9F16C2D9F000915AEB /* STCardNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACA316AF1EE80003A41D /* STCardNumber.m */; };
+		FA6A2FA216C2E00E00915AEB /* STCardCVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6A2FA116C2E00E00915AEB /* STCardCVCTest.m */; };
+		FA6A2FA316C2E01500915AEB /* STCardCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACA616AF33750003A41D /* STCardCVC.m */; };
+		FA6A2FA616C2E1F400915AEB /* STCardExpiryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6A2FA516C2E1F400915AEB /* STCardExpiryTest.m */; };
+		FA6A2FA716C2E20200915AEB /* STCardExpiry.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACAB16AF37420003A41D /* STCardExpiry.m */; };
 		FA6F1A5A16C19BF700835C75 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F1A5916C19BF700835C75 /* QuartzCore.framework */; };
 		FA6F1A5E16C1B21000835C75 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6F1A5C16C1B21000835C75 /* ViewController.m */; };
 		FA6F1A5F16C1B21000835C75 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6F1A5D16C1B21000835C75 /* ViewController.xib */; };
@@ -97,6 +108,19 @@
 		FA45ACB116AF3B250003A41D /* STCardCVCDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardCVCDelegate.m; sourceTree = "<group>"; };
 		FA45ACB316AF3CA40003A41D /* STCardExpiryDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardExpiryDelegate.h; sourceTree = "<group>"; };
 		FA45ACB416AF3CA40003A41D /* STCardExpiryDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardExpiryDelegate.m; sourceTree = "<group>"; };
+		FA6A2F8A16C2D6F400915AEB /* STPayment Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "STPayment Test.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA6A2F8B16C2D6F400915AEB /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		FA6A2F9116C2D6F400915AEB /* STPayment Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "STPayment Test-Info.plist"; sourceTree = "<group>"; };
+		FA6A2F9316C2D6F400915AEB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FA6A2F9516C2D6F400915AEB /* STPaymentTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STPaymentTest.h; sourceTree = "<group>"; };
+		FA6A2F9616C2D6F400915AEB /* STPaymentTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STPaymentTest.m; sourceTree = "<group>"; };
+		FA6A2F9816C2D6F400915AEB /* STPayment Test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "STPayment Test-Prefix.pch"; sourceTree = "<group>"; };
+		FA6A2F9C16C2D89600915AEB /* STCardNumberTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardNumberTest.h; sourceTree = "<group>"; };
+		FA6A2F9D16C2D89600915AEB /* STCardNumberTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardNumberTest.m; sourceTree = "<group>"; };
+		FA6A2FA016C2E00E00915AEB /* STCardCVCTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardCVCTest.h; sourceTree = "<group>"; };
+		FA6A2FA116C2E00E00915AEB /* STCardCVCTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardCVCTest.m; sourceTree = "<group>"; };
+		FA6A2FA416C2E1F400915AEB /* STCardExpiryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardExpiryTest.h; sourceTree = "<group>"; };
+		FA6A2FA516C2E1F400915AEB /* STCardExpiryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardExpiryTest.m; sourceTree = "<group>"; };
 		FA6F1A5916C19BF700835C75 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FA6F1A5B16C1B21000835C75 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		FA6F1A5C16C1B21000835C75 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -114,6 +138,16 @@
 				FA45AC7116AE350D0003A41D /* UIKit.framework in Frameworks */,
 				FA45AC7316AE350D0003A41D /* Foundation.framework in Frameworks */,
 				FA45AC7516AE350D0003A41D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA6A2F8616C2D6F400915AEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA6A2F8C16C2D6F400915AEB /* SenTestingKit.framework in Frameworks */,
+				FA6A2F8D16C2D6F400915AEB /* UIKit.framework in Frameworks */,
+				FA6A2F8E16C2D6F400915AEB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +188,7 @@
 			children = (
 				FA45AC9616AE35210003A41D /* STPayment */,
 				FA45AC7616AE350D0003A41D /* STPayment Example */,
+				FA6A2F8F16C2D6F400915AEB /* STPayment Test */,
 				FA45AC6F16AE350D0003A41D /* Frameworks */,
 				FA45AC6D16AE350D0003A41D /* Products */,
 			);
@@ -163,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				FA45AC6C16AE350D0003A41D /* STPayment Example.app */,
+				FA6A2F8A16C2D6F400915AEB /* STPayment Test.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -174,6 +210,7 @@
 				FA45AC7016AE350D0003A41D /* UIKit.framework */,
 				FA45AC7216AE350D0003A41D /* Foundation.framework */,
 				FA45AC7416AE350D0003A41D /* CoreGraphics.framework */,
+				FA6A2F8B16C2D6F400915AEB /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -238,6 +275,32 @@
 			path = ../STPayment;
 			sourceTree = "<group>";
 		};
+		FA6A2F8F16C2D6F400915AEB /* STPayment Test */ = {
+			isa = PBXGroup;
+			children = (
+				FA6A2F9516C2D6F400915AEB /* STPaymentTest.h */,
+				FA6A2F9616C2D6F400915AEB /* STPaymentTest.m */,
+				FA6A2F9016C2D6F400915AEB /* Supporting Files */,
+				FA6A2F9C16C2D89600915AEB /* STCardNumberTest.h */,
+				FA6A2F9D16C2D89600915AEB /* STCardNumberTest.m */,
+				FA6A2FA016C2E00E00915AEB /* STCardCVCTest.h */,
+				FA6A2FA116C2E00E00915AEB /* STCardCVCTest.m */,
+				FA6A2FA416C2E1F400915AEB /* STCardExpiryTest.h */,
+				FA6A2FA516C2E1F400915AEB /* STCardExpiryTest.m */,
+			);
+			path = "STPayment Test";
+			sourceTree = "<group>";
+		};
+		FA6A2F9016C2D6F400915AEB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA6A2F9116C2D6F400915AEB /* STPayment Test-Info.plist */,
+				FA6A2F9216C2D6F400915AEB /* InfoPlist.strings */,
+				FA6A2F9816C2D6F400915AEB /* STPayment Test-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -257,6 +320,24 @@
 			productName = "STPayment Example";
 			productReference = FA45AC6C16AE350D0003A41D /* STPayment Example.app */;
 			productType = "com.apple.product-type.application";
+		};
+		FA6A2F8916C2D6F400915AEB /* STPayment Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA6A2F9B16C2D6F400915AEB /* Build configuration list for PBXNativeTarget "STPayment Test" */;
+			buildPhases = (
+				FA6A2F8516C2D6F400915AEB /* Sources */,
+				FA6A2F8616C2D6F400915AEB /* Frameworks */,
+				FA6A2F8716C2D6F400915AEB /* Resources */,
+				FA6A2F8816C2D6F400915AEB /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "STPayment Test";
+			productName = "STPayment Test";
+			productReference = FA6A2F8A16C2D6F400915AEB /* STPayment Test.octest */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -280,6 +361,7 @@
 			projectRoot = "";
 			targets = (
 				FA45AC6B16AE350D0003A41D /* STPayment Example */,
+				FA6A2F8916C2D6F400915AEB /* STPayment Test */,
 			);
 		};
 /* End PBXProject section */
@@ -312,7 +394,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA6A2F8716C2D6F400915AEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA6A2F9416C2D6F400915AEB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FA6A2F8816C2D6F400915AEB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FA45AC6816AE350D0003A41D /* Sources */ = {
@@ -336,6 +442,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA6A2F8516C2D6F400915AEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA6A2F9716C2D6F400915AEB /* STPaymentTest.m in Sources */,
+				FA6A2F9E16C2D89600915AEB /* STCardNumberTest.m in Sources */,
+				FA6A2F9F16C2D9F000915AEB /* STCardNumber.m in Sources */,
+				FA6A2FA216C2E00E00915AEB /* STCardCVCTest.m in Sources */,
+				FA6A2FA316C2E01500915AEB /* STCardCVC.m in Sources */,
+				FA6A2FA616C2E1F400915AEB /* STCardExpiryTest.m in Sources */,
+				FA6A2FA716C2E20200915AEB /* STCardExpiry.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -353,6 +473,14 @@
 				FA45AC8C16AE350E0003A41D /* en */,
 			);
 			name = PaymentViewController.xib;
+			sourceTree = "<group>";
+		};
+		FA6A2F9216C2D6F400915AEB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA6A2F9316C2D6F400915AEB /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -434,6 +562,44 @@
 			};
 			name = Release;
 		};
+		FA6A2F9916C2D6F400915AEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "STPayment Test/STPayment Test-Prefix.pch";
+				INFOPLIST_FILE = "STPayment Test/STPayment Test-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		FA6A2F9A16C2D6F400915AEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "STPayment Test/STPayment Test-Prefix.pch";
+				INFOPLIST_FILE = "STPayment Test/STPayment Test-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -454,6 +620,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		FA6A2F9B16C2D6F400915AEB /* Build configuration list for PBXNativeTarget "STPayment Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA6A2F9916C2D6F400915AEB /* Debug */,
+				FA6A2F9A16C2D6F400915AEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

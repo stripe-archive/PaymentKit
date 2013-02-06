@@ -9,10 +9,20 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>STPayment Test.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>FA45AC6B16AE350D0003A41D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA6A2F8916C2D6F400915AEB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
