@@ -17,7 +17,7 @@ In short, STPayment should greatly simplify your life when dealing with iOS paym
 
 [CocoaPods](http://cocoapods.org/) is a library dependency management tool for Objective-C. To use the Stripe iOS bindings with CocoaPods, simply add the following to your Podfile and run pod install:
 
-    pod `STPayment`, :git => 'https://github.com/stripe/STPayment.git'
+    pod 'STPayment', :git => 'https://github.com/stripe/STPayment.git'
 
 ### Install by adding files to project
 
