@@ -17,7 +17,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FA6A2F8916C2D6F400915AEB"
-               BuildableName = "STPayment Test.octest"
+               BuildableName = "SKPayment Test.octest"
                BlueprintName = "SKPayment Test"
                ReferencedContainer = "container:SKPayment Example.xcodeproj">
             </BuildableReference>
