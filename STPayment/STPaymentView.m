@@ -447,6 +447,8 @@
     return NO;
 }
 
+// Validations
+
 - (void)checkValid
 {
     if ([self isValid] && !isValidState) {
