@@ -1,15 +1,15 @@
-# STPayment
+# SKPayment
 
-STPayment is a utility library for writing payment forms in iOS apps.
+SKPayment is a utility library for writing payment forms in iOS apps.
 
-Just add STPaymentView to your application, and it'll take care accepting card numbers, expiry, cvc and zip.
+Just add SKPaymentView to your application, and it'll take care accepting card numbers, expiry, cvc and zip.
 Alternatively, we've provided a bunch of classes that you can use yourself to add formatting, validation and restricting input of `UITextField`s.
 
-In short, STPayment should greatly simplify your life when dealing with iOS payments.
+In short, SKPayment should greatly simplify your life when dealing with iOS payments.
 
-![STPaymentView](http://stripe.github.com/STPayment/screenshot.png)
+![SKPaymentView](http://stripe.github.com/SKPayment/screenshot.png)
 
-*For purchases related to the app, such as premium features, Apple's TOS require that you use their native In-App Purchase API. STPayments is only for purchasing products or services outside the app.*
+*For purchases related to the app, such as premium features, Apple's TOS require that you use their native In-App Purchase API. SKPayments is only for purchasing products or services outside the app.*
 
 ## Installation
 
@@ -17,45 +17,45 @@ In short, STPayment should greatly simplify your life when dealing with iOS paym
 
 [CocoaPods](http://cocoapods.org/) is a library dependency management tool for Objective-C. To use the Stripe iOS bindings with CocoaPods, simply add the following to your Podfile and run pod install:
 
-    pod 'STPayment', :git => 'https://github.com/stripe/STPayment.git'
+    pod 'SKPayment', :git => 'https://github.com/stripe/SKPayment.git'
 
 ### Install by adding files to project
 
 1. Clone this repository
 1. In the menubar, click on 'File' then 'Add files to "Project"...'
-1. Select the 'Stripe' directory in your cloned stripe-ios repository
+1. Select the 'SKPayment' directory in your cloned SKPayment repository
 1. Make sure "Copy items into destination group's folder (if needed)" is checked"
 1. Click "Add"
 
-## STPaymentView
+## SKPaymentView
 
 **1)** Add the `QuartzCore` framework to your application.
 
 **2)** Create a new `ViewController`, for example `PaymentViewController`.
 
     #import <UIKit/UIKit.h>
-    #import "STPaymentView.h"
+    #import "SKPaymentView.h"
 
-    @interface PaymentViewController : UIViewController <STPaymentViewDelegate>
-    @property IBOutlet STPaymentView* paymentView;
+    @interface PaymentViewController : UIViewController <SKPaymentViewDelegate>
+    @property IBOutlet SKPaymentView* paymentView;
     @end
 
-Notice we're importing `STPaymentView.h`, the class conforms to `STPaymentViewDelegate`, and lastly we have a `paymentView` property of type `STPaymentView`.
+Notice we're importing `SKPaymentView.h`, the class conforms to `SKPaymentViewDelegate`, and lastly we have a `paymentView` property of type `SKPaymentView`.
 
-**3)** Instantiate and add `STPaymentView`. We recommend you use the same frame.
+**3)** Instantiate and add `SKPaymentView`. We recommend you use the same frame.
 
     - (void)viewDidLoad
     {
         [super viewDidLoad];
 
-        self.paymentView = [[STPaymentView alloc] initWithFrame:CGRectMake(15, 25, 290, 55)];
+        self.paymentView = [[SKPaymentView alloc] initWithFrame:CGRectMake(15, 25, 290, 55)];
         self.paymentView.delegate = self;
         [self.view addSubview:self.paymentView];
     }
 
-**4)** Implement `STPaymentViewDelegate` method `paymentView:withCard:isValid:`. This gets passed a `STCard` instance, and a `BOOL` indicating whether the card is valid. You can enable or disable a navigational button depending on the value of `valid`, for example:
+**4)** Implement `SKPaymentViewDelegate` method `paymentView:withCard:isValid:`. This gets passed a `SKCard` instance, and a `BOOL` indicating whether the card is valid. You can enable or disable a navigational button depending on the value of `valid`, for example:
 
-    - (void) paymentView:(STPaymentView*)paymentView withCard:(STCard *)card isValid:(BOOL)valid
+    - (void) paymentView:(SKPaymentView*)paymentView withCard:(SKCard *)card isValid:(BOOL)valid
     {
         NSLog(@"Card number: %@", card.number);
         NSLog(@"Card expiry: %lu/%lu", (unsigned long)card.expMonth, (unsigned long)card.expYear);
@@ -74,56 +74,56 @@ That's all! No further reading is required, unless you want more flexibility by 
 ## API Example
 
     // Format a card number
-    [[STCardNumber cardNumberWithString:@"4242424242424242"] formattedString]; //=> '4242 4242 4242 4242'
-    [[STCardNumber cardNumberWithString:@"4242424242"] formattedString]; //=> '4242 4242 42'
+    [[SKCardNumber cardNumberWithString:@"4242424242424242"] formattedString]; //=> '4242 4242 4242 4242'
+    [[SKCardNumber cardNumberWithString:@"4242424242"] formattedString]; //=> '4242 4242 42'
 
     // Amex support
-    [[STCardNumber cardNumberWithString:@"378282246310005"] formattedString]; //=> '3782 822463 10005'
-    [[STCardNumber cardNumberWithString:@"378282246310005"] cardType] == STCardTypeAmex; //=> YES
+    [[SKCardNumber cardNumberWithString:@"378282246310005"] formattedString]; //=> '3782 822463 10005'
+    [[SKCardNumber cardNumberWithString:@"378282246310005"] cardType] == SKCardTypeAmex; //=> YES
 
     // Check a card number is valid using the Luhn algorithm
-    [[STCardNumber cardNumberWithString:@"4242424242424242"] isValid]; //=> YES
-    [[STCardNumber cardNumberWithString:@"4242424242424243"] isValid]; //=> NO
+    [[SKCardNumber cardNumberWithString:@"4242424242424242"] isValid]; //=> YES
+    [[SKCardNumber cardNumberWithString:@"4242424242424243"] isValid]; //=> NO
 
     // Check to see if a card expiry is valid
-    [[STCardExpiry cardExpiryWithString:@"05 / 20"] isValid]; //=> YES
-    [[STCardExpiry cardExpiryWithString:@"05 / 02"] isValid]; //=> NO
+    [[SKCardExpiry cardExpiryWithString:@"05 / 20"] isValid]; //=> YES
+    [[SKCardExpiry cardExpiryWithString:@"05 / 02"] isValid]; //=> NO
 
     // Return a card expiry's month
-    [[STCardExpiry cardExpiryWithString:@"05 / 02"] month]; //=> 5
+    [[SKCardExpiry cardExpiryWithString:@"05 / 02"] month]; //=> 5
 
 ## API Delegates
 
-Included are a number of `UITextFieldDelegate` delegates: `STCardCVCDelegate`, `STCardExpiryDelegate` and `STCardNumberDelegate`. You can set these as the delegates of `UITextField` inputs, which ensures that input is limited and formatted.
+Included are a number of `UITextFieldDelegate` delegates: `SKCardCVCDelegate`, `SKCardExpiryDelegate` and `SKCardNumberDelegate`. You can set these as the delegates of `UITextField` inputs, which ensures that input is limited and formatted.
 
-## STCardNumber
+## SKCardNumber
 
 #### `+ (id) cardNumberWithString:(NSString *)string`
 #### `- (id) initWithString:(NSString *)string`
 
-Create a `STCardNumber` object, passing a `NSString` representing the card number. For example:
+Create a `SKCardNumber` object, passing a `NSString` representing the card number. For example:
 
-    STCardNumber* cardNumber = [STCardNumber cardNumberWithString:@"4242424242424242"];
+    SKCardNumber* cardNumber = [SKCardNumber cardNumberWithString:@"4242424242424242"];
 
-#### `- (STCardType)cardType`
+#### `- (SKCardType)cardType`
 
-Returns a `STCardType` representing the card type (Visa, Amex etc).
+Returns a `SKCardType` representing the card type (Visa, Amex etc).
 
-    STCardType cardType = [[STCardNumber cardNumberWithString:@"4242424242424242"] cardType];
+    SKCardType cardType = [[SKCardNumber cardNumberWithString:@"4242424242424242"] cardType];
 
-    if (cardType == STCardTypeAmex) {
+    if (cardType == SKCardTypeAmex) {
 
     }
 
 Available types are:
 
-    STCardTypeVisa
-    STCardTypeMasterCard
-    STCardTypeAmex
-    STCardTypeDiscover
-    STCardTypeJCB
-    STCardTypeDinersClub
-    STCardTypeUnknown
+    SKCardTypeVisa
+    SKCardTypeMasterCard
+    SKCardTypeAmex
+    SKCardTypeDiscover
+    SKCardTypeJCB
+    SKCardTypeDinersClub
+    SKCardTypeUnknown
 
 #### `- (NSString *)string`
 
@@ -133,7 +133,7 @@ Returns the card number as a string.
 
 Returns a formatted card number, in the same space format as it appears on the card.
 
-    NSString* number = [[STCardNumber cardNumberWithString:@"4242424242424242"] formattedString];
+    NSString* number = [[SKCardNumber cardNumberWithString:@"4242424242424242"] formattedString];
     number //=> '4242 4242 4242 4242'
 
 #### `- (NSString *)formattedStringWithTrail`
@@ -156,14 +156,14 @@ Returns a `BOOL` indicating whether the number passed a [Luhn check](http://en.w
 
 Returns a `BOOL` indicating whether the number is too long or not.
 
-## STCardCVC
+## SKCardCVC
 
 #### `+ (id) cardCVCWithString:(NSString *)string`
 #### `- (id) initWithString:(NSString *)string`
 
-Returns a `STCardCVC` instance, representing the card CVC. For example:
+Returns a `SKCardCVC` instance, representing the card CVC. For example:
 
-    STCardCVC* cardCVC = [STCardCVC cardCVCWithString:@"123"];
+    SKCardCVC* cardCVC = [SKCardCVC cardCVCWithString:@"123"];
 
 #### `- (NSString*)string`
 
@@ -173,7 +173,7 @@ Returns the CVC as a string.
 
 Returns a `BOOL` indicating whether the CVC is valid universally.
 
-#### `- (BOOL)isValidWithType:(STCardType)type`
+#### `- (BOOL)isValidWithType:(SKCardType)type`
 
 Returns a `BOOL` indicating whether the CVC is valid for a particular card type.
 
@@ -181,20 +181,20 @@ Returns a `BOOL` indicating whether the CVC is valid for a particular card type.
 
 Returns a `BOOL` indicating whether the cvc is too long or not.
 
-## STCardExpiry
+## SKCardExpiry
 
 #### `+ (id)cardExpiryWithString:(NSString *)string`
 #### `- (id)initWithString:(NSString *)string`
 
-Create a `STCardExpiry` object, passing a `NSString` representing the card expiry. For example:
+Create a `SKCardExpiry` object, passing a `NSString` representing the card expiry. For example:
 
-    STCardExpiry* cardExpiry = [STCardExpiry cardExpiryWithString:@"10 / 2015"];
+    SKCardExpiry* cardExpiry = [SKCardExpiry cardExpiryWithString:@"10 / 2015"];
 
 #### `- (NSString *)formattedString`
 
 Returns a formatted representation of the card expiry. For example:
 
-    [[STCardExpiry cardExpiryWithString:@"10/2015"] formattedString]; //=> "10 / 2015"
+    [[SKCardExpiry cardExpiryWithString:@"10/2015"] formattedString]; //=> "10 / 2015"
 
 #### `- (NSString *)formattedStringWithTrail`
 
