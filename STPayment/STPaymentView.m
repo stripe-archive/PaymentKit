@@ -142,7 +142,7 @@
 
 - (void)setupCardCVCField
 {
-    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(170,0,55,20)];
+    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(165,0,55,20)];
     
     cardCVCField.delegate = self;
     
