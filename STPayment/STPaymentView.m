@@ -77,6 +77,12 @@
     self.layer.shadowOpacity = 1.0;
     self.layer.shadowRadius = 0.3;
     
+    CALayer *innerShadow = [CALayer layer];
+    innerShadow.frame = CGRectMake(0, 1, self.frame.size.width, 1);
+    innerShadow.backgroundColor = [RGB(230,230,230) CGColor];
+    innerShadow.cornerRadius = 9.0f;
+    [self.layer addSublayer:innerShadow];
+    
     self.innerView = [[UIView alloc] initWithFrame:CGRectMake(12, 13, self.frame.size.width - 12, 20)];
     self.innerView.clipsToBounds = YES;
     
@@ -99,6 +105,11 @@
     placeholderView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32, 20)];
     placeholderView.backgroundColor = [UIColor whiteColor];
     placeholderView.image = [UIImage imageNamed:@"placeholder"];
+    
+    CALayer *clip = [CALayer layer];
+    clip.frame = CGRectMake(32, 0, 2, 20);
+    clip.backgroundColor = [UIColor whiteColor].CGColor;
+    [placeholderView.layer addSublayer:clip];
 }
 
 - (void)setupCardNumberField
