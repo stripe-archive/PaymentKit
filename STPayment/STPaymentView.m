@@ -7,7 +7,7 @@
 //
 
 #define RGB(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
-#define DarkGreyColor RGB(59,61,66)
+#define DarkGreyColor RGB(77,77,77)
 #define RedColor RGB(253,0,17)
 #define DefaultBoldFont [UIFont boldSystemFontOfSize:16]
 
@@ -16,7 +16,7 @@
 
 @interface STPaymentView ()
 - (void)setup;
-- (void)setupCardTypeImageView;
+- (void)setupPlaceholderView;
 - (void)setupCardNumberField;
 - (void)setupCardExpiryField;
 - (void)setupCardCVCField;
@@ -26,7 +26,9 @@
 - (void)stateMeta;
 - (void)stateCardCVC;
 - (void)stateZip;
-- (void)updateCardTypeImageView;
+
+- (void)setPlaceholderToCVC;
+- (void)setPlaceholderToCardType;
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
 - (BOOL)cardNumberFieldShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
@@ -43,7 +45,7 @@
 
 @synthesize innerView, cardNumberField,
             cardExpiryField, cardCVCField, addressZipField,
-            cardTypeImageView, delegate;
+            placeholderView, delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -65,40 +67,43 @@
     isInitialState = YES;
     isValidState   = NO;
     
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 55);
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 45);
     self.backgroundColor = [UIColor whiteColor];
-    self.layer.cornerRadius = 5.0f;
+    self.layer.cornerRadius = 9.0f;
     self.layer.borderWidth = 1.0f;
-    self.layer.borderColor = [RGB(153,153,153) CGColor];
-    self.clipsToBounds = YES;
+    self.layer.borderColor = [RGB(171,171,171) CGColor];
+    self.layer.shadowColor = [RGB(255,255,255) CGColor];
+    self.layer.shadowOffset = CGSizeMake(0, 1.0);
+    self.layer.shadowOpacity = 1.0;
+    self.layer.shadowRadius = 0.3;
     
-    self.innerView = [[UIView alloc] initWithFrame:CGRectMake(12, 18, self.frame.size.width - 12, 20)];
+    self.innerView = [[UIView alloc] initWithFrame:CGRectMake(12, 13, self.frame.size.width - 12, 20)];
     self.innerView.clipsToBounds = YES;
     
-    [self setupCardTypeImageView];
+    [self setupPlaceholderView];
     [self setupCardNumberField];
     [self setupCardExpiryField];
     [self setupCardCVCField];
     [self setupZipField];
     
     [self.innerView addSubview:cardNumberField];
-    [self.innerView addSubview:cardTypeImageView];
+    [self.innerView addSubview:placeholderView];
     [self addSubview:self.innerView];
     
     [self stateCardNumber];
 }
 
 
-- (void)setupCardTypeImageView
+- (void)setupPlaceholderView
 {
-    cardTypeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32, 20)];
-    cardTypeImageView.backgroundColor = [UIColor whiteColor];
-    cardTypeImageView.image = [UIImage imageNamed:@"placeholder"];
+    placeholderView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32, 20)];
+    placeholderView.backgroundColor = [UIColor whiteColor];
+    placeholderView.image = [UIImage imageNamed:@"placeholder"];
 }
 
 - (void)setupCardNumberField
 {
-    cardNumberField = [[UITextField alloc] initWithFrame:CGRectMake(39,0,160,20)];
+    cardNumberField = [[UITextField alloc] initWithFrame:CGRectMake(40,0,160,20)];
     
     cardNumberField.delegate = self;
     
@@ -106,8 +111,6 @@
     cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
     cardNumberField.textColor = DarkGreyColor;
     cardNumberField.font = DefaultBoldFont;
-
-//    cardNumberField.secureTextEntry = YES;
     
     [cardNumberField.layer setMasksToBounds:YES];
 }
@@ -150,7 +153,7 @@
     addressZipField.keyboardType = UIKeyboardTypeNumberPad;
     addressZipField.textColor = DarkGreyColor;
     addressZipField.font = DefaultBoldFont;
-    addressZipField.textAlignment = NSTextAlignmentCenter;
+    // addressZipField.textAlignment = NSTextAlignmentCenter;
     
     [addressZipField.layer setMasksToBounds:YES];
 }
@@ -219,7 +222,7 @@
                                            cardNumberField.frame.size.height);
     } completion:nil];
     
-    [self.innerView addSubview:cardTypeImageView];
+    [self.innerView addSubview:placeholderView];
     [self.innerView addSubview:cardExpiryField];
     [self.innerView addSubview:cardCVCField];
     [self.innerView addSubview:addressZipField];
@@ -254,7 +257,20 @@
     return card;
 }
 
-- (void)updateCardTypeImageView {
+- (void)setPlaceholderToCVC
+{
+    STCardNumber *cardNumber = [STCardNumber cardNumberWithString:cardNumberField.text];
+    STCardType cardType      = [cardNumber cardType];
+    
+    if (cardType == STCardTypeAmex) {
+        placeholderView.image = [UIImage imageNamed:@"cvc-amex"];
+    } else {
+        placeholderView.image = [UIImage imageNamed:@"cvc"];        
+    }
+}
+
+- (void)setPlaceholderToCardType
+{
     STCardNumber *cardNumber = [STCardNumber cardNumberWithString:cardNumberField.text];
     STCardType cardType      = [cardNumber cardType];
     NSString* cardTypeName   = @"placeholder";
@@ -282,10 +298,23 @@
             break;
     }
     
-    cardTypeImageView.image  = [UIImage imageNamed:cardTypeName];
+    placeholderView.image  = [UIImage imageNamed:cardTypeName];
 }
 
 // Delegates
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if ([textField isEqual:cardCVCField]) {
+        [self setPlaceholderToCVC];
+    } else {
+        [self setPlaceholderToCardType];
+    }
+    
+    if ([textField isEqual:cardNumberField]) {
+        if ( !isInitialState ) [self stateCardNumber];
+    }
+}
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString
 {
@@ -322,7 +351,7 @@
         cardNumberField.text = [cardNumber formattedString];
     }
     
-    [self updateCardTypeImageView];
+    [self setPlaceholderToCardType];
     
     if ([cardNumber isValid]) {
         [self textFieldIsValid:cardNumberField];
@@ -408,12 +437,6 @@
     return NO;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    if ([textField isEqual:cardNumberField]) {
-        if ( !isInitialState ) [self stateCardNumber];
-    }
-}
-
 - (void)checkValid
 {
     if ([self isValid] && !isValidState) {
@@ -456,6 +479,5 @@
 
     [self checkValid];
 }
-
 
 @end

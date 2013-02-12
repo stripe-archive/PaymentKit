@@ -39,7 +39,7 @@
 @property IBOutlet UITextField* cardExpiryField;
 @property IBOutlet UITextField* cardCVCField;
 @property IBOutlet UITextField* addressZipField;
-@property IBOutlet UIImageView* cardTypeImageView;
+@property IBOutlet UIImageView* placeholderView;
 @property id <STPaymentViewDelegate> delegate;
 @property (readonly) STCard* card;
 
