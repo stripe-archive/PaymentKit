@@ -204,8 +204,7 @@
 				FA6F1A5C16C1B21000835C75 /* ViewController.m */,
 				FA6F1A5D16C1B21000835C75 /* ViewController.xib */,
 			);
-			name = "SKPayment Example";
-			path = "STPayment Example";
+			path = "SKPayment Example";
 			sourceTree = "<group>";
 		};
 		FA45AC7716AE350D0003A41D /* Supporting Files */ = {
@@ -247,7 +246,7 @@
 				FAADE6CE16BC44D9006FF4D1 /* SKAddressZip.m */,
 			);
 			name = SKPayment;
-			path = ../STPayment;
+			path = ../SKPayment;
 			sourceTree = "<group>";
 		};
 		FA6A2F8F16C2D6F400915AEB /* SKPayment Test */ = {
@@ -263,8 +262,7 @@
 				FA6A2FA416C2E1F400915AEB /* SKCardExpiryTest.h */,
 				FA6A2FA516C2E1F400915AEB /* SKCardExpiryTest.m */,
 			);
-			name = "SKPayment Test";
-			path = "STPayment Test";
+			path = "SKPayment Test";
 			sourceTree = "<group>";
 		};
 		FA6A2F9016C2D6F400915AEB /* Supporting Files */ = {
