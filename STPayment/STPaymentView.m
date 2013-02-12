@@ -107,7 +107,7 @@
     placeholderView.image = [UIImage imageNamed:@"placeholder"];
     
     CALayer *clip = [CALayer layer];
-    clip.frame = CGRectMake(32, 0, 2, 20);
+    clip.frame = CGRectMake(32, 0, 4, 20);
     clip.backgroundColor = [UIColor whiteColor].CGColor;
     [placeholderView.layer addSublayer:clip];
 }
@@ -128,7 +128,7 @@
 
 - (void)setupCardExpiryField
 {
-    cardExpiryField = [[UITextField alloc] initWithFrame:CGRectMake(98,0,60,20)];
+    cardExpiryField = [[UITextField alloc] initWithFrame:CGRectMake(100,0,60,20)];
 
     cardExpiryField.delegate = self;
     
@@ -142,7 +142,7 @@
 
 - (void)setupCardCVCField
 {
-    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(163,0,55,20)];
+    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(170,0,55,20)];
     
     cardCVCField.delegate = self;
     
@@ -156,7 +156,7 @@
 
 - (void)setupZipField
 {
-    addressZipField = [[UITextField alloc] initWithFrame:CGRectMake(213,0,50,20)];
+    addressZipField = [[UITextField alloc] initWithFrame:CGRectMake(220,0,50,20)];
     
     addressZipField.delegate = self;
     
@@ -164,7 +164,6 @@
     addressZipField.keyboardType = UIKeyboardTypeNumberPad;
     addressZipField.textColor = DarkGreyColor;
     addressZipField.font = DefaultBoldFont;
-    // addressZipField.textAlignment = NSTextAlignmentCenter;
     
     [addressZipField.layer setMasksToBounds:YES];
 }
@@ -207,7 +206,7 @@
                               delay:0
                             options:(UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction)
                          animations:^{
-                            cardNumberField.frame = CGRectMake(32 + 7,
+                            cardNumberField.frame = CGRectMake(40,
                                                                cardNumberField.frame.origin.y,
                                                                cardNumberField.frame.size.width,
                                                                cardNumberField.frame.size.height);
@@ -224,7 +223,7 @@
     
     CGSize cardNumberSize = [self.cardNumber.formattedString sizeWithFont:DefaultBoldFont];
     CGSize lastGroupSize = [self.cardNumber.lastGroup sizeWithFont:DefaultBoldFont];
-    CGFloat frameX = self.cardNumberField.frame.origin.x - (cardNumberSize.width - lastGroupSize.width) - 3;
+    CGFloat frameX = self.cardNumberField.frame.origin.x - (cardNumberSize.width - lastGroupSize.width);
         
     [UIView animateWithDuration:0.400 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         cardNumberField.frame = CGRectMake(frameX,
@@ -322,8 +321,8 @@
         [self setPlaceholderToCardType];
     }
     
-    if ([textField isEqual:cardNumberField]) {
-        if ( !isInitialState ) [self stateCardNumber];
+    if ([textField isEqual:cardNumberField] && !isInitialState) {
+        [self stateCardNumber];
     }
 }
 
