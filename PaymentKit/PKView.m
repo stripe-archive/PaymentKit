@@ -118,7 +118,7 @@
     
     cardNumberField.delegate = self;
     
-    cardNumberField.placeholder = @"1234 5678 9012 3456";
+    cardNumberField.placeholder = NSLocalizedStringFromTable(@"placeholder.card_number", @"STPaymentLocalizable", nil);
     cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
     cardNumberField.textColor = DarkGreyColor;
     cardNumberField.font = DefaultBoldFont;
@@ -132,7 +132,7 @@
 
     cardExpiryField.delegate = self;
     
-    cardExpiryField.placeholder = @"MM/YY";
+    cardExpiryField.placeholder = NSLocalizedStringFromTable(@"placeholder.card_expiry", @"STPaymentLocalizable", nil);
     cardExpiryField.keyboardType = UIKeyboardTypeNumberPad;
     cardExpiryField.textColor = DarkGreyColor;
     cardExpiryField.font = DefaultBoldFont;
@@ -146,7 +146,7 @@
     
     cardCVCField.delegate = self;
     
-    cardCVCField.placeholder = @"CVC";
+    cardCVCField.placeholder = NSLocalizedStringFromTable(@"placeholder.card_cvc", @"STPaymentLocalizable", nil);
     cardCVCField.keyboardType = UIKeyboardTypeNumberPad;
     cardCVCField.textColor = DarkGreyColor;
     cardCVCField.font = DefaultBoldFont;
@@ -160,7 +160,7 @@
     
     addressZipField.delegate = self;
     
-    addressZipField.placeholder = @"ZIP";
+    addressZipField.placeholder = NSLocalizedStringFromTable(@"placeholder.address_zip", @"STPaymentLocalizable", nil);
     addressZipField.keyboardType = UIKeyboardTypeNumberPad;
     addressZipField.textColor = DarkGreyColor;
     addressZipField.font = DefaultBoldFont;
