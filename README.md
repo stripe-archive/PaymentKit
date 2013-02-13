@@ -27,7 +27,7 @@ In short, PaymentKit should greatly simplify your life when dealing with iOS pay
 1. Make sure "Copy items into destination group's folder (if needed)" is checked"
 1. Click "Add"
 
-## PaymentKitView
+## PaymentKit View
 
 **1)** Add the `QuartzCore` framework to your application.
 
@@ -40,9 +40,9 @@ In short, PaymentKit should greatly simplify your life when dealing with iOS pay
     @property IBOutlet PKView* paymentView;
     @end
 
-Notice we're importing `PaymentKitView.h`, the class conforms to `PaymentKitViewDelegate`, and lastly we have a `paymentView` property of type `PaymentKitView`.
+Notice we're importing `PKView.h`, the class conforms to `PKViewDelegate`, and lastly we have a `paymentView` property of type `PKView`.
 
-**3)** Instantiate and add `PaymentKitView`. We recommend you use the same frame.
+**3)** Instantiate and add `PKView`. We recommend you use the same frame.
 
     - (void)viewDidLoad
     {
@@ -53,7 +53,7 @@ Notice we're importing `PaymentKitView.h`, the class conforms to `PaymentKitView
         [self.view addSubview:self.paymentView];
     }
 
-**4)** Implement `PaymentKitViewDelegate` method `paymentView:withCard:isValid:`. This gets passed a `PKCard` instance, and a `BOOL` indicating whether the card is valid. You can enable or disable a navigational button depending on the value of `valid`, for example:
+**4)** Implement `PKViewDelegate` method `paymentView:withCard:isValid:`. This gets passed a `PKCard` instance, and a `BOOL` indicating whether the card is valid. You can enable or disable a navigational button depending on the value of `valid`, for example:
 
     - (void) paymentView:(PKView*)paymentView withCard:(PKCard *)card isValid:(BOOL)valid
     {
