@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>SKPayment Example.xcscheme</key>
+		<key>PaymentKit Example.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>SKPayment Test.xcscheme</key>
+		<key>PaymentKit Test.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>

@@ -12,9 +12,9 @@
 #define DefaultBoldFont [UIFont boldSystemFontOfSize:16]
 
 #import <QuartzCore/QuartzCore.h>
-#import "PKPaymentView.h"
+#import "PKView.h"
 
-@interface PKPaymentView ()
+@interface PKView ()
 - (void)setup;
 - (void)setupPlaceholderView;
 - (void)setupCardNumberField;
@@ -41,7 +41,7 @@
 - (void)textFieldIsInvalid:(UITextField *)textField withErrors:(BOOL)errors;
 @end
 
-@implementation PKPaymentView
+@implementation PKView
 
 @synthesize innerView, cardNumberField,
             cardExpiryField, cardCVCField, addressZipField,

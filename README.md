@@ -1,15 +1,15 @@
-# SKPayment
+# PaymentKit
 
-SKPayment is a utility library for writing payment forms in iOS apps.
+PaymentKit is a utility library for writing payment forms in iOS apps.
 
-Just add SKPaymentView to your application, and it'll take care accepting card numbers, expiry, cvc and zip.
+Just add `PKView` to your application, and it'll take care accepting card numbers, expiry, cvc and zip.
 Alternatively, we've provided a bunch of classes that you can use yourself to add formatting, validation and restricting input of `UITextField`s.
 
-In short, SKPayment should greatly simplify your life when dealing with iOS payments.
+In short, PaymentKit should greatly simplify your life when dealing with iOS payments.
 
-![SKPaymentView](http://stripe.github.com/SKPayment/screenshot.png)
+![PaymentKitView](http://stripe.github.com/PaymentKit/screenshot.png)
 
-*For purchases related to the app, such as premium features, Apple's TOS require that you use their native In-App Purchase API. SKPayments is only for purchasing products or services outside the app.*
+*For purchases related to the app, such as premium features, Apple's TOS require that you use their native In-App Purchase API. PaymentKits is only for purchasing products or services outside the app.*
 
 ## Installation
 
@@ -17,45 +17,45 @@ In short, SKPayment should greatly simplify your life when dealing with iOS paym
 
 [CocoaPods](http://cocoapods.org/) is a library dependency management tool for Objective-C. To use the Stripe iOS bindings with CocoaPods, simply add the following to your Podfile and run pod install:
 
-    pod 'SKPayment', :git => 'https://github.com/stripe/SKPayment.git'
+    pod 'PaymentKit', :git => 'https://github.com/stripe/PaymentKit.git'
 
 ### Install by adding files to project
 
 1. Clone this repository
 1. In the menubar, click on 'File' then 'Add files to "Project"...'
-1. Select the 'SKPayment' directory in your cloned SKPayment repository
+1. Select the 'PaymentKit' directory in your cloned PaymentKit repository
 1. Make sure "Copy items into destination group's folder (if needed)" is checked"
 1. Click "Add"
 
-## SKPaymentView
+## PaymentKitView
 
 **1)** Add the `QuartzCore` framework to your application.
 
 **2)** Create a new `ViewController`, for example `PaymentViewController`.
 
     #import <UIKit/UIKit.h>
-    #import "SKPaymentView.h"
+    #import "PKView.h"
 
-    @interface PaymentViewController : UIViewController <SKPaymentViewDelegate>
-    @property IBOutlet SKPaymentView* paymentView;
+    @interface PaymentViewController : UIViewController <PKViewDelegate>
+    @property IBOutlet PKView* paymentView;
     @end
 
-Notice we're importing `SKPaymentView.h`, the class conforms to `SKPaymentViewDelegate`, and lastly we have a `paymentView` property of type `SKPaymentView`.
+Notice we're importing `PaymentKitView.h`, the class conforms to `PaymentKitViewDelegate`, and lastly we have a `paymentView` property of type `PaymentKitView`.
 
-**3)** Instantiate and add `SKPaymentView`. We recommend you use the same frame.
+**3)** Instantiate and add `PaymentKitView`. We recommend you use the same frame.
 
     - (void)viewDidLoad
     {
         [super viewDidLoad];
 
-        self.paymentView = [[SKPaymentView alloc] initWithFrame:CGRectMake(15, 25, 290, 55)];
+        self.paymentView = [[PKView alloc] initWithFrame:CGRectMake(15, 25, 290, 55)];
         self.paymentView.delegate = self;
         [self.view addSubview:self.paymentView];
     }
 
-**4)** Implement `SKPaymentViewDelegate` method `paymentView:withCard:isValid:`. This gets passed a `SKCard` instance, and a `BOOL` indicating whether the card is valid. You can enable or disable a navigational button depending on the value of `valid`, for example:
+**4)** Implement `PaymentKitViewDelegate` method `paymentView:withCard:isValid:`. This gets passed a `PKCard` instance, and a `BOOL` indicating whether the card is valid. You can enable or disable a navigational button depending on the value of `valid`, for example:
 
-    - (void) paymentView:(SKPaymentView*)paymentView withCard:(SKCard *)card isValid:(BOOL)valid
+    - (void) paymentView:(PKView*)paymentView withCard:(PKCard *)card isValid:(BOOL)valid
     {
         NSLog(@"Card number: %@", card.number);
         NSLog(@"Card expiry: %lu/%lu", (unsigned long)card.expMonth, (unsigned long)card.expYear);
@@ -74,56 +74,56 @@ That's all! No further reading is required, unless you want more flexibility by 
 ## API Example
 
     // Format a card number
-    [[SKCardNumber cardNumberWithString:@"4242424242424242"] formattedString]; //=> '4242 4242 4242 4242'
-    [[SKCardNumber cardNumberWithString:@"4242424242"] formattedString]; //=> '4242 4242 42'
+    [[PKCardNumber cardNumberWithString:@"4242424242424242"] formattedString]; //=> '4242 4242 4242 4242'
+    [[PKCardNumber cardNumberWithString:@"4242424242"] formattedString]; //=> '4242 4242 42'
 
     // Amex support
-    [[SKCardNumber cardNumberWithString:@"378282246310005"] formattedString]; //=> '3782 822463 10005'
-    [[SKCardNumber cardNumberWithString:@"378282246310005"] cardType] == SKCardTypeAmex; //=> YES
+    [[PKCardNumber cardNumberWithString:@"378282246310005"] formattedString]; //=> '3782 822463 10005'
+    [[PKCardNumber cardNumberWithString:@"378282246310005"] cardType] == PKCardTypeAmex; //=> YES
 
     // Check a card number is valid using the Luhn algorithm
-    [[SKCardNumber cardNumberWithString:@"4242424242424242"] isValid]; //=> YES
-    [[SKCardNumber cardNumberWithString:@"4242424242424243"] isValid]; //=> NO
+    [[PKCardNumber cardNumberWithString:@"4242424242424242"] isValid]; //=> YES
+    [[PKCardNumber cardNumberWithString:@"4242424242424243"] isValid]; //=> NO
 
     // Check to see if a card expiry is valid
-    [[SKCardExpiry cardExpiryWithString:@"05 / 20"] isValid]; //=> YES
-    [[SKCardExpiry cardExpiryWithString:@"05 / 02"] isValid]; //=> NO
+    [[PKCardExpiry cardExpiryWithString:@"05 / 20"] isValid]; //=> YES
+    [[PKCardExpiry cardExpiryWithString:@"05 / 02"] isValid]; //=> NO
 
     // Return a card expiry's month
-    [[SKCardExpiry cardExpiryWithString:@"05 / 02"] month]; //=> 5
+    [[PKCardExpiry cardExpiryWithString:@"05 / 02"] month]; //=> 5
 
 ## API Delegates
 
-Included are a number of `UITextFieldDelegate` delegates: `SKCardCVCDelegate`, `SKCardExpiryDelegate` and `SKCardNumberDelegate`. You can set these as the delegates of `UITextField` inputs, which ensures that input is limited and formatted.
+Included are a number of `UITextFieldDelegate` delegates: `PKCardCVCDelegate`, `PKCardExpiryDelegate` and `PKCardNumberDelegate`. You can set these as the delegates of `UITextField` inputs, which ensures that input is limited and formatted.
 
-## SKCardNumber
+## PKCardNumber
 
 #### `+ (id) cardNumberWithString:(NSString *)string`
 #### `- (id) initWithString:(NSString *)string`
 
-Create a `SKCardNumber` object, passing a `NSString` representing the card number. For example:
+Create a `PKCardNumber` object, passing a `NSString` representing the card number. For example:
 
-    SKCardNumber* cardNumber = [SKCardNumber cardNumberWithString:@"4242424242424242"];
+    PKCardNumber* cardNumber = [PKCardNumber cardNumberWithString:@"4242424242424242"];
 
-#### `- (SKCardType)cardType`
+#### `- (PKCardType)cardType`
 
-Returns a `SKCardType` representing the card type (Visa, Amex etc).
+Returns a `PKCardType` representing the card type (Visa, Amex etc).
 
-    SKCardType cardType = [[SKCardNumber cardNumberWithString:@"4242424242424242"] cardType];
+    PKCardType cardType = [[PKCardNumber cardNumberWithString:@"4242424242424242"] cardType];
 
-    if (cardType == SKCardTypeAmex) {
+    if (cardType == PKCardTypeAmex) {
 
     }
 
 Available types are:
 
-    SKCardTypeVisa
-    SKCardTypeMasterCard
-    SKCardTypeAmex
-    SKCardTypeDiscover
-    SKCardTypeJCB
-    SKCardTypeDinersClub
-    SKCardTypeUnknown
+    PKCardTypeVisa
+    PKCardTypeMasterCard
+    PKCardTypeAmex
+    PKCardTypeDiscover
+    PKCardTypeJCB
+    PKCardTypeDinersClub
+    PKCardTypeUnknown
 
 #### `- (NSString *)string`
 
@@ -133,7 +133,7 @@ Returns the card number as a string.
 
 Returns a formatted card number, in the same space format as it appears on the card.
 
-    NSString* number = [[SKCardNumber cardNumberWithString:@"4242424242424242"] formattedString];
+    NSString* number = [[PKCardNumber cardNumberWithString:@"4242424242424242"] formattedString];
     number //=> '4242 4242 4242 4242'
 
 #### `- (NSString *)formattedStringWithTrail`
@@ -156,14 +156,14 @@ Returns a `BOOL` indicating whether the number passed a [Luhn check](http://en.w
 
 Returns a `BOOL` indicating whether the number is too long or not.
 
-## SKCardCVC
+## PKCardCVC
 
 #### `+ (id) cardCVCWithString:(NSString *)string`
 #### `- (id) initWithString:(NSString *)string`
 
-Returns a `SKCardCVC` instance, representing the card CVC. For example:
+Returns a `PKCardCVC` instance, representing the card CVC. For example:
 
-    SKCardCVC* cardCVC = [SKCardCVC cardCVCWithString:@"123"];
+    PKCardCVC* cardCVC = [PKCardCVC cardCVCWithString:@"123"];
 
 #### `- (NSString*)string`
 
@@ -173,7 +173,7 @@ Returns the CVC as a string.
 
 Returns a `BOOL` indicating whether the CVC is valid universally.
 
-#### `- (BOOL)isValidWithType:(SKCardType)type`
+#### `- (BOOL)isValidWithType:(PKCardType)type`
 
 Returns a `BOOL` indicating whether the CVC is valid for a particular card type.
 
@@ -181,20 +181,20 @@ Returns a `BOOL` indicating whether the CVC is valid for a particular card type.
 
 Returns a `BOOL` indicating whether the cvc is too long or not.
 
-## SKCardExpiry
+## PKCardExpiry
 
 #### `+ (id)cardExpiryWithString:(NSString *)string`
 #### `- (id)initWithString:(NSString *)string`
 
-Create a `SKCardExpiry` object, passing a `NSString` representing the card expiry. For example:
+Create a `PKCardExpiry` object, passing a `NSString` representing the card expiry. For example:
 
-    SKCardExpiry* cardExpiry = [SKCardExpiry cardExpiryWithString:@"10 / 2015"];
+    PKCardExpiry* cardExpiry = [PKCardExpiry cardExpiryWithString:@"10 / 2015"];
 
 #### `- (NSString *)formattedString`
 
 Returns a formatted representation of the card expiry. For example:
 
-    [[SKCardExpiry cardExpiryWithString:@"10/2015"] formattedString]; //=> "10 / 2015"
+    [[PKCardExpiry cardExpiryWithString:@"10/2015"] formattedString]; //=> "10 / 2015"
 
 #### `- (NSString *)formattedStringWithTrail`
 

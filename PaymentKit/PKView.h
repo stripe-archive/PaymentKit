@@ -13,14 +13,14 @@
 #import "PKCardCVC.h"
 #import "PKAddressZip.h"
 
-@class PKPaymentView;
+@class PKView;
 
-@protocol PKPaymentViewDelegate <NSObject>
+@protocol PKDelegate <NSObject>
 @optional
-- (void) paymentView:(PKPaymentView*)paymentView withCard:(PKCard*)card isValid:(BOOL)valid;
+- (void) paymentView:(PKView*)paymentView withCard:(PKCard*)card isValid:(BOOL)valid;
 @end
 
-@interface PKPaymentView : UIView <UITextFieldDelegate> {
+@interface PKView : UIView <UITextFieldDelegate> {
     @private
     BOOL isInitialState;
     BOOL isValidState;
@@ -40,7 +40,7 @@
 @property IBOutlet UITextField* cardCVCField;
 @property IBOutlet UITextField* addressZipField;
 @property IBOutlet UIImageView* placeholderView;
-@property id <PKPaymentViewDelegate> delegate;
+@property id <PKDelegate> delegate;
 @property (readonly) PKCard* card;
 
 @end

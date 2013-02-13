@@ -22,14 +22,14 @@
     saveButton.enabled = NO;
     self.navigationItem.rightBarButtonItem = saveButton;
     
-    self.paymentView = [[PKPaymentView alloc] initWithFrame:CGRectMake(15, 25, 290, 45)];
+    self.paymentView = [[PKView alloc] initWithFrame:CGRectMake(15, 25, 290, 45)];
     self.paymentView.delegate = self;
     
     [self.view addSubview:self.paymentView];
 }
 
 
-- (void) paymentView:(PKPaymentView *)paymentView withCard:(PKCard *)card isValid:(BOOL)valid
+- (void) paymentView:(PKView *)paymentView withCard:(PKCard *)card isValid:(BOOL)valid
 {
     self.navigationItem.rightBarButtonItem.enabled = valid;
 }

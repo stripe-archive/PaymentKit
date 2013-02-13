@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PKPaymentView.h"
+#import "PKView.h"
 
-@interface PaymentViewController : UIViewController <PKPaymentViewDelegate>
+@interface PaymentViewController : UIViewController <PKDelegate>
 
-@property IBOutlet PKPaymentView* paymentView;
+@property IBOutlet PKView* paymentView;
 
 @end
