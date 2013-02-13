@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  SKPayment Example
+//  PKPayment Example
 //
 //  Created by Alex MacCaw on 1/21/13.
 //  Copyright (c) 2013 Stripe. All rights reserved.
@@ -22,14 +22,14 @@
     saveButton.enabled = NO;
     self.navigationItem.rightBarButtonItem = saveButton;
     
-    self.paymentView = [[SKPaymentView alloc] initWithFrame:CGRectMake(15, 25, 290, 45)];
+    self.paymentView = [[PKPaymentView alloc] initWithFrame:CGRectMake(15, 25, 290, 45)];
     self.paymentView.delegate = self;
     
     [self.view addSubview:self.paymentView];
 }
 
 
-- (void) paymentView:(SKPaymentView *)paymentView withCard:(SKCard *)card isValid:(BOOL)valid
+- (void) paymentView:(PKPaymentView *)paymentView withCard:(PKCard *)card isValid:(BOOL)valid
 {
     self.navigationItem.rightBarButtonItem.enabled = valid;
 }
@@ -42,7 +42,7 @@
 
 - (IBAction)save:(id)sender
 {
-    SKCard* card = self.paymentView.card;
+    PKCard* card = self.paymentView.card;
     
     NSLog(@"Card last4: %@", card.last4);
     NSLog(@"Card expiry: %lu/%lu", (unsigned long)card.expMonth, (unsigned long)card.expYear);

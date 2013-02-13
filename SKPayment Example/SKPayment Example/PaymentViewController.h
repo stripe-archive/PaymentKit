@@ -1,16 +1,16 @@
 //
 //  ViewController.h
-//  SKPayment Example
+//  PKPayment Example
 //
 //  Created by Alex MacCaw on 1/21/13.
 //  Copyright (c) 2013 Stripe. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "SKPaymentView.h"
+#import "PKPaymentView.h"
 
-@interface PaymentViewController : UIViewController <SKPaymentViewDelegate>
+@interface PaymentViewController : UIViewController <PKPaymentViewDelegate>
 
-@property IBOutlet SKPaymentView* paymentView;
+@property IBOutlet PKPaymentView* paymentView;
 
 @end

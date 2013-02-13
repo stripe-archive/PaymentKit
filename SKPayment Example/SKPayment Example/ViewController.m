@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  SKPayment Example
+//  PKPayment Example
 //
 //  Created by Alex MacCaw on 2/5/13.
 //  Copyright (c) 2013 Stripe. All rights reserved.
