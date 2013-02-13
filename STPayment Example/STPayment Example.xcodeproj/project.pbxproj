@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F4FC59B416CA965700D41856 /* amex.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC599E16CA965700D41856 /* amex.png */; };
+		F4FC59B516CA965700D41856 /* amex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC599F16CA965700D41856 /* amex@2x.png */; };
+		F4FC59B616CA965700D41856 /* cvc-amex.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59A016CA965700D41856 /* cvc-amex.png */; };
+		F4FC59B716CA965700D41856 /* cvc-amex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59A116CA965700D41856 /* cvc-amex@2x.png */; };
+		F4FC59B816CA965700D41856 /* cvc.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59A216CA965700D41856 /* cvc.png */; };
+		F4FC59B916CA965700D41856 /* cvc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59A316CA965700D41856 /* cvc@2x.png */; };
+		F4FC59BA16CA965700D41856 /* diners.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59A416CA965700D41856 /* diners.png */; };
+		F4FC59BB16CA965700D41856 /* diners@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59A516CA965700D41856 /* diners@2x.png */; };
+		F4FC59BC16CA965700D41856 /* discover.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59A616CA965700D41856 /* discover.png */; };
+		F4FC59BD16CA965700D41856 /* discover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59A716CA965700D41856 /* discover@2x.png */; };
+		F4FC59BE16CA965700D41856 /* jcb.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59A816CA965700D41856 /* jcb.png */; };
+		F4FC59BF16CA965700D41856 /* jcb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59A916CA965700D41856 /* jcb@2x.png */; };
+		F4FC59C016CA965700D41856 /* mastercard.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59AA16CA965700D41856 /* mastercard.png */; };
+		F4FC59C116CA965700D41856 /* mastercard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59AB16CA965700D41856 /* mastercard@2x.png */; };
+		F4FC59C216CA965700D41856 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59AC16CA965700D41856 /* placeholder.png */; };
+		F4FC59C316CA965700D41856 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59AD16CA965700D41856 /* placeholder@2x.png */; };
+		F4FC59C416CA965700D41856 /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59AE16CA965700D41856 /* visa.png */; };
+		F4FC59C516CA965700D41856 /* visa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59AF16CA965700D41856 /* visa@2x.png */; };
+		F4FC59C616CA965700D41856 /* STPaymentLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4FC59B116CA965700D41856 /* STPaymentLocalizable.strings */; };
 		FA06D14C16AFC0AA00C46291 /* STPaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA06D14B16AFC0AA00C46291 /* STPaymentView.m */; };
 		FA2A74A016BB1EDD00AF0078 /* STCard.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A749F16BB1EDD00AF0078 /* STCard.m */; };
 		FA45AC7116AE350D0003A41D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA45AC7016AE350D0003A41D /* UIKit.framework */; };
@@ -40,28 +59,29 @@
 		FA6F1A5A16C19BF700835C75 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F1A5916C19BF700835C75 /* QuartzCore.framework */; };
 		FA6F1A5E16C1B21000835C75 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6F1A5C16C1B21000835C75 /* ViewController.m */; };
 		FA6F1A5F16C1B21000835C75 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6F1A5D16C1B21000835C75 /* ViewController.xib */; };
-		FAA3610816C9F21C00049C6F /* amex.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360F616C9F21C00049C6F /* amex.png */; };
-		FAA3610916C9F21C00049C6F /* amex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360F716C9F21C00049C6F /* amex@2x.png */; };
-		FAA3610A16C9F21C00049C6F /* cvc-amex.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360F816C9F21C00049C6F /* cvc-amex.png */; };
-		FAA3610B16C9F21C00049C6F /* cvc-amex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360F916C9F21C00049C6F /* cvc-amex@2x.png */; };
-		FAA3610C16C9F21C00049C6F /* cvc.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360FA16C9F21C00049C6F /* cvc.png */; };
-		FAA3610D16C9F21C00049C6F /* cvc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360FB16C9F21C00049C6F /* cvc@2x.png */; };
-		FAA3610E16C9F21C00049C6F /* diners.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360FC16C9F21C00049C6F /* diners.png */; };
-		FAA3610F16C9F21C00049C6F /* diners@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360FD16C9F21C00049C6F /* diners@2x.png */; };
-		FAA3611016C9F21C00049C6F /* discover.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360FE16C9F21C00049C6F /* discover.png */; };
-		FAA3611116C9F21C00049C6F /* discover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360FF16C9F21C00049C6F /* discover@2x.png */; };
-		FAA3611216C9F21C00049C6F /* jcb.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610016C9F21C00049C6F /* jcb.png */; };
-		FAA3611316C9F21C00049C6F /* jcb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610116C9F21C00049C6F /* jcb@2x.png */; };
-		FAA3611416C9F21C00049C6F /* mastercard.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610216C9F21C00049C6F /* mastercard.png */; };
-		FAA3611516C9F21C00049C6F /* mastercard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610316C9F21C00049C6F /* mastercard@2x.png */; };
-		FAA3611616C9F21C00049C6F /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610416C9F21C00049C6F /* placeholder.png */; };
-		FAA3611716C9F21C00049C6F /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610516C9F21C00049C6F /* placeholder@2x.png */; };
-		FAA3611816C9F21C00049C6F /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610616C9F21C00049C6F /* visa.png */; };
-		FAA3611916C9F21C00049C6F /* visa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610716C9F21C00049C6F /* visa@2x.png */; };
 		FAADE6CF16BC44D9006FF4D1 /* STAddressZip.m in Sources */ = {isa = PBXBuildFile; fileRef = FAADE6CE16BC44D9006FF4D1 /* STAddressZip.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F4FC599E16CA965700D41856 /* amex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = amex.png; sourceTree = "<group>"; };
+		F4FC599F16CA965700D41856 /* amex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "amex@2x.png"; sourceTree = "<group>"; };
+		F4FC59A016CA965700D41856 /* cvc-amex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvc-amex.png"; sourceTree = "<group>"; };
+		F4FC59A116CA965700D41856 /* cvc-amex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvc-amex@2x.png"; sourceTree = "<group>"; };
+		F4FC59A216CA965700D41856 /* cvc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cvc.png; sourceTree = "<group>"; };
+		F4FC59A316CA965700D41856 /* cvc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvc@2x.png"; sourceTree = "<group>"; };
+		F4FC59A416CA965700D41856 /* diners.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diners.png; sourceTree = "<group>"; };
+		F4FC59A516CA965700D41856 /* diners@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diners@2x.png"; sourceTree = "<group>"; };
+		F4FC59A616CA965700D41856 /* discover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discover.png; sourceTree = "<group>"; };
+		F4FC59A716CA965700D41856 /* discover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "discover@2x.png"; sourceTree = "<group>"; };
+		F4FC59A816CA965700D41856 /* jcb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jcb.png; sourceTree = "<group>"; };
+		F4FC59A916CA965700D41856 /* jcb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jcb@2x.png"; sourceTree = "<group>"; };
+		F4FC59AA16CA965700D41856 /* mastercard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mastercard.png; sourceTree = "<group>"; };
+		F4FC59AB16CA965700D41856 /* mastercard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mastercard@2x.png"; sourceTree = "<group>"; };
+		F4FC59AC16CA965700D41856 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		F4FC59AD16CA965700D41856 /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
+		F4FC59AE16CA965700D41856 /* visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visa.png; sourceTree = "<group>"; };
+		F4FC59AF16CA965700D41856 /* visa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visa@2x.png"; sourceTree = "<group>"; };
+		F4FC59B216CA965700D41856 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/STPaymentLocalizable.strings; sourceTree = "<group>"; };
 		FA06D14A16AFC0AA00C46291 /* STPaymentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPaymentView.h; sourceTree = "<group>"; };
 		FA06D14B16AFC0AA00C46291 /* STPaymentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPaymentView.m; sourceTree = "<group>"; };
 		FA2A749E16BB1EDD00AF0078 /* STCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCard.h; sourceTree = "<group>"; };
@@ -112,24 +132,6 @@
 		FA6F1A5B16C1B21000835C75 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		FA6F1A5C16C1B21000835C75 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		FA6F1A5D16C1B21000835C75 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
-		FAA360F616C9F21C00049C6F /* amex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = amex.png; sourceTree = "<group>"; };
-		FAA360F716C9F21C00049C6F /* amex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "amex@2x.png"; sourceTree = "<group>"; };
-		FAA360F816C9F21C00049C6F /* cvc-amex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvc-amex.png"; sourceTree = "<group>"; };
-		FAA360F916C9F21C00049C6F /* cvc-amex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvc-amex@2x.png"; sourceTree = "<group>"; };
-		FAA360FA16C9F21C00049C6F /* cvc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cvc.png; sourceTree = "<group>"; };
-		FAA360FB16C9F21C00049C6F /* cvc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvc@2x.png"; sourceTree = "<group>"; };
-		FAA360FC16C9F21C00049C6F /* diners.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diners.png; sourceTree = "<group>"; };
-		FAA360FD16C9F21C00049C6F /* diners@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diners@2x.png"; sourceTree = "<group>"; };
-		FAA360FE16C9F21C00049C6F /* discover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discover.png; sourceTree = "<group>"; };
-		FAA360FF16C9F21C00049C6F /* discover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "discover@2x.png"; sourceTree = "<group>"; };
-		FAA3610016C9F21C00049C6F /* jcb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jcb.png; sourceTree = "<group>"; };
-		FAA3610116C9F21C00049C6F /* jcb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jcb@2x.png"; sourceTree = "<group>"; };
-		FAA3610216C9F21C00049C6F /* mastercard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mastercard.png; sourceTree = "<group>"; };
-		FAA3610316C9F21C00049C6F /* mastercard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mastercard@2x.png"; sourceTree = "<group>"; };
-		FAA3610416C9F21C00049C6F /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
-		FAA3610516C9F21C00049C6F /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
-		FAA3610616C9F21C00049C6F /* visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visa.png; sourceTree = "<group>"; };
-		FAA3610716C9F21C00049C6F /* visa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visa@2x.png"; sourceTree = "<group>"; };
 		FAADE6CD16BC44D9006FF4D1 /* STAddressZip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAddressZip.h; sourceTree = "<group>"; };
 		FAADE6CE16BC44D9006FF4D1 /* STAddressZip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAddressZip.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +161,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F4FC599C16CA965600D41856 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F4FC599D16CA965700D41856 /* Cards */,
+				F4FC59B016CA965700D41856 /* Localization */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F4FC599D16CA965700D41856 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				F4FC599E16CA965700D41856 /* amex.png */,
+				F4FC599F16CA965700D41856 /* amex@2x.png */,
+				F4FC59A016CA965700D41856 /* cvc-amex.png */,
+				F4FC59A116CA965700D41856 /* cvc-amex@2x.png */,
+				F4FC59A216CA965700D41856 /* cvc.png */,
+				F4FC59A316CA965700D41856 /* cvc@2x.png */,
+				F4FC59A416CA965700D41856 /* diners.png */,
+				F4FC59A516CA965700D41856 /* diners@2x.png */,
+				F4FC59A616CA965700D41856 /* discover.png */,
+				F4FC59A716CA965700D41856 /* discover@2x.png */,
+				F4FC59A816CA965700D41856 /* jcb.png */,
+				F4FC59A916CA965700D41856 /* jcb@2x.png */,
+				F4FC59AA16CA965700D41856 /* mastercard.png */,
+				F4FC59AB16CA965700D41856 /* mastercard@2x.png */,
+				F4FC59AC16CA965700D41856 /* placeholder.png */,
+				F4FC59AD16CA965700D41856 /* placeholder@2x.png */,
+				F4FC59AE16CA965700D41856 /* visa.png */,
+				F4FC59AF16CA965700D41856 /* visa@2x.png */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
+		F4FC59B016CA965700D41856 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				F4FC59B116CA965700D41856 /* STPaymentLocalizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		FA45AC6116AE350D0003A41D = {
 			isa = PBXGroup;
 			children = (
@@ -224,7 +268,7 @@
 		FA45AC9616AE35210003A41D /* STPayment */ = {
 			isa = PBXGroup;
 			children = (
-				FAA360F416C9F21C00049C6F /* Resources */,
+				F4FC599C16CA965600D41856 /* Resources */,
 				FA45ACA216AF1EE80003A41D /* STCardNumber.h */,
 				FA45ACA316AF1EE80003A41D /* STCardNumber.m */,
 				FA45ACA516AF33750003A41D /* STCardCVC.h */,
@@ -273,39 +317,6 @@
 				FA6A2F9816C2D6F400915AEB /* STPayment Test-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		FAA360F416C9F21C00049C6F /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				FAA360F516C9F21C00049C6F /* Cards */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		FAA360F516C9F21C00049C6F /* Cards */ = {
-			isa = PBXGroup;
-			children = (
-				FAA360F616C9F21C00049C6F /* amex.png */,
-				FAA360F716C9F21C00049C6F /* amex@2x.png */,
-				FAA360F816C9F21C00049C6F /* cvc-amex.png */,
-				FAA360F916C9F21C00049C6F /* cvc-amex@2x.png */,
-				FAA360FA16C9F21C00049C6F /* cvc.png */,
-				FAA360FB16C9F21C00049C6F /* cvc@2x.png */,
-				FAA360FC16C9F21C00049C6F /* diners.png */,
-				FAA360FD16C9F21C00049C6F /* diners@2x.png */,
-				FAA360FE16C9F21C00049C6F /* discover.png */,
-				FAA360FF16C9F21C00049C6F /* discover@2x.png */,
-				FAA3610016C9F21C00049C6F /* jcb.png */,
-				FAA3610116C9F21C00049C6F /* jcb@2x.png */,
-				FAA3610216C9F21C00049C6F /* mastercard.png */,
-				FAA3610316C9F21C00049C6F /* mastercard@2x.png */,
-				FAA3610416C9F21C00049C6F /* placeholder.png */,
-				FAA3610516C9F21C00049C6F /* placeholder@2x.png */,
-				FAA3610616C9F21C00049C6F /* visa.png */,
-				FAA3610716C9F21C00049C6F /* visa@2x.png */,
-			);
-			path = Cards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +372,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				sv,
 			);
 			mainGroup = FA45AC6116AE350D0003A41D;
 			productRefGroup = FA45AC6D16AE350D0003A41D /* Products */;
@@ -384,24 +396,25 @@
 				FA45AC8716AE350E0003A41D /* Default-568h@2x.png in Resources */,
 				FA45AC8D16AE350E0003A41D /* PaymentViewController.xib in Resources */,
 				FA6F1A5F16C1B21000835C75 /* ViewController.xib in Resources */,
-				FAA3610816C9F21C00049C6F /* amex.png in Resources */,
-				FAA3610916C9F21C00049C6F /* amex@2x.png in Resources */,
-				FAA3610A16C9F21C00049C6F /* cvc-amex.png in Resources */,
-				FAA3610B16C9F21C00049C6F /* cvc-amex@2x.png in Resources */,
-				FAA3610C16C9F21C00049C6F /* cvc.png in Resources */,
-				FAA3610D16C9F21C00049C6F /* cvc@2x.png in Resources */,
-				FAA3610E16C9F21C00049C6F /* diners.png in Resources */,
-				FAA3610F16C9F21C00049C6F /* diners@2x.png in Resources */,
-				FAA3611016C9F21C00049C6F /* discover.png in Resources */,
-				FAA3611116C9F21C00049C6F /* discover@2x.png in Resources */,
-				FAA3611216C9F21C00049C6F /* jcb.png in Resources */,
-				FAA3611316C9F21C00049C6F /* jcb@2x.png in Resources */,
-				FAA3611416C9F21C00049C6F /* mastercard.png in Resources */,
-				FAA3611516C9F21C00049C6F /* mastercard@2x.png in Resources */,
-				FAA3611616C9F21C00049C6F /* placeholder.png in Resources */,
-				FAA3611716C9F21C00049C6F /* placeholder@2x.png in Resources */,
-				FAA3611816C9F21C00049C6F /* visa.png in Resources */,
-				FAA3611916C9F21C00049C6F /* visa@2x.png in Resources */,
+				F4FC59B416CA965700D41856 /* amex.png in Resources */,
+				F4FC59B516CA965700D41856 /* amex@2x.png in Resources */,
+				F4FC59B616CA965700D41856 /* cvc-amex.png in Resources */,
+				F4FC59B716CA965700D41856 /* cvc-amex@2x.png in Resources */,
+				F4FC59B816CA965700D41856 /* cvc.png in Resources */,
+				F4FC59B916CA965700D41856 /* cvc@2x.png in Resources */,
+				F4FC59BA16CA965700D41856 /* diners.png in Resources */,
+				F4FC59BB16CA965700D41856 /* diners@2x.png in Resources */,
+				F4FC59BC16CA965700D41856 /* discover.png in Resources */,
+				F4FC59BD16CA965700D41856 /* discover@2x.png in Resources */,
+				F4FC59BE16CA965700D41856 /* jcb.png in Resources */,
+				F4FC59BF16CA965700D41856 /* jcb@2x.png in Resources */,
+				F4FC59C016CA965700D41856 /* mastercard.png in Resources */,
+				F4FC59C116CA965700D41856 /* mastercard@2x.png in Resources */,
+				F4FC59C216CA965700D41856 /* placeholder.png in Resources */,
+				F4FC59C316CA965700D41856 /* placeholder@2x.png in Resources */,
+				F4FC59C416CA965700D41856 /* visa.png in Resources */,
+				F4FC59C516CA965700D41856 /* visa@2x.png in Resources */,
+				F4FC59C616CA965700D41856 /* STPaymentLocalizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +482,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		F4FC59B116CA965700D41856 /* STPaymentLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4FC59B216CA965700D41856 /* en */,
+			);
+			name = STPaymentLocalizable.strings;
+			sourceTree = "<group>";
+		};
 		FA45AC7916AE350D0003A41D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
