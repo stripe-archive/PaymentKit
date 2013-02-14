@@ -15,7 +15,7 @@
 
 @class PKView;
 
-@protocol PKDelegate <NSObject>
+@protocol PKViewDelegate <NSObject>
 @optional
 - (void) paymentView:(PKView*)paymentView withCard:(PKCard*)card isValid:(BOOL)valid;
 @end
@@ -40,7 +40,7 @@
 @property IBOutlet UITextField* cardCVCField;
 @property IBOutlet UITextField* addressZipField;
 @property IBOutlet UIImageView* placeholderView;
-@property id <PKDelegate> delegate;
+@property id <PKViewDelegate> delegate;
 @property (readonly) PKCard* card;
 
 @end
