@@ -58,7 +58,6 @@
 		FAA3611716C9F21C00049C6F /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610516C9F21C00049C6F /* placeholder@2x.png */; };
 		FAA3611816C9F21C00049C6F /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610616C9F21C00049C6F /* visa.png */; };
 		FAA3611916C9F21C00049C6F /* visa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610716C9F21C00049C6F /* visa@2x.png */; };
-		FAADE6CF16BC44D9006FF4D1 /* PKAddressZip.m in Sources */ = {isa = PBXBuildFile; fileRef = FAADE6CE16BC44D9006FF4D1 /* PKAddressZip.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,8 +129,6 @@
 		FAA3610516C9F21C00049C6F /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
 		FAA3610616C9F21C00049C6F /* visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visa.png; sourceTree = "<group>"; };
 		FAA3610716C9F21C00049C6F /* visa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visa@2x.png"; sourceTree = "<group>"; };
-		FAADE6CD16BC44D9006FF4D1 /* PKAddressZip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PKAddressZip.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		FAADE6CE16BC44D9006FF4D1 /* PKAddressZip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PKAddressZip.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,8 +239,6 @@
 				FA06D14B16AFC0AA00C46291 /* PKView.m */,
 				FA2A749E16BB1EDD00AF0078 /* PKCard.h */,
 				FA2A749F16BB1EDD00AF0078 /* PKCard.m */,
-				FAADE6CD16BC44D9006FF4D1 /* PKAddressZip.h */,
-				FAADE6CE16BC44D9006FF4D1 /* PKAddressZip.m */,
 			);
 			name = PaymentKit;
 			path = ../PaymentKit;
@@ -448,7 +443,6 @@
 				FA45ACB516AF3CA40003A41D /* PKCardExpiryDelegate.m in Sources */,
 				FA06D14C16AFC0AA00C46291 /* PKView.m in Sources */,
 				FA2A74A016BB1EDD00AF0078 /* PKCard.m in Sources */,
-				FAADE6CF16BC44D9006FF4D1 /* PKAddressZip.m in Sources */,
 				FA6F1A5E16C1B21000835C75 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
