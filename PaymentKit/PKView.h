@@ -11,7 +11,6 @@
 #import "PKCardNumber.h"
 #import "PKCardExpiry.h"
 #import "PKCardCVC.h"
-#import "PKAddressZip.h"
 
 @class PKView;
 
@@ -31,7 +30,6 @@
 @property (readonly) PKCardNumber* cardNumber;
 @property (readonly) PKCardExpiry* cardExpiry;
 @property (readonly) PKCardCVC* cardCVC;
-@property (readonly) PKAddressZip* addressZip;
 
 @property IBOutlet UIView* innerView;
 @property IBOutlet UIView* clipView;

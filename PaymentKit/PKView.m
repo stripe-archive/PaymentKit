@@ -20,12 +20,10 @@
 - (void)setupCardNumberField;
 - (void)setupCardExpiryField;
 - (void)setupCardCVCField;
-- (void)setupZipField;
 
 - (void)stateCardNumber;
 - (void)stateMeta;
 - (void)stateCardCVC;
-- (void)stateZip;
 
 - (void)setPlaceholderToCVC;
 - (void)setPlaceholderToCardType;
@@ -34,7 +32,6 @@
 - (BOOL)cardNumberFieldShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
 - (BOOL)cardExpiryShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
 - (BOOL)cardCVCShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
-- (BOOL)addressZipShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
 
 - (void)checkValid;
 - (void)textFieldIsValid:(UITextField *)textField;
@@ -44,7 +41,7 @@
 @implementation PKView
 
 @synthesize innerView, cardNumberField,
-            cardExpiryField, cardCVCField, addressZipField,
+            cardExpiryField, cardCVCField,
             placeholderView, delegate;
 
 - (id)initWithFrame:(CGRect)frame
@@ -67,7 +64,7 @@
     isInitialState = YES;
     isValidState   = NO;
     
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 45);
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 260, 45);
     self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 9.0f;
     self.layer.borderWidth = 1.0f;
@@ -90,7 +87,6 @@
     [self setupCardNumberField];
     [self setupCardExpiryField];
     [self setupCardCVCField];
-    [self setupZipField];
     
     [self.innerView addSubview:cardNumberField];
     [self.innerView addSubview:placeholderView];
@@ -128,7 +124,7 @@
 
 - (void)setupCardExpiryField
 {
-    cardExpiryField = [[UITextField alloc] initWithFrame:CGRectMake(100,0,60,20)];
+    cardExpiryField = [[UITextField alloc] initWithFrame:CGRectMake(110,0,60,20)];
 
     cardExpiryField.delegate = self;
     
@@ -142,7 +138,7 @@
 
 - (void)setupCardCVCField
 {
-    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(165,0,55,20)];
+    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(195,0,55,20)];
     
     cardCVCField.delegate = self;
     
@@ -152,20 +148,6 @@
     cardCVCField.font = DefaultBoldFont;
     
     [cardCVCField.layer setMasksToBounds:YES];
-}
-
-- (void)setupZipField
-{
-    addressZipField = [[UITextField alloc] initWithFrame:CGRectMake(220,0,50,20)];
-    
-    addressZipField.delegate = self;
-    
-    addressZipField.placeholder = @"ZIP";
-    addressZipField.keyboardType = UIKeyboardTypeNumberPad;
-    addressZipField.textColor = DarkGreyColor;
-    addressZipField.font = DefaultBoldFont;
-    
-    [addressZipField.layer setMasksToBounds:YES];
 }
 
 // Accessors
@@ -185,18 +167,12 @@
     return [PKCardCVC cardCVCWithString:cardCVCField.text];
 }
 
-- (PKAddressZip*)addressZip
-{
-    return [PKAddressZip addressZipWithString:addressZipField.text];
-}
-
 // State
 
 - (void)stateCardNumber
 {
     [cardExpiryField removeFromSuperview];
     [cardCVCField removeFromSuperview];
-    [addressZipField removeFromSuperview];
     
     if (!isInitialState) {
         // Animate left
@@ -235,7 +211,6 @@
     [self.innerView addSubview:placeholderView];
     [self.innerView addSubview:cardExpiryField];
     [self.innerView addSubview:cardCVCField];
-    [self.innerView addSubview:addressZipField];
     [cardExpiryField becomeFirstResponder];
 }
 
@@ -244,15 +219,11 @@
     [cardCVCField becomeFirstResponder];
 }
 
-- (void)stateZip
-{
-    [addressZipField becomeFirstResponder];
-}
-
 - (BOOL)isValid
 {    
-    return [self.cardNumber isValid] && [self.cardExpiry isValid] &&
-           [self.cardCVC isValid] && [self.addressZip isValid];
+    return [self.cardNumber isValid] &&
+           [self.cardExpiry isValid] &&
+           [self.cardCVC isValid];
 }
 
 - (PKCard*)card
@@ -262,7 +233,6 @@
     card.cvc        = [self.cardCVC string];
     card.expMonth   = [self.cardExpiry month];
     card.expYear    = [self.cardExpiry year];
-    card.addressZip = [self.addressZip string];
     
     return card;
 }
@@ -338,10 +308,6 @@
     
     if ([textField isEqual:cardCVCField]) {
         return [self cardCVCShouldChangeCharactersInRange:range replacementString:replacementString];
-    }
-    
-    if ([textField isEqual:addressZipField]) {
-        return [self addressZipShouldChangeCharactersInRange:range replacementString:replacementString];
     }
     
     return YES;
@@ -420,28 +386,8 @@
     
     if ([cardCVC isValidWithType:cardType]) {
         [self textFieldIsValid:cardCVCField];
-        [self stateZip];
     } else {
         [self textFieldIsInvalid:cardCVCField withErrors:NO];
-    }
-    
-    return NO;
-}
-
-- (BOOL)addressZipShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString
-{
-    NSString *resultString = [addressZipField.text stringByReplacingCharactersInRange:range withString:replacementString];
-    PKAddressZip *addressZip = [PKAddressZip addressZipWithString:resultString];
-
-    // Restrict length
-    if ( ![addressZip isPartiallyValid] ) return NO;
-    
-    addressZipField.text = [addressZip string];
-    
-    if ([addressZip isValid]) {
-        [self textFieldIsValid:addressZipField];
-    } else {
-        [self textFieldIsInvalid:addressZipField withErrors:NO];
     }
     
     return NO;
