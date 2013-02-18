@@ -19,11 +19,7 @@
 {
     self = [super init];
     if (self) {
-        // Strip non-digits
-        zip = [string stringByReplacingOccurrencesOfString:@"\\D"
-                                                withString:@""
-                                                   options:NSRegularExpressionSearch
-                                                     range:NSMakeRange(0, string.length)];
+        zip = string;
     }
     return self;
 }
@@ -35,12 +31,17 @@
 
 - (BOOL) isValid
 {
-    return zip.length == 5;
+    NSString* stripped = [zip stringByReplacingOccurrencesOfString:@"\\s"
+                                            withString:@""
+                                               options:NSRegularExpressionSearch
+                                                 range:NSMakeRange(0, zip.length)];
+
+    return stripped.length > 2;
 }
 
 - (BOOL)isPartiallyValid
 {
-    return zip.length <= 5;
+    return zip.length < 10;
 }
 
 @end

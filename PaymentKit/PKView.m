@@ -161,7 +161,7 @@
     addressZipField.delegate = self;
     
     addressZipField.placeholder = @"ZIP";
-    addressZipField.keyboardType = UIKeyboardTypeNumberPad;
+    addressZipField.keyboardType = UIKeyboardTypeASCIICapable;
     addressZipField.textColor = DarkGreyColor;
     addressZipField.font = DefaultBoldFont;
     
