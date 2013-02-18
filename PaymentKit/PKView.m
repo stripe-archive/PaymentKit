@@ -66,6 +66,7 @@
 {
     isInitialState = YES;
     isValidState   = NO;
+    isUSAddress    = NO;
     
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 45);
     self.backgroundColor = [UIColor whiteColor];
@@ -168,6 +169,22 @@
     [addressZipField.layer setMasksToBounds:YES];
 }
 
+- (BOOL)usAddress
+{
+    return isUSAddress;
+}
+
+- (void)setUSAddress:(BOOL)enabled
+{
+    isUSAddress = enabled;
+    
+    if (isUSAddress) {
+        addressZipField.keyboardType = UIKeyboardTypeNumberPad;
+    } else {
+        addressZipField.keyboardType = UIKeyboardTypeASCIICapable;
+    }
+}
+
 // Accessors
 
 - (PKCardNumber*)cardNumber
@@ -187,7 +204,11 @@
 
 - (PKAddressZip*)addressZip
 {
-    return [PKAddressZip addressZipWithString:addressZipField.text];
+    if (isUSAddress) {
+        return [PKUSAddressZip addressZipWithString:addressZipField.text];
+    } else {
+        return [PKAddressZip addressZipWithString:addressZipField.text];
+    }
 }
 
 // State
@@ -431,7 +452,13 @@
 - (BOOL)addressZipShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString
 {
     NSString *resultString = [addressZipField.text stringByReplacingCharactersInRange:range withString:replacementString];
-    PKAddressZip *addressZip = [PKAddressZip addressZipWithString:resultString];
+    PKAddressZip *addressZip;
+    
+    if (isUSAddress) {
+        addressZip = [PKUSAddressZip addressZipWithString:resultString];
+    } else {
+        addressZip = [PKAddressZip addressZipWithString:resultString];
+    }
 
     // Restrict length
     if ( ![addressZip isPartiallyValid] ) return NO;

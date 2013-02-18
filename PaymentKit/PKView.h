@@ -12,6 +12,7 @@
 #import "PKCardExpiry.h"
 #import "PKCardCVC.h"
 #import "PKAddressZip.h"
+#import "PKUSAddressZip.h"
 
 @class PKView;
 
@@ -24,6 +25,7 @@
     @private
     BOOL isInitialState;
     BOOL isValidState;
+    BOOL isUSAddress;
 }
 
 - (BOOL)isValid;
@@ -42,5 +44,6 @@
 @property IBOutlet UIImageView* placeholderView;
 @property id <PKViewDelegate> delegate;
 @property (readonly) PKCard* card;
+@property (setter = setUSAddress:) BOOL usAddress;
 
 @end
