@@ -66,7 +66,7 @@
 {
     isInitialState = YES;
     isValidState   = NO;
-    isUSAddress    = NO;
+    isUSAddress    = YES;
     
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 45);
     self.backgroundColor = [UIColor whiteColor];
@@ -162,7 +162,7 @@
     addressZipField.delegate = self;
     
     addressZipField.placeholder = @"ZIP";
-    addressZipField.keyboardType = UIKeyboardTypeASCIICapable;
+    addressZipField.keyboardType = UIKeyboardTypeNumberPad;
     addressZipField.textColor = DarkGreyColor;
     addressZipField.font = DefaultBoldFont;
     
