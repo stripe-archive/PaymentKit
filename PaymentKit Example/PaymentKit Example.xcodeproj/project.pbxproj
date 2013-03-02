@@ -60,6 +60,7 @@
 		FAA3611816C9F21C00049C6F /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610616C9F21C00049C6F /* visa.png */; };
 		FAA3611916C9F21C00049C6F /* visa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610716C9F21C00049C6F /* visa@2x.png */; };
 		FAADE6CF16BC44D9006FF4D1 /* PKAddressZip.m in Sources */ = {isa = PBXBuildFile; fileRef = FAADE6CE16BC44D9006FF4D1 /* PKAddressZip.m */; };
+		FADC4C1D16E1B3080048064A /* PaymentKit Test-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA6A2F9116C2D6F400915AEB /* PaymentKit Test-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -267,8 +268,7 @@
 				FA6A2FA416C2E1F400915AEB /* PKCardExpiryTest.h */,
 				FA6A2FA516C2E1F400915AEB /* PKCardExpiryTest.m */,
 			);
-			name = "PaymentKit Test";
-			path = "../PaymentKit Test";
+			path = "PaymentKit Test";
 			sourceTree = "<group>";
 		};
 		FA6A2F9016C2D6F400915AEB /* Supporting Files */ = {
@@ -416,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA6A2F9416C2D6F400915AEB /* InfoPlist.strings in Resources */,
+				FADC4C1D16E1B3080048064A /* PaymentKit Test-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
