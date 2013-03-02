@@ -10,11 +10,11 @@
 
 @interface PKCard : NSObject
 
-@property (copy) NSString *number;
-@property (copy) NSString *cvc;
-@property (copy) NSString *addressZip;
-@property (assign) NSUInteger expMonth;
-@property (assign) NSUInteger expYear;
+@property (nonatomic, copy) NSString *number;
+@property (nonatomic, copy) NSString *cvc;
+@property (nonatomic, copy) NSString *addressZip;
+@property (nonatomic, assign) NSUInteger expMonth;
+@property (nonatomic, assign) NSUInteger expYear;
 @property (readonly) NSString* last4;
 
 @end

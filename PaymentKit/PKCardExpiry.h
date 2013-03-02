@@ -8,11 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PKCardExpiry : NSObject {
-    @private
-    NSString* month;
-    NSString* year;
-}
+@interface PKCardExpiry : NSObject
 
 @property (readonly) NSUInteger month;
 @property (readonly) NSUInteger year;

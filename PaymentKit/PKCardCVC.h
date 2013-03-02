@@ -9,10 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PKCardType.h"
 
-@interface PKCardCVC : NSObject {
-    @private
-    NSString* cvc;
-}
+@interface PKCardCVC : NSObject
 
 @property (readonly) NSString* string;
 

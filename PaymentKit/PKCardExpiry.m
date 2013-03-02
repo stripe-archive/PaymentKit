@@ -8,7 +8,14 @@
 
 #import "PKCardExpiry.h"
 
-@implementation PKCardExpiry 
+@interface PKCardExpiry () {
+    @private
+    NSString* month;
+    NSString* year;
+}
+@end
+
+@implementation PKCardExpiry
 
 + (id) cardExpiryWithString:(NSString *)string
 {

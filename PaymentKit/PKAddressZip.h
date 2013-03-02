@@ -13,7 +13,7 @@
     NSString* zip;
 }
 
-@property (readonly) NSString* string;
+@property (nonatomic, readonly) NSString* string;
 
 + (id)addressZipWithString:(NSString *)string;
 - (id)initWithString:(NSString *)string;

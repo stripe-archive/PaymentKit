@@ -21,12 +21,7 @@
 - (void) paymentView:(PKView*)paymentView withCard:(PKCard*)card isValid:(BOOL)valid;
 @end
 
-@interface PKView : UIView <UITextFieldDelegate> {
-    @private
-    BOOL isInitialState;
-    BOOL isValidState;
-    BOOL isUSAddress;
-}
+@interface PKView : UIView <UITextFieldDelegate>
 
 - (BOOL)isValid;
 

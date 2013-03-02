@@ -9,10 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PKCardType.h"
 
-@interface PKCardNumber : NSObject {
-    @private
-    NSString* _number;
-}
+@interface PKCardNumber : NSObject
 
 @property (readonly) PKCardType cardType;
 @property (readonly) NSString * last4;

@@ -14,7 +14,13 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PKView.h"
 
-@interface PKView ()
+@interface PKView () {
+@private
+    BOOL isInitialState;
+    BOOL isValidState;
+    BOOL isUSAddress;
+}
+
 - (void)setup;
 - (void)setupPlaceholderView;
 - (void)setupCardNumberField;
