@@ -10,10 +10,10 @@
 
 @interface PKCardExpiry : NSObject
 
-@property (readonly) NSUInteger month;
-@property (readonly) NSUInteger year;
-@property (readonly) NSString* formattedString;
-@property (readonly) NSString* formattedStringWithTrail;
+@property (nonatomic, readonly) NSUInteger month;
+@property (nonatomic, readonly) NSUInteger year;
+@property (nonatomic, readonly) NSString* formattedString;
+@property (nonatomic, readonly) NSString* formattedStringWithTrail;
 
 + (id)cardExpiryWithString:(NSString *)string;
 - (id)initWithString:(NSString *)string;
