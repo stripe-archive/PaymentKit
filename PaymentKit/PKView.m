@@ -11,6 +11,8 @@
 #define RedColor RGB(253,0,17)
 #define DefaultBoldFont [UIFont boldSystemFontOfSize:16]
 
+#define kPKViewPlaceholderViewAnimationDuration 0.25
+
 #import <QuartzCore/QuartzCore.h>
 #import "PKView.h"
 
@@ -91,7 +93,7 @@
     [self.layer addSublayer:innerShadow];
     
     self.innerView = [[UIView alloc] initWithFrame:CGRectMake(12, 13, self.frame.size.width - 12, 20)];
-    self.innerView.clipsToBounds = YES;
+    self.innerView.clipsToBounds = NO;
     
     [self setupPlaceholderView];
     [self setupCardNumberField];
@@ -334,8 +336,32 @@
         default:
             break;
     }
-    
-    placeholderView.image  = [UIImage imageNamed:cardTypeName];
+
+    UIImage *newImage = [UIImage imageNamed:cardTypeName];
+    if(![placeholderView.image isEqual:newImage]) {
+        UIView *previousPlaceholderView = placeholderView;
+        [UIView animateWithDuration:kPKViewPlaceholderViewAnimationDuration delay:0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^
+        {
+            placeholderView.layer.opacity = 0.0;
+            placeholderView.layer.transform = CATransform3DMakeScale(1.2, 1.2, 1.2);
+        } completion:^(BOOL finished) {}];
+        placeholderView = nil;
+        
+        [self setupPlaceholderView];
+        placeholderView.image = newImage;
+        placeholderView.layer.opacity = 0.0;
+        placeholderView.layer.transform = CATransform3DMakeScale(0.8, 0.8, 0.8);
+        [self.innerView insertSubview:placeholderView belowSubview:previousPlaceholderView];
+        [UIView animateWithDuration:kPKViewPlaceholderViewAnimationDuration delay:0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^
+        {
+            placeholderView.layer.opacity = 1.0;
+            placeholderView.layer.transform = CATransform3DIdentity;
+        } completion:^(BOOL finished) {}];
+    }
 }
 
 // Delegates
