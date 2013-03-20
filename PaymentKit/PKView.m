@@ -26,7 +26,6 @@
 @private
     BOOL isInitialState;
     BOOL isValidState;
-    BOOL isUSAddress;
 }
 
 - (void)setup;
@@ -78,7 +77,6 @@
 {
     isInitialState = YES;
     isValidState   = NO;
-    isUSAddress    = YES;
     
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 46);
     self.backgroundColor = [UIColor clearColor];
@@ -170,16 +168,6 @@
     cardCVCField.font = DefaultBoldFont;
     
     [cardCVCField.layer setMasksToBounds:YES];
-}
-
-- (BOOL)usAddress
-{
-    return isUSAddress;
-}
-
-- (void)setUSAddress:(BOOL)enabled
-{
-    isUSAddress = enabled;
 }
 
 // Accessors
