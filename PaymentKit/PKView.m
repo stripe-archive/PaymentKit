@@ -35,6 +35,7 @@
 - (void)stateCardCVC;
 - (void)stateZip;
 
+- (void)setPlaceholderViewImage:(UIImage *)image;
 - (void)setPlaceholderToCVC;
 - (void)setPlaceholderToCardType;
 
@@ -92,8 +93,8 @@
     innerShadow.cornerRadius = 9.0f;
     [self.layer addSublayer:innerShadow];
     
-    self.innerView = [[UIView alloc] initWithFrame:CGRectMake(12, 13, self.frame.size.width - 12, 20)];
-    self.innerView.clipsToBounds = NO;
+    self.innerView = [[UIView alloc] initWithFrame:CGRectMake(48, 13, self.frame.size.width - 48, 20)];
+    self.innerView.clipsToBounds = YES;
     
     [self setupPlaceholderView];
     [self setupCardNumberField];
@@ -102,8 +103,8 @@
     [self setupZipField];
     
     [self.innerView addSubview:cardNumberField];
-    [self.innerView addSubview:placeholderView];
     [self addSubview:self.innerView];
+    [self addSubview:placeholderView];
     
     [self stateCardNumber];
 }
@@ -111,7 +112,7 @@
 
 - (void)setupPlaceholderView
 {
-    placeholderView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32, 20)];
+    placeholderView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 13, 32, 20)];
     placeholderView.backgroundColor = [UIColor whiteColor];
     placeholderView.image = [UIImage imageNamed:@"placeholder"];
     
@@ -123,7 +124,7 @@
 
 - (void)setupCardNumberField
 {
-    cardNumberField = [[UITextField alloc] initWithFrame:CGRectMake(40,0,160,20)];
+    cardNumberField = [[UITextField alloc] initWithFrame:CGRectMake(40-26-10,0,160,20)];
     
     cardNumberField.delegate = self;
     
@@ -137,7 +138,7 @@
 
 - (void)setupCardExpiryField
 {
-    cardExpiryField = [[UITextField alloc] initWithFrame:CGRectMake(100,0,60,20)];
+    cardExpiryField = [[UITextField alloc] initWithFrame:CGRectMake(100-26-10,0,60,20)];
 
     cardExpiryField.delegate = self;
     
@@ -151,7 +152,7 @@
 
 - (void)setupCardCVCField
 {
-    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(165,0,55,20)];
+    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(129,0,55,20)];
     
     cardCVCField.delegate = self;
     
@@ -165,7 +166,7 @@
 
 - (void)setupZipField
 {
-    addressZipField = [[UITextField alloc] initWithFrame:CGRectMake(220,0,50,20)];
+    addressZipField = [[UITextField alloc] initWithFrame:CGRectMake(184,0,50,20)];
     
     addressZipField.delegate = self;
     
@@ -235,7 +236,7 @@
                               delay:0
                             options:(UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction)
                          animations:^{
-                            cardNumberField.frame = CGRectMake(40,
+                            cardNumberField.frame = CGRectMake(4,
                                                                cardNumberField.frame.origin.y,
                                                                cardNumberField.frame.size.width,
                                                                cardNumberField.frame.size.height);
@@ -261,7 +262,7 @@
                                            cardNumberField.frame.size.height);
     } completion:nil];
     
-    [self.innerView addSubview:placeholderView];
+    [self addSubview:placeholderView];
     [self.innerView addSubview:cardExpiryField];
     [self.innerView addSubview:cardCVCField];
     [self.innerView addSubview:addressZipField];
@@ -296,15 +297,45 @@
     return card;
 }
 
+- (void)setPlaceholderViewImage:(UIImage *)image
+{
+    if(![placeholderView.image isEqual:image]) {
+        __block __weak UIView *previousPlaceholderView = placeholderView;
+        [UIView animateWithDuration:kPKViewPlaceholderViewAnimationDuration delay:0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^
+         {
+             placeholderView.layer.opacity = 0.0;
+             placeholderView.layer.transform = CATransform3DMakeScale(1.2, 1.2, 1.2);
+         } completion:^(BOOL finished) {
+             [previousPlaceholderView removeFromSuperview];
+         }];
+        placeholderView = nil;
+        
+        [self setupPlaceholderView];
+        placeholderView.image = image;
+        placeholderView.layer.opacity = 0.0;
+        placeholderView.layer.transform = CATransform3DMakeScale(0.8, 0.8, 0.8);
+        [self insertSubview:placeholderView belowSubview:previousPlaceholderView];
+        [UIView animateWithDuration:kPKViewPlaceholderViewAnimationDuration delay:0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^
+         {
+             placeholderView.layer.opacity = 1.0;
+             placeholderView.layer.transform = CATransform3DIdentity;
+         } completion:^(BOOL finished) {}];
+    }
+}
+
 - (void)setPlaceholderToCVC
 {
     PKCardNumber *cardNumber = [PKCardNumber cardNumberWithString:cardNumberField.text];
     PKCardType cardType      = [cardNumber cardType];
     
     if (cardType == PKCardTypeAmex) {
-        placeholderView.image = [UIImage imageNamed:@"cvc-amex"];
+        [self setPlaceholderViewImage:[UIImage imageNamed:@"cvc-amex"]];
     } else {
-        placeholderView.image = [UIImage imageNamed:@"cvc"];        
+        [self setPlaceholderViewImage:[UIImage imageNamed:@"cvc"]];
     }
 }
 
@@ -337,31 +368,8 @@
             break;
     }
 
-    UIImage *newImage = [UIImage imageNamed:cardTypeName];
-    if(![placeholderView.image isEqual:newImage]) {
-        UIView *previousPlaceholderView = placeholderView;
-        [UIView animateWithDuration:kPKViewPlaceholderViewAnimationDuration delay:0
-                            options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^
-        {
-            placeholderView.layer.opacity = 0.0;
-            placeholderView.layer.transform = CATransform3DMakeScale(1.2, 1.2, 1.2);
-        } completion:^(BOOL finished) {}];
-        placeholderView = nil;
-        
-        [self setupPlaceholderView];
-        placeholderView.image = newImage;
-        placeholderView.layer.opacity = 0.0;
-        placeholderView.layer.transform = CATransform3DMakeScale(0.8, 0.8, 0.8);
-        [self.innerView insertSubview:placeholderView belowSubview:previousPlaceholderView];
-        [UIView animateWithDuration:kPKViewPlaceholderViewAnimationDuration delay:0
-                            options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^
-        {
-            placeholderView.layer.opacity = 1.0;
-            placeholderView.layer.transform = CATransform3DIdentity;
-        } completion:^(BOOL finished) {}];
-    }
+    [self setPlaceholderViewImage:[UIImage imageNamed:cardTypeName]];
+    
 }
 
 // Delegates
