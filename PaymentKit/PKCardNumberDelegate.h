@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Stripe. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PKCardNumber.h"
 
 @interface PKCardNumberDelegate : NSObject <UITextFieldDelegate>
