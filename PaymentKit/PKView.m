@@ -147,6 +147,8 @@
     cardExpiryField.textColor = DarkGreyColor;
     cardExpiryField.font = DefaultBoldFont;
     
+    cardExpiryField.layer.opacity = 0;
+    
     [cardExpiryField.layer setMasksToBounds:YES];
 }
 
@@ -161,6 +163,8 @@
     cardCVCField.textColor = DarkGreyColor;
     cardCVCField.font = DefaultBoldFont;
     
+    cardCVCField.layer.opacity = 0;
+    
     [cardCVCField.layer setMasksToBounds:YES];
 }
 
@@ -174,6 +178,8 @@
     addressZipField.keyboardType = UIKeyboardTypeNumberPad;
     addressZipField.textColor = DarkGreyColor;
     addressZipField.font = DefaultBoldFont;
+    
+    addressZipField.layer.opacity = 0;
     
     [addressZipField.layer setMasksToBounds:YES];
 }
@@ -224,10 +230,6 @@
 
 - (void)stateCardNumber
 {
-    [cardExpiryField removeFromSuperview];
-    [cardCVCField removeFromSuperview];
-    [addressZipField removeFromSuperview];
-    
     if (!isInitialState) {
         // Animate left
         isInitialState = YES;
@@ -236,12 +238,19 @@
                               delay:0
                             options:(UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction)
                          animations:^{
+                             cardExpiryField.layer.opacity = 0;
+                             cardCVCField.layer.opacity = 0;
+                             addressZipField.layer.opacity = 0;
                             cardNumberField.frame = CGRectMake(4,
                                                                cardNumberField.frame.origin.y,
                                                                cardNumberField.frame.size.width,
                                                                cardNumberField.frame.size.height);
                          }
-                         completion:nil];
+                         completion:^(BOOL completed) {
+                             [cardExpiryField removeFromSuperview];
+                             [cardCVCField removeFromSuperview];
+                             [addressZipField removeFromSuperview];
+                         }];
     }
     
     [self.cardNumberField becomeFirstResponder];
@@ -256,6 +265,9 @@
     CGFloat frameX = self.cardNumberField.frame.origin.x - (cardNumberSize.width - lastGroupSize.width);
         
     [UIView animateWithDuration:0.400 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        cardExpiryField.layer.opacity = 1;
+        cardCVCField.layer.opacity = 1;
+        addressZipField.layer.opacity = 1;
         cardNumberField.frame = CGRectMake(frameX,
                                            cardNumberField.frame.origin.y,
                                            cardNumberField.frame.size.width,
