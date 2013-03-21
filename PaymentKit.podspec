@@ -9,6 +9,7 @@ Pod::Spec.new do |s|
   s.source_files        = 'PaymentKit/*.{h,m}'
   s.public_header_files = 'PaymentKit/*.h'
   s.resources           = 'PaymentKit/Resources/*.png'
+  s.resources			= 'PaymentKit/Cards/*.png'
   s.platform            = :ios
   s.requires_arc        = true
 end
