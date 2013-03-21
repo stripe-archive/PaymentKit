@@ -10,6 +10,7 @@
 		4C332B4316FA5297009C782D /* textfield.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C332B4116FA5297009C782D /* textfield.png */; };
 		4C332B4416FA5297009C782D /* textfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C332B4216FA5297009C782D /* textfield@2x.png */; };
 		4C332B4B16FA6240009C782D /* gradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C332B4A16FA6240009C782D /* gradient@2x.png */; };
+		4C332B4E16FA923E009C782D /* PKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C332B4D16FA923E009C782D /* PKTextField.m */; };
 		FA007D1F16FA3B82006DD86E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F1A5916C19BF700835C75 /* QuartzCore.framework */; };
 		FA06D14C16AFC0AA00C46291 /* PKView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA06D14B16AFC0AA00C46291 /* PKView.m */; };
 		FA2A74A016BB1EDD00AF0078 /* PKCard.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A749F16BB1EDD00AF0078 /* PKCard.m */; };
@@ -28,9 +29,6 @@
 		FA45ACA416AF1EE80003A41D /* PKCardNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACA316AF1EE80003A41D /* PKCardNumber.m */; };
 		FA45ACA716AF33750003A41D /* PKCardCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACA616AF33750003A41D /* PKCardCVC.m */; };
 		FA45ACAC16AF37420003A41D /* PKCardExpiry.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACAB16AF37420003A41D /* PKCardExpiry.m */; };
-		FA45ACAF16AF38BB0003A41D /* PKCardNumberDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACAE16AF38BA0003A41D /* PKCardNumberDelegate.m */; };
-		FA45ACB216AF3B250003A41D /* PKCardCVCDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACB116AF3B250003A41D /* PKCardCVCDelegate.m */; };
-		FA45ACB516AF3CA40003A41D /* PKCardExpiryDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACB416AF3CA40003A41D /* PKCardExpiryDelegate.m */; };
 		FA6A2F8C16C2D6F400915AEB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6A2F8B16C2D6F400915AEB /* SenTestingKit.framework */; };
 		FA6A2F8D16C2D6F400915AEB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA45AC7016AE350D0003A41D /* UIKit.framework */; };
 		FA6A2F8E16C2D6F400915AEB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA45AC7216AE350D0003A41D /* Foundation.framework */; };
@@ -70,6 +68,8 @@
 		4C332B4116FA5297009C782D /* textfield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textfield.png; sourceTree = "<group>"; };
 		4C332B4216FA5297009C782D /* textfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield@2x.png"; sourceTree = "<group>"; };
 		4C332B4A16FA6240009C782D /* gradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient@2x.png"; sourceTree = "<group>"; };
+		4C332B4C16FA923E009C782D /* PKTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTextField.h; sourceTree = "<group>"; };
+		4C332B4D16FA923E009C782D /* PKTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTextField.m; sourceTree = "<group>"; };
 		FA06D14A16AFC0AA00C46291 /* PKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PKView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		FA06D14B16AFC0AA00C46291 /* PKView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PKView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		FA2A749E16BB1EDD00AF0078 /* PKCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PKCard.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -99,12 +99,6 @@
 		FA45ACA916AF367B0003A41D /* PKCardType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PKCardType.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		FA45ACAA16AF37420003A41D /* PKCardExpiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PKCardExpiry.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		FA45ACAB16AF37420003A41D /* PKCardExpiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PKCardExpiry.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		FA45ACAD16AF38BA0003A41D /* PKCardNumberDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PKCardNumberDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		FA45ACAE16AF38BA0003A41D /* PKCardNumberDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PKCardNumberDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		FA45ACB016AF3B250003A41D /* PKCardCVCDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PKCardCVCDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		FA45ACB116AF3B250003A41D /* PKCardCVCDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PKCardCVCDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		FA45ACB316AF3CA40003A41D /* PKCardExpiryDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PKCardExpiryDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		FA45ACB416AF3CA40003A41D /* PKCardExpiryDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PKCardExpiryDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		FA6A2F8A16C2D6F400915AEB /* PaymentKit Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PaymentKit Test.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6A2F8B16C2D6F400915AEB /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		FA6A2F9116C2D6F400915AEB /* PaymentKit Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PaymentKit Test-Info.plist"; sourceTree = "<group>"; };
@@ -252,12 +246,6 @@
 				FA45ACA916AF367B0003A41D /* PKCardType.h */,
 				FA45ACAA16AF37420003A41D /* PKCardExpiry.h */,
 				FA45ACAB16AF37420003A41D /* PKCardExpiry.m */,
-				FA45ACAD16AF38BA0003A41D /* PKCardNumberDelegate.h */,
-				FA45ACAE16AF38BA0003A41D /* PKCardNumberDelegate.m */,
-				FA45ACB016AF3B250003A41D /* PKCardCVCDelegate.h */,
-				FA45ACB116AF3B250003A41D /* PKCardCVCDelegate.m */,
-				FA45ACB316AF3CA40003A41D /* PKCardExpiryDelegate.h */,
-				FA45ACB416AF3CA40003A41D /* PKCardExpiryDelegate.m */,
 				FA06D14A16AFC0AA00C46291 /* PKView.h */,
 				FA06D14B16AFC0AA00C46291 /* PKView.m */,
 				FA2A749E16BB1EDD00AF0078 /* PKCard.h */,
@@ -266,6 +254,8 @@
 				FAADE6CE16BC44D9006FF4D1 /* PKAddressZip.m */,
 				FA3A8C5816D208E300A9C346 /* PKUSAddressZip.h */,
 				FA3A8C5916D208E300A9C346 /* PKUSAddressZip.m */,
+				4C332B4C16FA923E009C782D /* PKTextField.h */,
+				4C332B4D16FA923E009C782D /* PKTextField.m */,
 			);
 			name = PaymentKit;
 			path = ../PaymentKit;
@@ -469,14 +459,12 @@
 				FA45ACA416AF1EE80003A41D /* PKCardNumber.m in Sources */,
 				FA45ACA716AF33750003A41D /* PKCardCVC.m in Sources */,
 				FA45ACAC16AF37420003A41D /* PKCardExpiry.m in Sources */,
-				FA45ACAF16AF38BB0003A41D /* PKCardNumberDelegate.m in Sources */,
-				FA45ACB216AF3B250003A41D /* PKCardCVCDelegate.m in Sources */,
-				FA45ACB516AF3CA40003A41D /* PKCardExpiryDelegate.m in Sources */,
 				FA06D14C16AFC0AA00C46291 /* PKView.m in Sources */,
 				FA2A74A016BB1EDD00AF0078 /* PKCard.m in Sources */,
 				FAADE6CF16BC44D9006FF4D1 /* PKAddressZip.m in Sources */,
 				FA6F1A5E16C1B21000835C75 /* ViewController.m in Sources */,
 				FA3A8C5A16D208E300A9C346 /* PKUSAddressZip.m in Sources */,
+				4C332B4E16FA923E009C782D /* PKTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
