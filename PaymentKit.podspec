@@ -8,8 +8,7 @@ Pod::Spec.new do |s|
   s.source              = { :git => "https://github.com/stripe/PaymentKit.git", :tag => "v1.0.0"}
   s.source_files        = 'PaymentKit/*.{h,m}'
   s.public_header_files = 'PaymentKit/*.h'
-  s.resources           = 'PaymentKit/Resources/*.png'
-  s.resources			= 'PaymentKit/Resources/Cards/*.png'
+  s.resources           = 'PaymentKit/Resources/*'
   s.platform            = :ios
   s.requires_arc        = true
 end
