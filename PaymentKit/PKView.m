@@ -21,8 +21,9 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "PKView.h"
+#import "PKTextField.h"
 
-@interface PKView () {
+@interface PKView () <UITextFieldDelegate> {
 @private
     BOOL isInitialState;
     BOOL isValidState;
@@ -130,7 +131,7 @@
 
 - (void)setupCardNumberField
 {
-    cardNumberField = [[UITextField alloc] initWithFrame:CGRectMake(12,0,170,20)];
+    cardNumberField = [[PKTextField alloc] initWithFrame:CGRectMake(12,0,170,20)];
     
     cardNumberField.delegate = self;
     
@@ -144,7 +145,7 @@
 
 - (void)setupCardExpiryField
 {
-    cardExpiryField = [[UITextField alloc] initWithFrame:CGRectMake(kPKViewCardExpiryFieldStartX,0,
+    cardExpiryField = [[PKTextField alloc] initWithFrame:CGRectMake(kPKViewCardExpiryFieldStartX,0,
                                                                     60,20)];
 
     cardExpiryField.delegate = self;
@@ -159,7 +160,7 @@
 
 - (void)setupCardCVCField
 {
-    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(kPKViewCardCVCFieldStartX,0,
+    cardCVCField = [[PKTextField alloc] initWithFrame:CGRectMake(kPKViewCardCVCFieldStartX,0,
                                                                  55,20)];
     
     cardCVCField.delegate = self;
@@ -398,9 +399,18 @@
     return YES;
 }
 
+- (void)pkTextFieldDidBackSpaceWhileTextIsEmpty:(PKTextField *)textField
+{
+    if (textField == self.cardCVCField)
+        [self.cardExpiryField becomeFirstResponder];
+    else if (textField == self.cardExpiryField)
+        [self stateCardNumber];
+}
+
 - (BOOL)cardNumberFieldShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString
 {
     NSString *resultString = [cardNumberField.text stringByReplacingCharactersInRange:range withString:replacementString];
+    resultString = [PKTextField textByRemovingUselessSpacesFromString:resultString];
     PKCardNumber *cardNumber = [PKCardNumber cardNumberWithString:resultString];
     
     if ( ![cardNumber isPartiallyValid] )
@@ -431,6 +441,7 @@
 - (BOOL)cardExpiryShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString
 {
     NSString *resultString = [cardExpiryField.text stringByReplacingCharactersInRange:range withString:replacementString];
+    resultString = [PKTextField textByRemovingUselessSpacesFromString:resultString];
     PKCardExpiry *cardExpiry = [PKCardExpiry cardExpiryWithString:resultString];
     
     if (![cardExpiry isPartiallyValid]) return NO;
@@ -460,6 +471,7 @@
 - (BOOL)cardCVCShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString
 {
     NSString *resultString = [cardCVCField.text stringByReplacingCharactersInRange:range withString:replacementString];
+    resultString = [PKTextField textByRemovingUselessSpacesFromString:resultString];
     PKCardCVC *cardCVC = [PKCardCVC cardCVCWithString:resultString];
     PKCardType cardType = [[PKCardNumber cardNumberWithString:cardNumberField.text] cardType];
     
