@@ -8,13 +8,10 @@
 
 #import "PKCardNumber.h"
 
-@interface PKCardNumber() {
+@implementation PKCardNumber {
 @private
     NSString* number;
 }
-@end
-
-@implementation PKCardNumber
 
 + (id)cardNumberWithString:(NSString *)string
 {
