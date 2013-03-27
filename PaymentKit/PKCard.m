@@ -10,12 +10,10 @@
 
 @implementation PKCard
 
-@synthesize number, cvc, expMonth, expYear, addressZip;
-
 - (NSString*)last4
 {
-    if (number.length >= 4) {
-        return [number substringFromIndex:([number length] - 4)];
+    if (_number.length >= 4) {
+        return [_number substringFromIndex:([_number length] - 4)];
     } else {
         return nil;
     }
