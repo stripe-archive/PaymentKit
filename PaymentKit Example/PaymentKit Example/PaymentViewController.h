@@ -11,6 +11,4 @@
 
 @interface PaymentViewController : UIViewController <PKViewDelegate>
 
-@property IBOutlet PKView* paymentView;
-
 @end
