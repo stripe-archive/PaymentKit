@@ -8,13 +8,10 @@
 
 #import "PKCardCVC.h"
 
-@interface PKCardCVC () {
+@implementation PKCardCVC {
 @private
     NSString* cvc;
 }
-@end
-
-@implementation PKCardCVC
 
 + (instancetype)cardCVCWithString:(NSString *)string
 {
