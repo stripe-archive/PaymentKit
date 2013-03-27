@@ -17,12 +17,12 @@
 
 @implementation PKCardExpiry
 
-+ (id) cardExpiryWithString:(NSString *)string
++ (instancetype) cardExpiryWithString:(NSString *)string
 {
     return [[self alloc] initWithString:string];
 }
 
-- (id) initWithString:(NSString *)string
+- (instancetype) initWithString:(NSString *)string
 {
     if ( !string ) {
         return [self initWithMonth:@"" andYear:@""];
@@ -48,7 +48,7 @@
     return [self initWithMonth:monthStr andYear:yearStr];
 }
 
-- (id) initWithMonth:(NSString*)monthStr andYear:(NSString*)yearStr
+- (instancetype) initWithMonth:(NSString*)monthStr andYear:(NSString*)yearStr
 {
     self = [super init];
     if (self) {

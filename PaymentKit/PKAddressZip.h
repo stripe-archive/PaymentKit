@@ -15,8 +15,8 @@
 
 @property (nonatomic, readonly) NSString* string;
 
-+ (id)addressZipWithString:(NSString *)string;
-- (id)initWithString:(NSString *)string;
++ (instancetype)addressZipWithString:(NSString *)string;
+- (instancetype)initWithString:(NSString *)string;
 - (BOOL)isValid;
 - (BOOL)isPartiallyValid;
 
