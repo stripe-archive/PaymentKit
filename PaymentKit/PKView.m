@@ -29,28 +29,6 @@
     BOOL _isValidState;
 }
 
-- (void)setup;
-- (void)setupPlaceholderView;
-- (void)setupCardNumberField;
-- (void)setupCardExpiryField;
-- (void)setupCardCVCField;
-
-- (void)stateCardNumber;
-- (void)stateMeta;
-- (void)stateCardCVC;
-
-- (void)setPlaceholderViewImage:(UIImage *)image;
-- (void)setPlaceholderToCVC;
-- (void)setPlaceholderToCardType;
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
-- (BOOL)cardNumberFieldShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
-- (BOOL)cardExpiryShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
-- (BOOL)cardCVCShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
-
-- (void)checkValid;
-- (void)textFieldIsValid:(UITextField *)textField;
-- (void)textFieldIsInvalid:(UITextField *)textField withErrors:(BOOL)errors;
 @end
 
 @implementation PKView
