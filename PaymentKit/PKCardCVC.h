@@ -15,7 +15,6 @@
 
 + (id)cardCVCWithString:(NSString *)string;
 - (id)initWithString:(NSString *)string;
-- (NSString*)string;
 - (BOOL)isValid;
 - (BOOL)isValidWithType:(PKCardType)type;
 - (BOOL)isPartiallyValid;

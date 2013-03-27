@@ -17,7 +17,6 @@
 
 + (id)addressZipWithString:(NSString *)string;
 - (id)initWithString:(NSString *)string;
-- (NSString*)string;
 - (BOOL)isValid;
 - (BOOL)isPartiallyValid;
 

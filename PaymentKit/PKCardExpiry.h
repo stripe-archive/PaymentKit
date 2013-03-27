@@ -17,13 +17,9 @@
 
 + (id)cardExpiryWithString:(NSString *)string;
 - (id)initWithString:(NSString *)string;
-- (NSString *)formattedString;
-- (NSString *)formattedStringWithTrail;
 - (BOOL)isValid;
 - (BOOL)isValidLength;
 - (BOOL)isValidDate;
 - (BOOL)isPartiallyValid;
-- (NSUInteger)month;
-- (NSUInteger)year;
 
 @end
