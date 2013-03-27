@@ -19,7 +19,7 @@
 {
     self = [super init];
     if (self) {
-        _zip = string;
+        _zip = [string copy];
     }
     return self;
 }
