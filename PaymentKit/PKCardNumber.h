@@ -20,12 +20,6 @@
 
 + (id) cardNumberWithString:(NSString *)string;
 - (id) initWithString:(NSString *)string;
-- (PKCardType)cardType;
-- (NSString *)last4;
-- (NSString *)lastGroup;
-- (NSString *)string;
-- (NSString *)formattedString;
-- (NSString *)formattedStringWithTrail;
 - (BOOL)isValid;
 - (BOOL)isValidLength;
 - (BOOL)isValidLuhn;
