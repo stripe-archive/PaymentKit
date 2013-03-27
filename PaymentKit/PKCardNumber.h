@@ -23,7 +23,7 @@
 @property (nonatomic, readonly, getter = isValidLuhn) BOOL validLuhn;
 @property (nonatomic, readonly, getter = isPartiallyValid) BOOL partiallyValid;
 
-+ (id) cardNumberWithString:(NSString *)string;
-- (id) initWithString:(NSString *)string;
++ (instancetype) cardNumberWithString:(NSString *)string;
+- (instancetype) initWithString:(NSString *)string;
 
 @end

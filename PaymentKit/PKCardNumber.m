@@ -13,12 +13,12 @@
     NSString* number;
 }
 
-+ (id)cardNumberWithString:(NSString *)string
++ (instancetype)cardNumberWithString:(NSString *)string
 {
     return [[self alloc] initWithString:string];
 }
 
-- (id)initWithString:(NSString *)string
+- (instancetype)initWithString:(NSString *)string
 {
     self = [super init];
     if (self) {
