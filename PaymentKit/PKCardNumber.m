@@ -90,7 +90,7 @@
 {
     NSRegularExpression* regex;
     
-    if ([self cardType] == PKCardTypeAmex) {
+    if (self.cardType == PKCardTypeAmex) {
         regex = [NSRegularExpression regularExpressionWithPattern:@"(\\d{1,4})(\\d{1,6})?(\\d{1,5})?" options:0 error:NULL];
     } else {
         regex = [NSRegularExpression regularExpressionWithPattern:@"(\\d{1,4})" options:0 error:NULL];
@@ -122,8 +122,8 @@
     if ([self isValidLength]) {
         return string;
     }
-
-    if ([self cardType] == PKCardTypeAmex) {
+    
+    if (self.cardType == PKCardTypeAmex) {
         regex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d{4}|\\d{4}\\s\\d{6})$" options:0 error:NULL];
     } else {
         regex = [NSRegularExpression regularExpressionWithPattern:@"(?:^|\\s)(\\d{4})$" options:0 error:NULL];
