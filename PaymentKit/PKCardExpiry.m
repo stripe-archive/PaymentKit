@@ -119,7 +119,6 @@
 
 - (NSUInteger)month
 {
-    if (!_month) return 0;
     return [_month integerValue];
 }
 
