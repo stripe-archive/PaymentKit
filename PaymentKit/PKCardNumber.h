@@ -18,11 +18,12 @@
 @property (nonatomic, readonly) NSString * formattedString;
 @property (nonatomic, readonly) NSString * formattedStringWithTrail;
 
+@property (nonatomic, readonly, getter = isValid) BOOL valid;
+@property (nonatomic, readonly, getter = isValidLength) BOOL validLength;
+@property (nonatomic, readonly, getter = isValidLuhn) BOOL validLuhn;
+@property (nonatomic, readonly, getter = isPartiallyValid) BOOL partiallyValid;
+
 + (id) cardNumberWithString:(NSString *)string;
 - (id) initWithString:(NSString *)string;
-- (BOOL)isValid;
-- (BOOL)isValidLength;
-- (BOOL)isValidLuhn;
-- (BOOL)isPartiallyValid;
 
 @end
