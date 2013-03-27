@@ -19,22 +19,18 @@
 //
 //+ (id)cardExpiryWithString:(NSString *)string;
 //- (id)initWithString:(NSString *)string;
-//- (NSString *)formattedString;
-//- (NSString *)formattedStringWithTrail;
 //- (BOOL)isValid;
 //- (BOOL)isValidLength;
 //- (BOOL)isValidDate;
 //- (BOOL)isPartiallyValid;
-//- (NSUInteger)month;
-//- (NSUInteger)year;
 
 - (void)testFromString
 {
-    STAssertEquals([CEXPIRY(@"01") month], 1, @"Strips month");
-    STAssertEquals([CEXPIRY(@"05/") month], 5, @"Strips month");
+    STAssertEquals([CEXPIRY(@"01") month], 1u, @"Strips month");
+    STAssertEquals([CEXPIRY(@"05/") month], 5u, @"Strips month");
     
-    STAssertEquals([CEXPIRY(@"03 / 2020") year], 2020, @"Strips year");
-    STAssertEquals([CEXPIRY(@"03/20") year], 2020, @"Strips year");
+    STAssertEquals([CEXPIRY(@"03 / 2020") year], 2020u, @"Strips year");
+    STAssertEquals([CEXPIRY(@"03/20") year], 2020u, @"Strips year");
 }
 
 - (void)testFormattedString

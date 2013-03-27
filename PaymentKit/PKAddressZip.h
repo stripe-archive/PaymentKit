@@ -10,14 +10,13 @@
 
 @interface PKAddressZip : NSObject {
 @protected
-    NSString* zip;
+    NSString* _zip;
 }
 
 @property (nonatomic, readonly) NSString* string;
 
-+ (id)addressZipWithString:(NSString *)string;
-- (id)initWithString:(NSString *)string;
-- (NSString*)string;
++ (instancetype)addressZipWithString:(NSString *)string;
+- (instancetype)initWithString:(NSString *)string;
 - (BOOL)isValid;
 - (BOOL)isPartiallyValid;
 

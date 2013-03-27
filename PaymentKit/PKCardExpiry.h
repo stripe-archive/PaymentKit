@@ -15,15 +15,11 @@
 @property (nonatomic, readonly) NSString* formattedString;
 @property (nonatomic, readonly) NSString* formattedStringWithTrail;
 
-+ (id)cardExpiryWithString:(NSString *)string;
-- (id)initWithString:(NSString *)string;
-- (NSString *)formattedString;
-- (NSString *)formattedStringWithTrail;
++ (instancetype)cardExpiryWithString:(NSString *)string;
+- (instancetype)initWithString:(NSString *)string;
 - (BOOL)isValid;
 - (BOOL)isValidLength;
 - (BOOL)isValidDate;
 - (BOOL)isPartiallyValid;
-- (NSUInteger)month;
-- (NSUInteger)year;
 
 @end

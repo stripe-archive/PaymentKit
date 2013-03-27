@@ -13,9 +13,8 @@
 
 @property (nonatomic, readonly) NSString* string;
 
-+ (id)cardCVCWithString:(NSString *)string;
-- (id)initWithString:(NSString *)string;
-- (NSString*)string;
++ (instancetype)cardCVCWithString:(NSString *)string;
+- (instancetype)initWithString:(NSString *)string;
 - (BOOL)isValid;
 - (BOOL)isValidWithType:(PKCardType)type;
 - (BOOL)isPartiallyValid;

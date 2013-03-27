@@ -10,38 +10,38 @@
 
 @implementation PKAddressZip
 
-+ (id)addressZipWithString:(NSString *)string
++ (instancetype)addressZipWithString:(NSString *)string
 {
     return [[self alloc] initWithString:string];
 }
 
-- (id)initWithString:(NSString *)string
+- (instancetype)initWithString:(NSString *)string
 {
     self = [super init];
     if (self) {
-        zip = string;
+        _zip = [string copy];
     }
     return self;
 }
 
 - (NSString *)string
 {
-    return zip;
+    return _zip;
 }
 
 - (BOOL) isValid
 {
-    NSString* stripped = [zip stringByReplacingOccurrencesOfString:@"\\s"
-                                            withString:@""
-                                               options:NSRegularExpressionSearch
-                                                 range:NSMakeRange(0, zip.length)];
-
+    NSString* stripped = [_zip stringByReplacingOccurrencesOfString:@"\\s"
+                                                         withString:@""
+                                                            options:NSRegularExpressionSearch
+                                                              range:NSMakeRange(0, _zip.length)];
+    
     return stripped.length > 2;
 }
 
 - (BOOL)isPartiallyValid
 {
-    return zip.length < 10;
+    return _zip.length < 10;
 }
 
 @end
