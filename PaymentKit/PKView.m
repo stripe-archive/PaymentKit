@@ -25,8 +25,8 @@
 
 @interface PKView () <UITextFieldDelegate> {
 @private
-    BOOL isInitialState;
-    BOOL isValidState;
+    BOOL _isInitialState;
+    BOOL _isValidState;
 }
 
 - (void)setup;
@@ -76,8 +76,8 @@
 
 - (void)setup
 {
-    isInitialState = YES;
-    isValidState   = NO;
+    _isInitialState = YES;
+    _isValidState   = NO;
     
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 46);
     self.backgroundColor = [UIColor clearColor];
@@ -192,9 +192,9 @@
 
 - (void)stateCardNumber
 {
-    if (!isInitialState) {
+    if (!_isInitialState) {
         // Animate left
-        isInitialState = YES;
+        _isInitialState = YES;
         
         [UIView animateWithDuration:0.05 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
@@ -228,7 +228,7 @@
 
 - (void)stateMeta
 {
-    isInitialState = NO;
+    _isInitialState = NO;
     
     CGSize cardNumberSize = [self.cardNumber.formattedString sizeWithFont:DefaultBoldFont];
     CGSize lastGroupSize = [self.cardNumber.lastGroup sizeWithFont:DefaultBoldFont];
@@ -365,7 +365,7 @@
         [self setPlaceholderToCardType];
     }
     
-    if ([textField isEqual:cardNumberField] && !isInitialState) {
+    if ([textField isEqual:cardNumberField] && !_isInitialState) {
         [self stateCardNumber];
     }
 }
@@ -482,15 +482,15 @@
 
 - (void)checkValid
 {
-    if ([self isValid] && !isValidState) {
-        isValidState = YES;
+    if ([self isValid] && !_isValidState) {
+        _isValidState = YES;
 
         if ([self.delegate respondsToSelector:@selector(paymentView:withCard:isValid:)]) {
             [self.delegate paymentView:self withCard:self.card isValid:YES];
         }
         
-    } else if (![self isValid] && isValidState) {
-        isValidState = NO;
+    } else if (![self isValid] && _isValidState) {
+        _isValidState = NO;
         
         if ([self.delegate respondsToSelector:@selector(paymentView:withCard:isValid:)]) {
             [self.delegate paymentView:self withCard:self.card isValid:NO];

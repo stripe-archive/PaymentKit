@@ -10,7 +10,7 @@
 
 @implementation PKCardCVC {
 @private
-    NSString* cvc;
+    NSString* _cvc;
 }
 
 + (instancetype)cardCVCWithString:(NSString *)string
@@ -24,12 +24,12 @@
     if (self) {
         // Strip non-digits
         if (string) {
-            cvc = [string stringByReplacingOccurrencesOfString:@"\\D"
+            _cvc = [string stringByReplacingOccurrencesOfString:@"\\D"
                                                         withString:@""
                                                            options:NSRegularExpressionSearch
                                                              range:NSMakeRange(0, string.length)];
         } else {
-            cvc = [NSString string];
+            _cvc = [NSString string];
         }
     }
     return self;
@@ -37,32 +37,32 @@
 
 - (NSString *)string
 {
-    return cvc;
+    return _cvc;
 }
 
 - (BOOL)isValid
 {
-    return cvc.length >= 3 && cvc.length <= 4;
+    return _cvc.length >= 3 && _cvc.length <= 4;
 }
 
 - (BOOL)isValidWithType:(PKCardType)type {
     if (type == PKCardTypeAmex) {
-        return cvc.length == 4;
+        return _cvc.length == 4;
     } else {
-        return cvc.length == 3;
+        return _cvc.length == 3;
     }
 }
 
 - (BOOL)isPartiallyValid
 {
-    return cvc.length <= 4;
+    return _cvc.length <= 4;
 }
 
 - (BOOL)isPartiallyValidWithType:(PKCardType)type {
     if (type == PKCardTypeAmex) {
-        return cvc.length <= 4;
+        return _cvc.length <= 4;
     } else {
-        return cvc.length <= 3;
+        return _cvc.length <= 3;
     }
 }
 @end

@@ -10,7 +10,7 @@
 
 @interface PKAddressZip : NSObject {
 @protected
-    NSString* zip;
+    NSString* _zip;
 }
 
 @property (nonatomic, readonly) NSString* string;

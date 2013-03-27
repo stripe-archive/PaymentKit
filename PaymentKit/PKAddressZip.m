@@ -19,29 +19,29 @@
 {
     self = [super init];
     if (self) {
-        zip = string;
+        _zip = string;
     }
     return self;
 }
 
 - (NSString *)string
 {
-    return zip;
+    return _zip;
 }
 
 - (BOOL) isValid
 {
-    NSString* stripped = [zip stringByReplacingOccurrencesOfString:@"\\s"
+    NSString* stripped = [_zip stringByReplacingOccurrencesOfString:@"\\s"
                                             withString:@""
                                                options:NSRegularExpressionSearch
-                                                 range:NSMakeRange(0, zip.length)];
+                                                 range:NSMakeRange(0, _zip.length)];
 
     return stripped.length > 2;
 }
 
 - (BOOL)isPartiallyValid
 {
-    return zip.length < 10;
+    return _zip.length < 10;
 }
 
 @end

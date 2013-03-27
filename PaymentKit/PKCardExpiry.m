@@ -10,8 +10,8 @@
 
 @implementation PKCardExpiry {
 @private
-    NSString* month;
-    NSString* year;
+    NSString* _month;
+    NSString* _year;
 }
 
 + (instancetype) cardExpiryWithString:(NSString *)string
@@ -49,12 +49,12 @@
 {
     self = [super init];
     if (self) {
-        month = monthStr;
-        year  = yearStr;
+        _month = monthStr;
+        _year  = yearStr;
         
-        if (month.length == 1) {
-            if ( !([month isEqualToString:@"0"] || [month isEqualToString:@"1"]) ){
-                month = [NSString stringWithFormat:@"0%@", month];
+        if (_month.length == 1) {
+            if ( !([_month isEqualToString:@"0"] || [_month isEqualToString:@"1"]) ){
+                _month = [NSString stringWithFormat:@"0%@", _month];
             }
         }
     }
@@ -63,15 +63,15 @@
 
 - (NSString *)formattedString
 {
-    if (year.length > 0)
-        return [NSString stringWithFormat:@"%@/%@", month, year];
+    if (_year.length > 0)
+        return [NSString stringWithFormat:@"%@/%@", _month, _year];
 
-    return [NSString stringWithFormat:@"%@", month];    
+    return [NSString stringWithFormat:@"%@", _month];    
 }
 
 - (NSString *)formattedStringWithTrail
 {
-    if (month.length == 2 && year.length == 0) {
+    if (_month.length == 2 && _year.length == 0) {
         return [NSString stringWithFormat:@"%@/", [self formattedString]];
     } else {
         return [self formattedString];
@@ -85,7 +85,7 @@
 
 - (BOOL)isValidLength
 {
-    return month.length == 2 && (year.length == 2 || year.length == 4);
+    return _month.length == 2 && (_year.length == 2 || _year.length == 4);
 }
 
 - (BOOL)isValidDate
@@ -101,7 +101,7 @@
     if ([self isValidLength]) {
         return [self isValidDate];
     } else {
-        return [self month] <= 12 && year.length <= 4;
+        return [self month] <= 12 && _year.length <= 4;
     }
 }
 
@@ -119,15 +119,15 @@
 
 - (NSUInteger)month
 {
-    if (!month) return 0;
-    return [month integerValue];
+    if (!_month) return 0;
+    return [_month integerValue];
 }
 
 - (NSUInteger)year
 {
-    if (!year) return 0;
+    if (!_year) return 0;
     
-    NSString* yearStr = [NSString stringWithString:year];
+    NSString* yearStr = [NSString stringWithString:_year];
     
     if (yearStr.length == 2) {
         NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
