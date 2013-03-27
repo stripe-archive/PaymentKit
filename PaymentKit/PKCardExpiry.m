@@ -90,7 +90,7 @@
 
 - (BOOL)isValidDate
 {
-    if ([self month] <= 0 || [self month] > 12) return false;
+    if ([self month] <= 0 || [self month] > 12) return NO;
     
     NSDate* now = [NSDate date];
     return [[self expiryDate] compare:now] == NSOrderedDescending;
