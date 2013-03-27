@@ -16,9 +16,9 @@
     if (self) {
         // Strip non-digits
         _zip = [string stringByReplacingOccurrencesOfString:@"\\D"
-                                                withString:@""
-                                                   options:NSRegularExpressionSearch
-                                                     range:NSMakeRange(0, string.length)];
+                                                 withString:@""
+                                                    options:NSRegularExpressionSearch
+                                                      range:NSMakeRange(0, string.length)];
     }
     return self;
 }

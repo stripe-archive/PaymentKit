@@ -25,9 +25,9 @@
         // Strip non-digits
         if (string) {
             _cvc = [string stringByReplacingOccurrencesOfString:@"\\D"
-                                                        withString:@""
-                                                           options:NSRegularExpressionSearch
-                                                             range:NSMakeRange(0, string.length)];
+                                                     withString:@""
+                                                        options:NSRegularExpressionSearch
+                                                          range:NSMakeRange(0, string.length)];
         } else {
             _cvc = [NSString string];
         }

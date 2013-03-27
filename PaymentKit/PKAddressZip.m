@@ -32,10 +32,10 @@
 - (BOOL) isValid
 {
     NSString* stripped = [_zip stringByReplacingOccurrencesOfString:@"\\s"
-                                            withString:@""
-                                               options:NSRegularExpressionSearch
-                                                 range:NSMakeRange(0, _zip.length)];
-
+                                                         withString:@""
+                                                            options:NSRegularExpressionSearch
+                                                              range:NSMakeRange(0, _zip.length)];
+    
     return stripped.length > 2;
 }
 
