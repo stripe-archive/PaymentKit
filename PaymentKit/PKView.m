@@ -31,6 +31,9 @@
 
 @end
 
+
+#pragma mark -
+
 @implementation PKView
 
 @synthesize innerView, opaqueOverGradientView, cardNumberField,
@@ -149,7 +152,9 @@
     [cardCVCField.layer setMasksToBounds:YES];
 }
 
-// Accessors
+
+
+#pragma mark - Accessors
 
 - (PKCardNumber*)cardNumber
 {
@@ -166,7 +171,8 @@
     return [PKCardCVC cardCVCWithString:cardCVCField.text];
 }
 
-// State
+
+#pragma mark - State
 
 - (void)stateCardNumber
 {
@@ -333,7 +339,8 @@
     [self setPlaceholderViewImage:[UIImage imageNamed:cardTypeName]];
 }
 
-// Delegates
+
+#pragma mark - Delegates
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -456,7 +463,8 @@
     return NO;
 }
 
-// Validations
+
+#pragma mark - Validations
 
 - (void)checkValid
 {
