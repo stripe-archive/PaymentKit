@@ -22,7 +22,7 @@
 - (instancetype) initWithString:(NSString *)string
 {
     if ( !string ) {
-        return [self initWithMonth:@"" andYear:@""];
+        return [self initWithMonth:@"" year:@""];
     }
     
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d{1,2})?[\\s/]*(\\d{1,4})?" options:0 error:NULL];
@@ -42,10 +42,10 @@
             yearStr = [string substringWithRange:yearRange];
     }
     
-    return [self initWithMonth:monthStr andYear:yearStr];
+    return [self initWithMonth:monthStr year:yearStr];
 }
 
-- (instancetype) initWithMonth:(NSString*)monthStr andYear:(NSString*)yearStr
+- (instancetype) initWithMonth:(NSString*)monthStr year:(NSString*)yearStr
 {
     self = [super init];
     if (self) {
