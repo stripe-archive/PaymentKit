@@ -29,6 +29,9 @@
     BOOL isValidState;
 }
 
+@property (nonatomic, readonly, assign) UIResponder *firstResponderField;
+@property (nonatomic, readonly, assign) PKTextField *firstInvalidField;
+
 - (void)setup;
 - (void)setupPlaceholderView;
 - (void)setupCardNumberField;
@@ -511,6 +514,57 @@
     }
 
     [self checkValid];
+}
+
+#pragma mark -
+#pragma mark UIResponder
+- (UIResponder *)firstResponderField;
+{
+    NSArray *responders = @[self.cardNumberField, self.cardExpiryField, self.cardCVCField];
+    for (UIResponder *responder in responders) {
+        if (responder.isFirstResponder) {
+            return responder;
+        }
+    }
+    
+    return nil;
+}
+
+- (PKTextField *)firstInvalidField;
+{
+    if (![[PKCardNumber cardNumberWithString:self.cardNumberField.text] isValid])
+        return self.cardNumberField;
+    else if (![[PKCardExpiry cardExpiryWithString:self.cardExpiryField.text] isValid])
+        return self.cardExpiryField;
+    else if (![[PKCardCVC cardCVCWithString:self.cardCVCField.text] isValid])
+        return self.cardCVCField;
+    
+    return nil;
+}
+
+- (BOOL)isFirstResponder;
+{
+    return self.firstResponderField.isFirstResponder;
+}
+
+- (BOOL)canBecomeFirstResponder;
+{
+    return self.firstInvalidField.canBecomeFirstResponder;
+}
+
+- (BOOL)becomeFirstResponder;
+{
+    return [self.firstInvalidField becomeFirstResponder];
+}
+
+- (BOOL)canResignFirstResponder;
+{
+    return self.firstResponderField.canResignFirstResponder;
+}
+
+- (BOOL)resignFirstResponder;
+{
+    return [self.firstResponderField resignFirstResponder];
 }
 
 @end
