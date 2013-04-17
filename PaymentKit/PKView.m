@@ -31,6 +31,7 @@
 
 @property (nonatomic, readonly, assign) UIResponder *firstResponderField;
 @property (nonatomic, readonly, assign) PKTextField *firstInvalidField;
+@property (nonatomic, readonly, assign) PKTextField *nextFirstResponder;
 
 - (void)setup;
 - (void)setupPlaceholderView;
@@ -542,6 +543,14 @@
     return nil;
 }
 
+- (PKTextField *)nextFirstResponder;
+{
+    if (self.firstInvalidField)
+        return self.firstInvalidField;
+    
+    return self.cardCVCField;
+}
+
 - (BOOL)isFirstResponder;
 {
     return self.firstResponderField.isFirstResponder;
@@ -549,12 +558,12 @@
 
 - (BOOL)canBecomeFirstResponder;
 {
-    return self.firstInvalidField.canBecomeFirstResponder;
+    return self.nextFirstResponder.canBecomeFirstResponder;
 }
 
 - (BOOL)becomeFirstResponder;
 {
-    return [self.firstInvalidField becomeFirstResponder];
+    return [self.nextFirstResponder becomeFirstResponder];
 }
 
 - (BOOL)canResignFirstResponder;
