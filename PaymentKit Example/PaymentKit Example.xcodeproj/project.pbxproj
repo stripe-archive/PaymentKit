@@ -570,6 +570,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PaymentKit Example/PaymentKit Example-Prefix.pch";
 				INFOPLIST_FILE = "PaymentKit Example/PaymentKit Example-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "PaymentKit Example";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -582,6 +583,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PaymentKit Example/PaymentKit Example-Prefix.pch";
 				INFOPLIST_FILE = "PaymentKit Example/PaymentKit Example-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "PaymentKit Example";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
