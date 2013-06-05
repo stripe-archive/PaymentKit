@@ -59,6 +59,17 @@
             cardExpiryField, cardCVCField,
             placeholderView, delegate;
 
+bool initWithFirstResponderStatus = YES;
+
+- (id)initWithFrameAndWithoutFirstResponderStatus:(CGRect)frame {
+    initWithFirstResponderStatus = NO;
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -110,7 +121,8 @@
     [self addSubview:self.innerView];
     [self addSubview:placeholderView];
     
-    [self stateCardNumber];
+    if (initWithFirstResponderStatus)
+        [self stateCardNumber];
 }
 
 
