@@ -481,7 +481,7 @@
 
 - (void)checkValid
 {
-    if ([self isValid] && !isValidState) {
+    if ([self isValid]) {
         isValidState = YES;
 
         if ([self.delegate respondsToSelector:@selector(paymentView:withCard:isValid:)]) {
