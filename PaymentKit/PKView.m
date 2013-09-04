@@ -283,7 +283,7 @@
 - (void)setPlaceholderViewImage:(UIImage *)image
 {
     if(![placeholderView.image isEqual:image]) {
-        __block __weak UIView *previousPlaceholderView = placeholderView;
+        __block __unsafe_unretained UIView *previousPlaceholderView = placeholderView;
         [UIView animateWithDuration:kPKViewPlaceholderViewAnimationDuration delay:0
                             options:UIViewAnimationOptionCurveEaseInOut
                          animations:^
