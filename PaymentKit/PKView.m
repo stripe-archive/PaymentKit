@@ -43,6 +43,8 @@
 - (void)setPlaceholderToCVC;
 - (void)setPlaceholderToCardType;
 
+- (void)pkTextFieldDidBackSpaceWhileTextIsEmpty:(PKTextField *)textField;
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
 - (BOOL)cardNumberFieldShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
 - (BOOL)cardExpiryShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
