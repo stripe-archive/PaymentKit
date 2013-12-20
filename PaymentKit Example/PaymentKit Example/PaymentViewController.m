@@ -10,8 +10,6 @@
 
 @implementation PaymentViewController
 
-@synthesize paymentView;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -21,15 +19,9 @@
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:nil target:self action:@selector(save:)];
     saveButton.enabled = NO;
     self.navigationItem.rightBarButtonItem = saveButton;
-    
-    self.paymentView = [[PKView alloc] initWithFrame:CGRectMake(30, 110, 260, 45)];
-    self.paymentView.delegate = self;
-    
-    [self.view addSubview:self.paymentView];
 }
 
-
-- (void) paymentView:(PKView *)paymentView withCard:(PKCard *)card isValid:(BOOL)valid
+- (void)paymentView:(PKView *)paymentView withCard:(PKCard *)card isValid:(BOOL)valid
 {
     self.navigationItem.rightBarButtonItem.enabled = valid;
 }
