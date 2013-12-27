@@ -17,7 +17,7 @@ In short, PaymentKit should greatly simplify your life when dealing with iOS pay
 
 [CocoaPods](http://cocoapods.org/) is a library dependency management tool for Objective-C. To use PaymentKit with CocoaPods, simply add the following to your Podfile and run pod install:
 
-    pod 'PaymentKit', :git => 'https://github.com/stripe/PaymentKit.git'
+    pod 'PaymentKit', :git => 'https://github.com/lmcd/PaymentKit.git'
 
 ### Install by adding files to project
 
