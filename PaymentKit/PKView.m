@@ -136,8 +136,6 @@
     _cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
     _cardNumberField.textColor = DarkGreyColor;
     _cardNumberField.font = DefaultBoldFont;
-	
-    [_cardNumberField.layer setMasksToBounds:YES];
 }
 
 - (void)setupCardExpiryField
@@ -156,8 +154,6 @@
     _cardExpiryField.textColor = DarkGreyColor;
     _cardExpiryField.font = DefaultBoldFont;
 	_cardExpiryField.textAlignment = NSTextAlignmentCenter;
-    
-    [_cardExpiryField.layer setMasksToBounds:YES];
 }
 
 - (void)setupCardCVCField
@@ -176,8 +172,6 @@
     _cardCVCField.textColor = DarkGreyColor;
     _cardCVCField.font = DefaultBoldFont;
 	_cardCVCField.textAlignment = NSTextAlignmentCenter;
-	
-    [_cardCVCField.layer setMasksToBounds:YES];
 }
 
 // Accessors
