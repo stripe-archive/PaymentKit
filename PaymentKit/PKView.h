@@ -33,21 +33,21 @@ typedef enum {
 - (BOOL)isValid;
 
 @property (nonatomic, readonly) UIView *opaqueOverGradientView;
-@property (nonatomic, readonly) PKCardNumber* cardNumber;
-@property (nonatomic, readonly) PKCardExpiry* cardExpiry;
-@property (nonatomic, readonly) PKCardCVC* cardCVC;
-@property (nonatomic, readonly) PKAddressZip* addressZip;
+@property (nonatomic, readonly) PKCardNumber *cardNumber;
+@property (nonatomic, readonly) PKCardExpiry *cardExpiry;
+@property (nonatomic, readonly) PKCardCVC *cardCVC;
+@property (nonatomic, readonly) PKAddressZip *addressZip;
 
-@property UIView* innerView;
-@property UIView* clipView;
-@property PKTextField* cardNumberField;
-@property UITextField* cardLastFourField;
-@property PKTextField* cardExpiryField;
-@property PKTextField* cardCVCField;
-@property UIView* line1;
-@property UIView* line2;
-@property UIImageView* placeholderView;
+@property UIView *innerView;
+@property UIView *clipView;
+@property PKTextField *cardNumberField;
+@property UITextField *cardLastFourField;
+@property PKTextField *cardExpiryField;
+@property PKTextField *cardCVCField;
+@property UIView *line1;
+@property UIView *line2;
+@property UIImageView *placeholderView;
 @property id <PKViewDelegate> delegate;
-@property (readonly) PKCard* card;
+@property (readonly) PKCard *card;
 
 @end

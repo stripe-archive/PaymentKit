@@ -182,17 +182,17 @@
 
 // Accessors
 
-- (PKCardNumber*)cardNumber
+- (PKCardNumber *)cardNumber
 {
     return [PKCardNumber cardNumberWithString:_cardNumberField.text];
 }
 
-- (PKCardExpiry*)cardExpiry
+- (PKCardExpiry *)cardExpiry
 {
     return [PKCardExpiry cardExpiryWithString:_cardExpiryField.text];
 }
 
-- (PKCardCVC*)cardCVC
+- (PKCardCVC *)cardCVC
 {
     return [PKCardCVC cardCVCWithString:_cardCVCField.text];
 }
@@ -328,9 +328,9 @@
 	[self.cardCVC isValid];
 }
 
-- (PKCard*)card
+- (PKCard *)card
 {
-    PKCard* card    = [[PKCard alloc] init];
+    PKCard *card    = [[PKCard alloc] init];
     card.number     = [self.cardNumber string];
     card.cvc        = [self.cardCVC string];
     card.expMonth   = [self.cardExpiry month];
@@ -385,7 +385,7 @@
 {
     PKCardNumber *cardNumber = [PKCardNumber cardNumberWithString:_cardNumberField.text];
     PKCardType cardType      = [cardNumber cardType];
-    NSString* cardTypeName   = @"placeholder";
+    NSString *cardTypeName   = @"placeholder";
     
     switch (cardType) {
         case PKCardTypeAmex:
