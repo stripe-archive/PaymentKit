@@ -13,9 +13,6 @@
 
 #define kPKViewPlaceholderViewAnimationDuration 0.25
 
-#define kPKViewCardExpiryFieldStartX 76 + 200
-#define kPKViewCardCVCFieldStartX 159 + 200
-
 #import <QuartzCore/QuartzCore.h>
 #import "PKView.h"
 #import "PKTextField.h"
@@ -72,7 +69,6 @@
     isInitialState = YES;
     isValidState   = NO;
     
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
     self.backgroundColor = [UIColor clearColor];
     
     self.layer.borderColor = [UIColor colorWithRed:191/255.0 green:192/255.0 blue:194/255.0 alpha:1.0].CGColor;
@@ -149,7 +145,7 @@
 	NSString *placeholder = @"MM/YY";
 	CGSize size = [placeholder sizeWithAttributes:@{NSFontAttributeName:DefaultBoldFont}];
 	
-    _cardExpiryField = [[PKTextField alloc] initWithFrame:CGRectMake(kPKViewCardExpiryFieldStartX,
+    _cardExpiryField = [[PKTextField alloc] initWithFrame:CGRectMake(0,
 																	 (self.frame.size.height - size.height) / 2,
 																	 size.width,
 																	 size.height)];
@@ -169,7 +165,7 @@
 	NSString *placeholder = @"CVC";
 	CGSize size = [placeholder sizeWithAttributes:@{NSFontAttributeName:DefaultBoldFont}];
 	
-    _cardCVCField = [[PKTextField alloc] initWithFrame:CGRectMake(kPKViewCardCVCFieldStartX,
+    _cardCVCField = [[PKTextField alloc] initWithFrame:CGRectMake(0,
 																  (self.frame.size.height - size.height) / 2,
 																  size.width,
 																  size.height)];
@@ -212,40 +208,24 @@
     if (!isInitialState) {
         // Animate left
         isInitialState = YES;
-        
+		
+		[UIView animateWithDuration:0.200 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+			_line1.alpha = 0.0;
+		} completion:nil];
+		
+		CGFloat x = (_innerView.frame.size.width / 2.0) - (_cardNumberField.frame.size.width / 2.0);
+		CGFloat difference = x - _cardNumberField.frame.origin.x;
+		
         [UIView animateWithDuration:0.400
                               delay:0
                             options:(UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction)
                          animations:^{
-							 CGRect line1Frame = _line1.frame;
-							 line1Frame.origin.x += _innerView.frame.size.width;
-							 _line1.frame = line1Frame;
-							 
-							 CGRect line2Frame = _line2.frame;
-							 line2Frame.origin.x += _innerView.frame.size.width;
-							 _line2.frame = line2Frame;
-							 
-                             _cardExpiryField.frame = CGRectMake(kPKViewCardExpiryFieldStartX,
-																 _cardExpiryField.frame.origin.y,
-																 _cardExpiryField.frame.size.width,
-																 _cardExpiryField.frame.size.height);
-                             _cardCVCField.frame = CGRectMake(kPKViewCardCVCFieldStartX,
-															  _cardCVCField.frame.origin.y,
-															  _cardCVCField.frame.size.width,
-															  _cardCVCField.frame.size.height);
-							 
-							 
-							 CGFloat x = (_innerView.frame.size.width / 2.0) - (_cardNumberField.frame.size.width / 2.0);
-							 
-							 _cardNumberField.frame = CGRectMake(x,
-																 _cardNumberField.frame.origin.y,
-																 _cardNumberField.frame.size.width,
-																 _cardNumberField.frame.size.height);
-							 
-							 _cardLastFourField.frame = CGRectMake(_cardNumberField.frame.origin.x + _cardNumberField.frame.size.width - _cardLastFourField.frame.size.width,
-																   _cardNumberField.frame.origin.y,
-																   _cardLastFourField.frame.size.width,
-																   _cardNumberField.frame.size.height);
+							 _cardNumberField.frame = CGRectOffset(_cardNumberField.frame, difference, 0);
+							 _cardLastFourField.frame = CGRectOffset(_cardLastFourField.frame, difference, 0);
+							 _line1.frame = CGRectOffset(_line1.frame, difference, 0);
+							 _cardExpiryField.frame = CGRectOffset(_cardExpiryField.frame, difference, 0);
+							 _line2.frame = CGRectOffset(_line2.frame, difference, 0);
+							 _cardCVCField.frame = CGRectOffset(_cardCVCField.frame, difference, 0);
 							 
 							 _cardNumberField.alpha = 1.0;
                          }
@@ -285,7 +265,7 @@
 	CGFloat cvcWidthPercentage = multiplier * cvcSize.width;
 	CGFloat newCvcWidth = (innerWidth * cvcWidthPercentage) / 100;
 	
-	CGFloat cardNumberEndX = _cardNumberField.frame.origin.x + _cardNumberField.frame.size.width;
+	CGFloat cardNumberEndX = CGRectGetMaxX(_cardNumberField.frame);
 	
 	CGFloat lastFourRightPadding = (newLastFourWidth - lastGroupSize.width) / 2;
 	
@@ -313,42 +293,19 @@
 	[_innerView addSubview:_cardLastFourField];
     
 	[UIView animateWithDuration:0.200 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-		_line1.alpha = 1.1;
+		_line1.alpha = 1.0;
 	} completion:nil];
 	
+	CGFloat difference = -(_cardExpiryField.frame.origin.x - (newLastFourWidth));
+	
 	[UIView animateWithDuration:0.400 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-		CGFloat lastFourX = (newLastFourWidth / 2.0) - (_cardLastFourField.frame.size.width / 2.0);
-		
 		_cardNumberField.alpha = 0.0;
-		_cardNumberField.frame = CGRectMake(lastFourX - (_cardNumberField.frame.size.width - _cardLastFourField.frame.size.width),
-											_cardNumberField.frame.origin.y,
-											_cardNumberField.frame.size.width,
-											_cardNumberField.frame.size.height);
-		
-        _cardLastFourField.frame = CGRectMake(lastFourX,
-											  _cardLastFourField.frame.origin.y,
-											  _cardLastFourField.frame.size.width,
-											  _cardLastFourField.frame.size.height);
-		
-		_line1.frame = CGRectMake(newLastFourWidth,
-								  _line1.frame.origin.y,
-								  _line1.frame.size.width,
-								  _line1.frame.size.height);
-		
-		_cardExpiryField.frame = CGRectMake(newLastFourWidth,
-											_cardExpiryField.frame.origin.y,
-											_cardExpiryField.frame.size.width,
-											_cardExpiryField.frame.size.height);
-		
-		_line2.frame = CGRectMake(newLastFourWidth + newExpiryWidth,
-								  _line2.frame.origin.y,
-								  _line2.frame.size.width,
-								  _line2.frame.size.height);
-		
-        _cardCVCField.frame = CGRectMake(newLastFourWidth + newExpiryWidth,
-										 _cardCVCField.frame.origin.y,
-										 _cardCVCField.frame.size.width,
-										 _cardCVCField.frame.size.height);
+		_cardNumberField.frame = CGRectOffset(_cardNumberField.frame, difference, 0);
+		_cardLastFourField.frame = CGRectOffset(_cardLastFourField.frame, difference, 0);
+		_line1.frame = CGRectOffset(_line1.frame, difference, 0);
+		_cardExpiryField.frame = CGRectOffset(_cardExpiryField.frame, difference, 0);
+		_line2.frame = CGRectOffset(_line2.frame, difference, 0);
+		_cardCVCField.frame = CGRectOffset(_cardCVCField.frame, difference, 0);
     } completion:nil];
     
     [self.innerView addSubview:_cardExpiryField];
