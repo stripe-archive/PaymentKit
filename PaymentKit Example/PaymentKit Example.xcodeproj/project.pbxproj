@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C332B4316FA5297009C782D /* textfield.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C332B4116FA5297009C782D /* textfield.png */; };
-		4C332B4416FA5297009C782D /* textfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C332B4216FA5297009C782D /* textfield@2x.png */; };
-		4C332B4B16FA6240009C782D /* gradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C332B4A16FA6240009C782D /* gradient@2x.png */; };
 		4C332B4E16FA923E009C782D /* PKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C332B4D16FA923E009C782D /* PKTextField.m */; };
 		FA007D1F16FA3B82006DD86E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F1A5916C19BF700835C75 /* QuartzCore.framework */; };
 		FA06D14C16AFC0AA00C46291 /* PKView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA06D14B16AFC0AA00C46291 /* PKView.m */; };
@@ -65,9 +62,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C332B4116FA5297009C782D /* textfield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textfield.png; sourceTree = "<group>"; };
-		4C332B4216FA5297009C782D /* textfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield@2x.png"; sourceTree = "<group>"; };
-		4C332B4A16FA6240009C782D /* gradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient@2x.png"; sourceTree = "<group>"; };
 		4C332B4C16FA923E009C782D /* PKTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTextField.h; sourceTree = "<group>"; };
 		4C332B4D16FA923E009C782D /* PKTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTextField.m; sourceTree = "<group>"; };
 		FA06D14A16AFC0AA00C46291 /* PKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PKView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -163,16 +157,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C332B4516FA529C009C782D /* TextField */ = {
-			isa = PBXGroup;
-			children = (
-				4C332B4A16FA6240009C782D /* gradient@2x.png */,
-				4C332B4116FA5297009C782D /* textfield.png */,
-				4C332B4216FA5297009C782D /* textfield@2x.png */,
-			);
-			name = TextField;
-			sourceTree = "<group>";
-		};
 		FA45AC6116AE350D0003A41D = {
 			isa = PBXGroup;
 			children = (
@@ -290,7 +274,6 @@
 		FAA360F416C9F21C00049C6F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4C332B4516FA529C009C782D /* TextField */,
 				FAA360F516C9F21C00049C6F /* Cards */,
 			);
 			path = Resources;
@@ -415,9 +398,6 @@
 				FAA3611716C9F21C00049C6F /* placeholder@2x.png in Resources */,
 				FAA3611816C9F21C00049C6F /* visa.png in Resources */,
 				FAA3611916C9F21C00049C6F /* visa@2x.png in Resources */,
-				4C332B4316FA5297009C782D /* textfield.png in Resources */,
-				4C332B4416FA5297009C782D /* textfield@2x.png in Resources */,
-				4C332B4B16FA6240009C782D /* gradient@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
