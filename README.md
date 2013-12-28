@@ -211,3 +211,7 @@ Returns an integer representing the expiry's month. Returns `0` if the month can
 #### `- (NSUInteger)year`
 
 Returns an integer representing the expiry's year. Returns `0` if the year can't be determined.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/lmcd/paymentkit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
