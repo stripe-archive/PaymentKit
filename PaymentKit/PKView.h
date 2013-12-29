@@ -44,8 +44,6 @@ typedef enum {
 @property UITextField *cardLastFourField;
 @property PKTextField *cardExpiryField;
 @property PKTextField *cardCVCField;
-@property UIView *line1;
-@property UIView *line2;
 @property UIImageView *placeholderView;
 @property id <PKViewDelegate> delegate;
 @property (readonly) PKCard *card;
