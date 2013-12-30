@@ -13,12 +13,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.title = @"Change Card";
-    
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:nil target:self action:@selector(save:)];
-    saveButton.enabled = NO;
-    self.navigationItem.rightBarButtonItem = saveButton;
+    self.paymentView.delegate = self;
 }
 
 - (void)paymentView:(PKView *)paymentView withCard:(PKCard *)card isValid:(BOOL)valid
@@ -34,7 +29,7 @@
 
 - (IBAction)save:(id)sender
 {
-    PKCard* card = self.paymentView.card;
+    PKCard *card = self.paymentView.card;
     
     NSLog(@"Card last4: %@", card.last4);
     NSLog(@"Card expiry: %lu/%lu", (unsigned long)card.expMonth, (unsigned long)card.expYear);
