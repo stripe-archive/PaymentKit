@@ -69,8 +69,6 @@
     isInitialState = YES;
     isValidState   = NO;
     
-    self.backgroundColor = [UIColor clearColor];
-    
     self.layer.borderColor = [UIColor colorWithRed:191/255.0 green:192/255.0 blue:194/255.0 alpha:1.0].CGColor;
 	self.layer.cornerRadius = 6.0;
 	self.layer.borderWidth = 0.5;
@@ -84,7 +82,7 @@
 	
 	_cardLastFourField = [[UITextField alloc] initWithFrame:CGRectZero];
 	_cardLastFourField.font = kPKDefaultBoldFont;
-	_cardLastFourField.backgroundColor = [UIColor whiteColor];
+	_cardLastFourField.backgroundColor = self.backgroundColor;
 	
     [self setupCardNumberField];
     [self setupCardExpiryField];
