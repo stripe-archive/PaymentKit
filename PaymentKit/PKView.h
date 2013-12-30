@@ -24,8 +24,8 @@ typedef enum {
 
 @protocol PKViewDelegate <NSObject>
 @optional
-- (void)paymentView:(PKView*)paymentView withCard:(PKCard*)card isValid:(BOOL)valid;
-- (void)paymentView:(PKView*)paymentView didChangeState:(PKViewState)state;
+- (void)paymentView:(PKView *)paymentView withCard:(PKCard *)card isValid:(BOOL)valid;
+- (void)paymentView:(PKView *)paymentView didChangeState:(PKViewState)state;
 @end
 
 @interface PKView : UIView

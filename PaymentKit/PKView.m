@@ -7,10 +7,10 @@
 //
 
 #define RGB(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
-#define DarkGreyColor RGB(0,0,0)
-#define RedColor RGB(253,0,17)
-#define DefaultBoldFont [UIFont boldSystemFontOfSize:16]
 
+#define kPKDarkGreyColor [UIColor blackColor]
+#define kPKRedColor RGB(253,0,17)
+#define kPKDefaultBoldFont [UIFont boldSystemFontOfSize:16]
 #define kPKViewPlaceholderViewAnimationDuration 0.25
 
 #import <QuartzCore/QuartzCore.h>
@@ -83,7 +83,7 @@
 	self.backgroundColor = [UIColor whiteColor];
 	
 	_cardLastFourField = [[UITextField alloc] initWithFrame:CGRectZero];
-	_cardLastFourField.font = DefaultBoldFont;
+	_cardLastFourField.font = kPKDefaultBoldFont;
 	_cardLastFourField.backgroundColor = [UIColor whiteColor];
 	
     [self setupCardNumberField];
@@ -118,8 +118,8 @@
 	textField.delegate = self;
     textField.placeholder = placeholder;
     textField.keyboardType = UIKeyboardTypeNumberPad;
-    textField.textColor = DarkGreyColor;
-    textField.font = DefaultBoldFont;
+    textField.textColor = kPKDarkGreyColor;
+    textField.font = kPKDefaultBoldFont;
 	textField.layer.masksToBounds = NO;
 	
 	return textField;
@@ -171,7 +171,7 @@
 
 - (void)layoutSubviews
 {
-	NSDictionary *attributes = @{NSFontAttributeName:DefaultBoldFont};
+	NSDictionary *attributes = @{NSFontAttributeName:kPKDefaultBoldFont};
 	
 	CGSize lastGroupSize, cvcSize, cardNumberSize;
 	
@@ -538,15 +538,15 @@
 }
 
 - (void)textFieldIsValid:(UITextField *)textField {
-    textField.textColor = DarkGreyColor;
+    textField.textColor = kPKDarkGreyColor;
     [self checkValid];
 }
 
 - (void)textFieldIsInvalid:(UITextField *)textField withErrors:(BOOL)errors {
     if (errors) {
-        textField.textColor = RedColor;
+        textField.textColor = kPKRedColor;
     } else {
-        textField.textColor = DarkGreyColor;
+        textField.textColor = kPKDarkGreyColor;
     }
 	
     [self checkValid];
