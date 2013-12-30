@@ -195,32 +195,30 @@
 	CGFloat innerWidth = self.frame.size.width - _placeholderView.frame.size.width;
 	CGFloat multiplier = (100.0 / totalWidth);
 	
-	CGFloat newLastFourWidth = (innerWidth * (multiplier * lastGroupSize.width)) / 100.0;
-	CGFloat newExpiryWidth   = (innerWidth * (multiplier * expirySize.width)) / 100.0;
-	CGFloat newCvcWidth      = (innerWidth * (multiplier * cvcSize.width)) / 100.0;
+	CGFloat newLastGroupWidth = (innerWidth * multiplier * lastGroupSize.width) / 100.0;
+	CGFloat newExpiryWidth    = (innerWidth * multiplier * expirySize.width)    / 100.0;
+	CGFloat newCVCWidth       = (innerWidth * multiplier * cvcSize.width)       / 100.0;
 	
-	CGFloat cardNumberEndX = CGRectGetMaxX(_cardNumberField.frame);
-	
-	CGFloat lastFourRightPadding = (newLastFourWidth - lastGroupSize.width) / 2.0;
+	CGFloat lastGroupRightPadding = (newLastGroupWidth - lastGroupSize.width) / 2.0;
 	
 	_cardNumberField.frame   = CGRectMake((innerWidth / 2.0) - (cardNumberSize.width / 2.0),
 										  textFieldY,
 										  cardNumberSize.width,
 										  cardNumberSize.height);
 	
-	_cardLastFourField.frame = CGRectMake(cardNumberEndX - lastGroupSize.width,
+	_cardLastFourField.frame = CGRectMake(CGRectGetMaxX(_cardNumberField.frame) - lastGroupSize.width,
 										  textFieldY,
 										  lastGroupSize.width,
 										  lastGroupSize.height);
 	
-	_cardExpiryField.frame   = CGRectMake(cardNumberEndX + lastFourRightPadding,
+	_cardExpiryField.frame   = CGRectMake(CGRectGetMaxX(_cardNumberField.frame) + lastGroupRightPadding,
 										  textFieldY,
 										  newExpiryWidth,
 										  expirySize.height);
 	
 	_cardCVCField.frame      = CGRectMake(CGRectGetMaxX(_cardExpiryField.frame),
 										  textFieldY,
-										  newCvcWidth,
+										  newCVCWidth,
 										  cvcSize.height);
 	
 	_innerView.frame         = CGRectMake(_innerView.frame.origin.x,
