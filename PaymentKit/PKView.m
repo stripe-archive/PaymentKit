@@ -111,42 +111,29 @@
     _placeholderView.image = [UIImage imageNamed:@"placeholder"];
 }
 
+- (PKTextField *)textFieldWithPlaceholder:(NSString *)placeholder
+{
+	PKTextField *textField = [PKTextField new];
+	
+	textField.delegate = self;
+    textField.placeholder = placeholder;
+    textField.keyboardType = UIKeyboardTypeNumberPad;
+    textField.textColor = DarkGreyColor;
+    textField.font = DefaultBoldFont;
+	textField.layer.masksToBounds = NO;
+	
+	return textField;
+}
+
 - (void)setupCardNumberField
 {
-	NSString *placeholder = @"1234 5678 9012 3456";
-	CGSize size = [placeholder sizeWithAttributes:@{NSFontAttributeName:DefaultBoldFont}];
-	CGFloat x = (_innerView.frame.size.width / 2.0) - (size.width / 2.0);
-	
-    _cardNumberField = [[PKTextField alloc] initWithFrame:CGRectMake(x,
-																	 (self.frame.size.height - size.height) / 2,
-																	 size.width,
-																	 size.height)];
-    
-    _cardNumberField.delegate = self;
-    _cardNumberField.placeholder = placeholder;
-    _cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
-    _cardNumberField.textColor = DarkGreyColor;
-    _cardNumberField.font = DefaultBoldFont;
-	_cardNumberField.layer.masksToBounds = NO;
+	_cardNumberField = [self textFieldWithPlaceholder:@"1234 5678 9012 3456"];
 }
 
 - (void)setupCardExpiryField
 {
-	NSString *placeholder = @"MM/YY";
-	CGSize size = [placeholder sizeWithAttributes:@{NSFontAttributeName:DefaultBoldFont}];
-	
-    _cardExpiryField = [[PKTextField alloc] initWithFrame:CGRectMake(0,
-																	 (self.frame.size.height - size.height) / 2,
-																	 size.width,
-																	 size.height)];
-	
-    _cardExpiryField.delegate = self;
-    _cardExpiryField.placeholder = placeholder;
-    _cardExpiryField.keyboardType = UIKeyboardTypeNumberPad;
-    _cardExpiryField.textColor = DarkGreyColor;
-    _cardExpiryField.font = DefaultBoldFont;
+	_cardExpiryField = [self textFieldWithPlaceholder:@"MM/YY"];
 	_cardExpiryField.textAlignment = NSTextAlignmentCenter;
-	_cardExpiryField.layer.masksToBounds = NO;
 	
 	UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, -6.0, 0.5, _innerView.frame.size.height)];
 	line.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4];
@@ -156,21 +143,8 @@
 
 - (void)setupCardCVCField
 {
-	NSString *placeholder = @"CVC";
-	CGSize size = [placeholder sizeWithAttributes:@{NSFontAttributeName:DefaultBoldFont}];
-	
-    _cardCVCField = [[PKTextField alloc] initWithFrame:CGRectMake(0,
-																  (self.frame.size.height - size.height) / 2,
-																  size.width,
-																  size.height)];
-    
-    _cardCVCField.delegate = self;
-    _cardCVCField.placeholder = placeholder;
-    _cardCVCField.keyboardType = UIKeyboardTypeNumberPad;
-    _cardCVCField.textColor = DarkGreyColor;
-    _cardCVCField.font = DefaultBoldFont;
+	_cardCVCField = [self textFieldWithPlaceholder:@"CVC"];
 	_cardCVCField.textAlignment = NSTextAlignmentCenter;
-	_cardCVCField.layer.masksToBounds = NO;
 	
 	UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, -6.0, 0.5, _innerView.frame.size.height)];
 	line.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4];
@@ -195,6 +169,66 @@
     return [PKCardCVC cardCVCWithString:_cardCVCField.text];
 }
 
+- (void)layoutSubviews
+{
+	NSDictionary *attributes = @{NSFontAttributeName:DefaultBoldFont};
+	
+	CGSize lastGroupSize, cvcSize, cardNumberSize;
+	
+	if (self.cardNumber.cardType == PKCardTypeAmex) {
+		cardNumberSize = [@"1234 567890 12345" sizeWithAttributes:attributes];
+		lastGroupSize = [@"00000" sizeWithAttributes:attributes];
+		cvcSize = [@"0000" sizeWithAttributes:attributes];
+	}
+	else {
+		cardNumberSize = [@"1234 5678 9012 3456" sizeWithAttributes:attributes];
+		lastGroupSize = [@"0000" sizeWithAttributes:attributes];
+		cvcSize = [@"CVC" sizeWithAttributes:attributes];
+	}
+	
+	CGSize expirySize = [@"MM/YY" sizeWithAttributes:attributes];
+	
+	CGFloat textFieldY = (self.frame.size.height - lastGroupSize.height) / 2.0;
+	
+	CGFloat totalWidth = lastGroupSize.width + expirySize.width + cvcSize.width;
+	
+	CGFloat innerWidth = self.frame.size.width - _placeholderView.frame.size.width;
+	CGFloat multiplier = (100.0 / totalWidth);
+	
+	CGFloat newLastFourWidth = (innerWidth * (multiplier * lastGroupSize.width)) / 100.0;
+	CGFloat newExpiryWidth   = (innerWidth * (multiplier * expirySize.width)) / 100.0;
+	CGFloat newCvcWidth      = (innerWidth * (multiplier * cvcSize.width)) / 100.0;
+	
+	CGFloat cardNumberEndX = CGRectGetMaxX(_cardNumberField.frame);
+	
+	CGFloat lastFourRightPadding = (newLastFourWidth - lastGroupSize.width) / 2.0;
+	
+	_cardNumberField.frame   = CGRectMake((innerWidth / 2.0) - (cardNumberSize.width / 2.0),
+										  textFieldY,
+										  cardNumberSize.width,
+										  cardNumberSize.height);
+	
+	_cardLastFourField.frame = CGRectMake(cardNumberEndX - lastGroupSize.width,
+										  textFieldY,
+										  lastGroupSize.width,
+										  lastGroupSize.height);
+	
+	_cardExpiryField.frame   = CGRectMake(cardNumberEndX + lastFourRightPadding,
+										  textFieldY,
+										  newExpiryWidth,
+										  expirySize.height);
+	
+	_cardCVCField.frame      = CGRectMake(CGRectGetMaxX(_cardExpiryField.frame),
+										  textFieldY,
+										  newCvcWidth,
+										  cvcSize.height);
+	
+	_innerView.frame         = CGRectMake(_innerView.frame.origin.x,
+										  0.0,
+										  CGRectGetMaxX(_cardCVCField.frame),
+										  _innerView.frame.size.height);
+}
+
 // State
 
 - (void)stateCardNumber
@@ -211,17 +245,14 @@
 			_cardExpiryField.leftView.alpha = 0.0;
 		} completion:nil];
 		
-		CGFloat x = (_innerView.frame.size.width / 2.0) - (_cardNumberField.frame.size.width / 2.0);
-		CGFloat difference = x - _cardNumberField.frame.origin.x;
-		
         [UIView animateWithDuration:0.400
                               delay:0
                             options:(UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction)
                          animations:^{
-							 _cardNumberField.frame = CGRectOffset(_cardNumberField.frame, difference, 0);
-							 _cardLastFourField.frame = CGRectOffset(_cardLastFourField.frame, difference, 0);
-							 _cardExpiryField.frame = CGRectOffset(_cardExpiryField.frame, difference, 0);
-							 _cardCVCField.frame = CGRectOffset(_cardCVCField.frame, difference, 0);
+							 _innerView.frame = CGRectMake(_placeholderView.frame.size.width,
+														   0,
+														   _innerView.frame.size.width,
+														   _innerView.frame.size.height);
 							 
 							 _cardNumberField.alpha = 1.0;
                          }
@@ -242,44 +273,8 @@
 	}
 	
     isInitialState = NO;
-    
-	CGSize lastGroupSize = [self.cardNumber.lastGroup sizeWithAttributes:@{NSFontAttributeName:DefaultBoldFont}];
-	CGSize expirySize = [@"MM/YY" sizeWithAttributes:@{NSFontAttributeName:DefaultBoldFont}];
-	CGSize cvcSize = [@"CVC" sizeWithAttributes:@{NSFontAttributeName:DefaultBoldFont}];
-	
-	CGFloat totalWidth = lastGroupSize.width + expirySize.width + cvcSize.width;
-	
-	CGFloat multiplier = (100.0 / totalWidth);
-	CGFloat innerWidth = _innerView.frame.size.width;
-	
-	CGFloat lastFourWidthPercentage = multiplier * lastGroupSize.width;
-	CGFloat newLastFourWidth = (innerWidth * lastFourWidthPercentage) / 100;
-	
-	CGFloat expiryWidthPercentage = multiplier * expirySize.width;
-	CGFloat newExpiryWidth = (innerWidth * expiryWidthPercentage) / 100;
-	
-	CGFloat cvcWidthPercentage = multiplier * cvcSize.width;
-	CGFloat newCvcWidth = (innerWidth * cvcWidthPercentage) / 100;
-	
-	CGFloat cardNumberEndX = CGRectGetMaxX(_cardNumberField.frame);
-	
-	CGFloat lastFourRightPadding = (newLastFourWidth - lastGroupSize.width) / 2;
 	
 	_cardLastFourField.text = self.cardNumber.lastGroup;
-	_cardLastFourField.frame = CGRectMake(cardNumberEndX - lastGroupSize.width,
-										  _cardNumberField.frame.origin.y,
-										  lastGroupSize.width,
-										  _cardNumberField.frame.size.height);
-	
-	_cardExpiryField.frame = CGRectMake(cardNumberEndX + lastFourRightPadding,
-										_cardExpiryField.frame.origin.y,
-										newExpiryWidth,
-										_cardExpiryField.frame.size.height);
-	
-	_cardCVCField.frame = CGRectMake(cardNumberEndX + lastFourRightPadding + newExpiryWidth,
-									 _cardCVCField.frame.origin.y,
-									 newCvcWidth,
-									 _cardCVCField.frame.size.height);
 	
 	[_innerView addSubview:_cardLastFourField];
     
@@ -287,14 +282,11 @@
 		_cardExpiryField.leftView.alpha = 1.0;
 	} completion:nil];
 	
-	CGFloat difference = -(_cardExpiryField.frame.origin.x - (newLastFourWidth));
+	CGFloat difference = -(_innerView.frame.size.width - self.frame.size.width + _placeholderView.frame.size.width);
 	
 	[UIView animateWithDuration:0.400 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
 		_cardNumberField.alpha = 0.0;
-		_cardNumberField.frame = CGRectOffset(_cardNumberField.frame, difference, 0);
-		_cardLastFourField.frame = CGRectOffset(_cardLastFourField.frame, difference, 0);
-		_cardExpiryField.frame = CGRectOffset(_cardExpiryField.frame, difference, 0);
-		_cardCVCField.frame = CGRectOffset(_cardCVCField.frame, difference, 0);
+		_innerView.frame = CGRectOffset(_innerView.frame, difference, 0);
     } completion:nil];
     
     [self.innerView addSubview:_cardExpiryField];
