@@ -199,7 +199,7 @@
 	CGFloat newExpiryWidth    = (innerWidth * multiplier * expirySize.width)    / 100.0;
 	CGFloat newCVCWidth       = (innerWidth * multiplier * cvcSize.width)       / 100.0;
 	
-	CGFloat lastGroupRightPadding = (newLastGroupWidth - lastGroupSize.width) / 2.0;
+	CGFloat lastGroupSidePadding = (newLastGroupWidth - lastGroupSize.width) / 2.0;
 	
 	_cardNumberField.frame   = CGRectMake((innerWidth / 2.0) - (cardNumberSize.width / 2.0),
 										  textFieldY,
@@ -211,7 +211,7 @@
 										  lastGroupSize.width,
 										  lastGroupSize.height);
 	
-	_cardExpiryField.frame   = CGRectMake(CGRectGetMaxX(_cardNumberField.frame) + lastGroupRightPadding,
+	_cardExpiryField.frame   = CGRectMake(CGRectGetMaxX(_cardNumberField.frame) + lastGroupSidePadding,
 										  textFieldY,
 										  newExpiryWidth,
 										  expirySize.height);
