@@ -31,7 +31,7 @@
     self.paymentCell.detailTextLabel.text = last4;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [self updatePaymentCell];
 }
