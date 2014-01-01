@@ -95,7 +95,10 @@
     
     if ([self cardType] == PKCardTypeAmex) {
         regex = [NSRegularExpression regularExpressionWithPattern:@"(\\d{1,4})(\\d{1,6})?(\\d{1,5})?" options:0 error:NULL];
-    } else {
+    } else if ([self cardType] == PKCardTypeDinersClub) {
+		regex = [NSRegularExpression regularExpressionWithPattern:@"(\\d{1,4})(\\d{1,6})?(\\d{1,4})?" options:0 error:NULL];
+	}
+	else {
         regex = [NSRegularExpression regularExpressionWithPattern:@"(\\d{1,4})" options:0 error:NULL];
     }
     

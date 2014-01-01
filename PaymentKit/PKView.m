@@ -179,7 +179,13 @@
 		cvcSize = [@"0000" sizeWithAttributes:attributes];
 	}
 	else {
-		cardNumberSize = [@"1234 5678 9012 3456" sizeWithAttributes:attributes];
+		if (self.cardNumber.cardType == PKCardTypeDinersClub) {
+			cardNumberSize = [@"1234 567890 1234" sizeWithAttributes:attributes];
+		}
+		else {
+			cardNumberSize = [@"1234 5678 9012 3456" sizeWithAttributes:attributes];
+		}
+		
 		lastGroupSize = [@"0000" sizeWithAttributes:attributes];
 		cvcSize = [@"CVC" sizeWithAttributes:attributes];
 	}
