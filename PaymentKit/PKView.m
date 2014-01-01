@@ -23,10 +23,6 @@
     BOOL isValidState;
 }
 
-@property (nonatomic, readonly, assign) UIResponder *firstResponderField;
-@property (nonatomic, readonly, assign) PKTextField *firstInvalidField;
-@property (nonatomic, readonly, assign) PKTextField *nextFirstResponder;
-
 - (void)setup;
 - (void)setupPlaceholderView;
 - (void)setupCardNumberField;
