@@ -94,7 +94,7 @@
     [self addSubview:_placeholderView];
     
 	UIView *line = [[UIView alloc] initWithFrame:CGRectMake(_placeholderView.frame.size.width - 0.5, 0, 0.5,  _innerView.frame.size.height)];
-	line.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4];
+	line.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.3];
 	[self addSubview:line];
 	
     [self stateCardNumber];
@@ -134,7 +134,7 @@
 	_cardExpiryField.textAlignment = NSTextAlignmentCenter;
 	
 	UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, -6.0, 0.5, _innerView.frame.size.height)];
-	line.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4];
+	line.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.3];
 	_cardExpiryField.leftView = line;
 	_cardExpiryField.leftViewMode = UITextFieldViewModeAlways;
 }
@@ -145,7 +145,7 @@
 	_cardCVCField.textAlignment = NSTextAlignmentCenter;
 	
 	UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, -6.0, 0.5, _innerView.frame.size.height)];
-	line.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4];
+	line.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.3];
 	_cardCVCField.leftView = line;
 	_cardCVCField.leftViewMode = UITextFieldViewModeAlways;
 }
