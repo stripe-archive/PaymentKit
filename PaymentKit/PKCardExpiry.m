@@ -115,8 +115,11 @@
     [comps setMonth:[self month]];
     [comps setYear:[self year]];
     
-    NSCalendar *gregorian = [[NSCalendar alloc]
-                             initWithCalendarIdentifier:NSGregorianCalendar];
+    static NSCalendar *gregorian = nil;
+    if (!gregorian) {
+        gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    }
+
     return [gregorian dateFromComponents:comps];
 }
 
@@ -133,8 +136,12 @@
     NSString* yearStr = [NSString stringWithString:year];
     
     if (yearStr.length == 2) {
-        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"yyyy"];
+        static NSDateFormatter *formatter = nil;
+        if (!formatter) {
+            formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy"];
+        }
+
         NSString* prefix = [formatter stringFromDate:[NSDate date]];
         prefix = [prefix substringWithRange:NSMakeRange(0, 2)];
         yearStr = [NSString stringWithFormat:@"%@%@", prefix, yearStr];

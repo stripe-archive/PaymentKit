@@ -7,7 +7,7 @@ Alternatively, we've provided a bunch of classes that you can use yourself to ad
 
 In short, PaymentKit should greatly simplify your life when dealing with iOS payments.
 
-![PaymentKitView](http://stripe.github.com/PaymentKit/screenshot.png)
+<img src="http://lmcd.me/PKView@2x.png" width="414">
 
 *For purchases related to the app, such as premium features, Apple's TOS require that you use their native In-App Purchase API. PaymentKits is only for purchasing products or services outside the app.*
 
@@ -17,7 +17,7 @@ In short, PaymentKit should greatly simplify your life when dealing with iOS pay
 
 [CocoaPods](http://cocoapods.org/) is a library dependency management tool for Objective-C. To use PaymentKit with CocoaPods, simply add the following to your Podfile and run pod install:
 
-    pod 'PaymentKit', :git => 'https://github.com/stripe/PaymentKit.git'
+    pod 'PaymentKit', :git => 'https://github.com/lmcd/PaymentKit.git'
 
 ### Install by adding files to project
 
@@ -211,3 +211,7 @@ Returns an integer representing the expiry's month. Returns `0` if the month can
 #### `- (NSUInteger)year`
 
 Returns an integer representing the expiry's year. Returns `0` if the year can't be determined.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/lmcd/paymentkit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+

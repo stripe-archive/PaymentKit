@@ -95,7 +95,10 @@
     
     if ([self cardType] == PKCardTypeAmex) {
         regex = [NSRegularExpression regularExpressionWithPattern:@"(\\d{1,4})(\\d{1,6})?(\\d{1,5})?" options:0 error:NULL];
-    } else {
+    } else if ([self cardType] == PKCardTypeDinersClub) {
+		regex = [NSRegularExpression regularExpressionWithPattern:@"(\\d{1,4})(\\d{1,6})?(\\d{1,4})?" options:0 error:NULL];
+	}
+	else {
         regex = [NSRegularExpression regularExpressionWithPattern:@"(\\d{1,4})" options:0 error:NULL];
     }
     
@@ -149,11 +152,7 @@
 
 - (BOOL)isValidLength
 {
-    if (self.cardType == PKCardTypeAmex) {
-        return number.length == 15;
-    } else {
-        return number.length == 16;
-    }
+    return number.length == [self lengthForCardType];
 }
 
 - (BOOL)isValidLuhn
@@ -178,11 +177,20 @@
 
 - (BOOL)isPartiallyValid
 {
-    if (self.cardType == PKCardTypeAmex) {
-        return number.length <= 15;
+    return number.length <= [self lengthForCardType];
+}
+
+- (NSInteger)lengthForCardType {
+    PKCardType type = self.cardType;
+    NSInteger length;
+    if (type == PKCardTypeAmex) {
+        length = 15;
+    } else if (type == PKCardTypeDinersClub) {
+        length = 14;
     } else {
-        return number.length <= 16;
+        length = 16;
     }
+    return length;
 }
 
 @end
