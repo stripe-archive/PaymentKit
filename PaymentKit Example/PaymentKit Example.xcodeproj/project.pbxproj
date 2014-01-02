@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		161409A31871300900387BB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 161409A21871300900387BB8 /* Storyboard.storyboard */; };
+		16F373391875698F00290ABF /* diners@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16F373381875698F00290ABF /* diners@2x.png */; };
+		16F3733B18756A5F00290ABF /* jcb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16F3733A18756A5F00290ABF /* jcb@2x.png */; };
 		4C332B4E16FA923E009C782D /* PKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C332B4D16FA923E009C782D /* PKTextField.m */; };
 		FA007D1F16FA3B82006DD86E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F1A5916C19BF700835C75 /* QuartzCore.framework */; };
 		FA06D14C16AFC0AA00C46291 /* PKView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA06D14B16AFC0AA00C46291 /* PKView.m */; };
@@ -45,11 +47,9 @@
 		FAA3610C16C9F21C00049C6F /* cvc.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360FA16C9F21C00049C6F /* cvc.png */; };
 		FAA3610D16C9F21C00049C6F /* cvc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360FB16C9F21C00049C6F /* cvc@2x.png */; };
 		FAA3610E16C9F21C00049C6F /* diners.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360FC16C9F21C00049C6F /* diners.png */; };
-		FAA3610F16C9F21C00049C6F /* diners@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360FD16C9F21C00049C6F /* diners@2x.png */; };
 		FAA3611016C9F21C00049C6F /* discover.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360FE16C9F21C00049C6F /* discover.png */; };
 		FAA3611116C9F21C00049C6F /* discover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA360FF16C9F21C00049C6F /* discover@2x.png */; };
 		FAA3611216C9F21C00049C6F /* jcb.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610016C9F21C00049C6F /* jcb.png */; };
-		FAA3611316C9F21C00049C6F /* jcb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610116C9F21C00049C6F /* jcb@2x.png */; };
 		FAA3611416C9F21C00049C6F /* mastercard.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610216C9F21C00049C6F /* mastercard.png */; };
 		FAA3611516C9F21C00049C6F /* mastercard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610316C9F21C00049C6F /* mastercard@2x.png */; };
 		FAA3611616C9F21C00049C6F /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610416C9F21C00049C6F /* placeholder.png */; };
@@ -62,6 +62,8 @@
 
 /* Begin PBXFileReference section */
 		161409A21871300900387BB8 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		16F373381875698F00290ABF /* diners@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diners@2x.png"; sourceTree = "<group>"; };
+		16F3733A18756A5F00290ABF /* jcb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jcb@2x.png"; sourceTree = "<group>"; };
 		4C332B4C16FA923E009C782D /* PKTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTextField.h; sourceTree = "<group>"; };
 		4C332B4D16FA923E009C782D /* PKTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTextField.m; sourceTree = "<group>"; };
 		FA06D14A16AFC0AA00C46291 /* PKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PKView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -115,11 +117,9 @@
 		FAA360FA16C9F21C00049C6F /* cvc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cvc.png; sourceTree = "<group>"; };
 		FAA360FB16C9F21C00049C6F /* cvc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvc@2x.png"; sourceTree = "<group>"; };
 		FAA360FC16C9F21C00049C6F /* diners.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diners.png; sourceTree = "<group>"; };
-		FAA360FD16C9F21C00049C6F /* diners@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diners@2x.png"; sourceTree = "<group>"; };
 		FAA360FE16C9F21C00049C6F /* discover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discover.png; sourceTree = "<group>"; };
 		FAA360FF16C9F21C00049C6F /* discover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "discover@2x.png"; sourceTree = "<group>"; };
 		FAA3610016C9F21C00049C6F /* jcb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jcb.png; sourceTree = "<group>"; };
-		FAA3610116C9F21C00049C6F /* jcb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jcb@2x.png"; sourceTree = "<group>"; };
 		FAA3610216C9F21C00049C6F /* mastercard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mastercard.png; sourceTree = "<group>"; };
 		FAA3610316C9F21C00049C6F /* mastercard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mastercard@2x.png"; sourceTree = "<group>"; };
 		FAA3610416C9F21C00049C6F /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
@@ -286,11 +286,11 @@
 				FAA360FA16C9F21C00049C6F /* cvc.png */,
 				FAA360FB16C9F21C00049C6F /* cvc@2x.png */,
 				FAA360FC16C9F21C00049C6F /* diners.png */,
-				FAA360FD16C9F21C00049C6F /* diners@2x.png */,
+				16F373381875698F00290ABF /* diners@2x.png */,
 				FAA360FE16C9F21C00049C6F /* discover.png */,
 				FAA360FF16C9F21C00049C6F /* discover@2x.png */,
 				FAA3610016C9F21C00049C6F /* jcb.png */,
-				FAA3610116C9F21C00049C6F /* jcb@2x.png */,
+				16F3733A18756A5F00290ABF /* jcb@2x.png */,
 				FAA3610216C9F21C00049C6F /* mastercard.png */,
 				FAA3610316C9F21C00049C6F /* mastercard@2x.png */,
 				FAA3610416C9F21C00049C6F /* placeholder.png */,
@@ -378,16 +378,16 @@
 				FAA3610816C9F21C00049C6F /* amex.png in Resources */,
 				FAA3610916C9F21C00049C6F /* amex@2x.png in Resources */,
 				FAA3610A16C9F21C00049C6F /* cvc-amex.png in Resources */,
+				16F373391875698F00290ABF /* diners@2x.png in Resources */,
 				161409A31871300900387BB8 /* Storyboard.storyboard in Resources */,
+				16F3733B18756A5F00290ABF /* jcb@2x.png in Resources */,
 				FAA3610B16C9F21C00049C6F /* cvc-amex@2x.png in Resources */,
 				FAA3610C16C9F21C00049C6F /* cvc.png in Resources */,
 				FAA3610D16C9F21C00049C6F /* cvc@2x.png in Resources */,
 				FAA3610E16C9F21C00049C6F /* diners.png in Resources */,
-				FAA3610F16C9F21C00049C6F /* diners@2x.png in Resources */,
 				FAA3611016C9F21C00049C6F /* discover.png in Resources */,
 				FAA3611116C9F21C00049C6F /* discover@2x.png in Resources */,
 				FAA3611216C9F21C00049C6F /* jcb.png in Resources */,
-				FAA3611316C9F21C00049C6F /* jcb@2x.png in Resources */,
 				FAA3611416C9F21C00049C6F /* mastercard.png in Resources */,
 				FAA3611516C9F21C00049C6F /* mastercard@2x.png in Resources */,
 				FAA3611616C9F21C00049C6F /* placeholder.png in Resources */,
