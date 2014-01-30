@@ -415,13 +415,27 @@
     
     if ([cardNumber isValid]) {
         [self textFieldIsValid:cardNumberField];
-        [self stateMeta];
+        if ([self.delegate respondsToSelector:@selector(paymentView:withCard:cardNumberIsValid:)]) {
+            [self.delegate paymentView:self withCard:[self card] cardNumberIsValid:YES];
+        }
         
+        if ([self.delegate respondsToSelector:@selector(paymentView:shouldShowMetaViewWithCard:)]) {
+            if ([self.delegate paymentView:self shouldShowMetaViewWithCard:[self card]]) {
+                [self stateMeta];
+            }
+        } else {
+            [self stateMeta];
+        }
     } else if ([cardNumber isValidLength] && ![cardNumber isValidLuhn]) {
         [self textFieldIsInvalid:cardNumberField withErrors:YES];
-        
+        if ([self.delegate respondsToSelector:@selector(paymentView:withCard:cardNumberIsValid:)]) {
+            [self.delegate paymentView:self withCard:[self card] cardNumberIsValid:NO];
+        }
     } else if (![cardNumber isValidLength]) {
         [self textFieldIsInvalid:cardNumberField withErrors:NO];
+        if ([self.delegate respondsToSelector:@selector(paymentView:withCard:cardNumberIsValid:)]) {
+            [self.delegate paymentView:self withCard:[self card] cardNumberIsValid:NO];
+        }
     }
     
     return NO;

@@ -18,6 +18,8 @@
 
 @protocol PKViewDelegate <NSObject>
 @optional
+- (void) paymentView:(PKView*)paymentView withCard:(PKCard*)card cardNumberIsValid:(BOOL)valid;
+- (BOOL) paymentView:(PKView *)paymentView shouldShowMetaViewWithCard:(PKCard *)card;
 - (void) paymentView:(PKView*)paymentView withCard:(PKCard*)card isValid:(BOOL)valid;
 @end
 
