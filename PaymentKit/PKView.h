@@ -42,4 +42,6 @@
 @property id <PKViewDelegate> delegate;
 @property (readonly) PKCard* card;
 
+- (void)setCardNumberString:(NSString*)cardNumber;
+
 @end

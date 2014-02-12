@@ -282,6 +282,10 @@
     return card;
 }
 
+- (void)setCardNumberString:(NSString*)cardNumber {
+  [self cardNumberFieldShouldChangeCharactersInRange:NSMakeRange(0, [self.cardNumberField.text length]) replacementString:cardNumber];
+}
+
 - (void)setPlaceholderViewImage:(UIImage *)image
 {
     if(![placeholderView.image isEqual:image]) {
