@@ -10,6 +10,12 @@
 #import "PKCardExpiry.h"
 #define CEXPIRY(string) [PKCardExpiry cardExpiryWithString:string]
 
+@interface PKCardExpiry ()
+
+- (NSDate*)expiryDate;
+
+@end
+
 @implementation PKCardExpiryTest
 
 //@property (readonly) NSUInteger month;
@@ -80,6 +86,49 @@
     
     STAssertTrue([CEXPIRY(@"12/2050") isPartiallyValid], @"Is valid");
     STAssertTrue([CEXPIRY(@"12/50") isPartiallyValid], @"Is valid");
+}
+
+- (void)testCardExpirationAtTheCurrentMonth
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    NSDate *expiryDate = [CEXPIRY(@"02/14") expiryDate];
+    
+    NSDate *dateToCompare = [dateFormatter dateFromString:@"2014-02-10 12:00"];
+    STAssertTrue([expiryDate compare:dateToCompare] == NSOrderedDescending, @"Is valid");
+
+    dateToCompare = [dateFormatter dateFromString:@"2014-02-28 23:49"];
+    STAssertTrue([expiryDate compare:dateToCompare] == NSOrderedDescending, @"Is valid");
+
+    dateToCompare = [dateFormatter dateFromString:@"2014-02-28 23:51"];
+    STAssertFalse([expiryDate compare:dateToCompare] == NSOrderedDescending, @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2014-03-01 00:00"];
+    STAssertFalse([expiryDate compare:dateToCompare] == NSOrderedDescending, @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2014-03-01 00:01"];
+    STAssertFalse([expiryDate compare:dateToCompare] == NSOrderedDescending, @"Is valid");
+    
+    
+    expiryDate = [CEXPIRY(@"02/16") expiryDate];
+    
+    dateToCompare = [dateFormatter dateFromString:@"2016-02-10 12:00"];
+    STAssertTrue([expiryDate compare:dateToCompare] == NSOrderedDescending, @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2016-02-28 23:49"];
+    STAssertTrue([expiryDate compare:dateToCompare] == NSOrderedDescending, @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2016-02-28 23:51"];
+    STAssertTrue([expiryDate compare:dateToCompare] == NSOrderedDescending, @"Is valid");
+
+    dateToCompare = [dateFormatter dateFromString:@"2016-02-29 23:51"];
+    STAssertFalse([expiryDate compare:dateToCompare] == NSOrderedDescending, @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2016-03-01 00:00"];
+    STAssertFalse([expiryDate compare:dateToCompare] == NSOrderedDescending, @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2016-03-01 00:01"];
+    STAssertFalse([expiryDate compare:dateToCompare] == NSOrderedDescending, @"Is valid");
 }
 
 @end

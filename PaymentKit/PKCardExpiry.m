@@ -115,8 +115,18 @@
     [comps setMonth:[self month]];
     [comps setYear:[self year]];
     
-    NSCalendar *gregorian = [[NSCalendar alloc]
-                             initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+
+//    Find the last day of the month
+    NSDate *theFirstDayOfTheMonth = [gregorian dateFromComponents:comps];
+    NSRange daysInTheMonth = [gregorian rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:theFirstDayOfTheMonth];
+//    set the last day of the month
+    [comps setDay:daysInTheMonth.length];
+
+    //  Maybe it's better to have some time for actions to happen after a card validation was done
+    [comps setHour:23];
+    [comps setMinute:50];
+    
     return [gregorian dateFromComponents:comps];
 }
 
