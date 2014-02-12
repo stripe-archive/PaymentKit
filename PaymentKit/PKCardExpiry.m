@@ -96,7 +96,24 @@
     if ([self month] <= 0 || [self month] > 12) return false;
     
     NSDate* now = [NSDate date];
-    return [[self expiryDate] compare:now] == NSOrderedDescending;
+    
+    return [self isValidWithDate:now];
+}
+
+- (BOOL)isValidWithDate:(NSDate *)dateToCompare
+{
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *currentDate = [gregorian components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:dateToCompare];
+    BOOL valid = NO;
+    
+    if (currentDate.year < self.year) {
+        valid = YES;
+    }
+    else if (currentDate.year == self.year)
+    {
+        valid = currentDate.month <= self.month;
+    }
+    return valid;
 }
 
 - (BOOL)isPartiallyValid

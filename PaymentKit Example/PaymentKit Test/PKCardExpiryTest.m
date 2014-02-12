@@ -12,6 +12,7 @@
 
 @interface PKCardExpiry ()
 
+- (BOOL)isValidWithDate:(NSDate *)dateToCompare;
 - (NSDate*)expiryDate;
 
 @end
@@ -86,6 +87,58 @@
     
     STAssertTrue([CEXPIRY(@"12/2050") isPartiallyValid], @"Is valid");
     STAssertTrue([CEXPIRY(@"12/50") isPartiallyValid], @"Is valid");
+}
+
+- (void)testIsValidWithDate
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    PKCardExpiry *cardExpiry = CEXPIRY(@"02/14");
+    
+    NSDate *dateToCompare = [dateFormatter dateFromString:@"2014-01-31 23:59"];
+    STAssertTrue([cardExpiry isValidWithDate:dateToCompare], @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2015-01-31 23:59"];
+    STAssertFalse([cardExpiry isValidWithDate:dateToCompare], @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2014-02-10 12:00"];
+    STAssertTrue([cardExpiry isValidWithDate:dateToCompare], @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2014-02-28 23:49"];
+    STAssertTrue([cardExpiry isValidWithDate:dateToCompare], @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2014-02-28 23:59"];
+    STAssertTrue([cardExpiry isValidWithDate:dateToCompare], @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2014-03-01 00:00"];
+    STAssertFalse([cardExpiry isValidWithDate:dateToCompare], @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2014-03-01 00:01"];
+    STAssertFalse([cardExpiry isValidWithDate:dateToCompare], @"Is valid");
+    
+    
+    cardExpiry = CEXPIRY(@"02/16");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2016-02-10 12:00"];
+    STAssertTrue([cardExpiry isValidWithDate:dateToCompare], @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2016-02-28 23:49"];
+    STAssertTrue([cardExpiry isValidWithDate:dateToCompare], @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2016-02-28 23:51"];
+    STAssertTrue([cardExpiry isValidWithDate:dateToCompare], @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2016-02-29 23:51"];
+    STAssertTrue([cardExpiry isValidWithDate:dateToCompare], @"Is valid");
+
+    dateToCompare = [dateFormatter dateFromString:@"2016-02-29 23:59"];
+    STAssertTrue([cardExpiry isValidWithDate:dateToCompare], @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2016-03-01 00:00"];
+    STAssertFalse([cardExpiry isValidWithDate:dateToCompare], @"Is valid");
+    
+    dateToCompare = [dateFormatter dateFromString:@"2016-03-01 00:01"];
+    STAssertFalse([cardExpiry isValidWithDate:dateToCompare], @"Is valid");
 }
 
 - (void)testCardExpirationAtTheCurrentMonth
