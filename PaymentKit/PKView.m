@@ -282,6 +282,10 @@
     return card;
 }
 
+- (void)setCardNumberString:(NSString*)cardNumber {
+  [self cardNumberFieldShouldChangeCharactersInRange:NSMakeRange(0, [self.cardNumberField.text length]) replacementString:cardNumber];
+}
+
 - (void)setPlaceholderViewImage:(UIImage *)image
 {
     if(![placeholderView.image isEqual:image]) {
@@ -415,13 +419,27 @@
     
     if ([cardNumber isValid]) {
         [self textFieldIsValid:cardNumberField];
-        [self stateMeta];
+        if ([self.delegate respondsToSelector:@selector(paymentView:withCard:cardNumberIsValid:)]) {
+            [self.delegate paymentView:self withCard:[self card] cardNumberIsValid:YES];
+        }
         
+        if ([self.delegate respondsToSelector:@selector(paymentView:shouldShowMetaViewWithCard:)]) {
+            if ([self.delegate paymentView:self shouldShowMetaViewWithCard:[self card]]) {
+                [self stateMeta];
+            }
+        } else {
+            [self stateMeta];
+        }
     } else if ([cardNumber isValidLength] && ![cardNumber isValidLuhn]) {
         [self textFieldIsInvalid:cardNumberField withErrors:YES];
-        
+        if ([self.delegate respondsToSelector:@selector(paymentView:withCard:cardNumberIsValid:)]) {
+            [self.delegate paymentView:self withCard:[self card] cardNumberIsValid:NO];
+        }
     } else if (![cardNumber isValidLength]) {
         [self textFieldIsInvalid:cardNumberField withErrors:NO];
+        if ([self.delegate respondsToSelector:@selector(paymentView:withCard:cardNumberIsValid:)]) {
+            [self.delegate paymentView:self withCard:[self card] cardNumberIsValid:NO];
+        }
     }
     
     return NO;
