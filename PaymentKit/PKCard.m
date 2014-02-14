@@ -10,7 +10,7 @@
 
 @implementation PKCard
 
-- (NSString*)last4
+- (NSString *)last4
 {
     if (_number.length >= 4) {
         return [_number substringFromIndex:([_number length] - 4)];

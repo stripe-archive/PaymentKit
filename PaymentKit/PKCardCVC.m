@@ -10,7 +10,7 @@
 
 @implementation PKCardCVC {
 @private
-    NSString* _cvc;
+    NSString *_cvc;
 }
 
 + (instancetype)cardCVCWithString:(NSString *)string
@@ -45,7 +45,8 @@
     return _cvc.length >= 3 && _cvc.length <= 4;
 }
 
-- (BOOL)isValidWithType:(PKCardType)type {
+- (BOOL)isValidWithType:(PKCardType)type
+{
     if (type == PKCardTypeAmex) {
         return _cvc.length == 4;
     } else {
@@ -58,7 +59,8 @@
     return _cvc.length <= 4;
 }
 
-- (BOOL)isPartiallyValidWithType:(PKCardType)type {
+- (BOOL)isPartiallyValidWithType:(PKCardType)type
+{
     if (type == PKCardTypeAmex) {
         return _cvc.length <= 4;
     } else {

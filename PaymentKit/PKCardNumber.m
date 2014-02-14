@@ -10,7 +10,7 @@
 
 @implementation PKCardNumber {
 @private
-    NSString* _number;
+    NSString *_number;
 }
 
 + (instancetype)cardNumberWithString:(NSString *)string
@@ -32,13 +32,13 @@
 }
 
 - (PKCardType)cardType
-{    
+{
     if (_number.length < 2) return PKCardTypeUnknown;
-    
-    NSString* firstChars = [_number substringWithRange:NSMakeRange(0, 2)];
-    
+
+    NSString *firstChars = [_number substringWithRange:NSMakeRange(0, 2)];
+
     int range = [firstChars integerValue];
-    
+
     if (range >= 40 && range <= 49) {
         return PKCardTypeVisa;
     } else if (range >= 50 && range <= 59) {
@@ -76,7 +76,7 @@
             return [_number substringFromIndex:([_number length] - 4)];
         }
     }
-    
+
     return nil;
 }
 
@@ -88,49 +88,49 @@
 
 - (NSString *)formattedString
 {
-    NSRegularExpression* regex;
-    
+    NSRegularExpression *regex;
+
     if (self.cardType == PKCardTypeAmex) {
         regex = [NSRegularExpression regularExpressionWithPattern:@"(\\d{1,4})(\\d{1,6})?(\\d{1,5})?" options:0 error:NULL];
     } else {
         regex = [NSRegularExpression regularExpressionWithPattern:@"(\\d{1,4})" options:0 error:NULL];
     }
-    
-    NSArray* matches = [regex matchesInString:_number options:0 range:NSMakeRange(0, _number.length)];
-    NSMutableArray* result = [NSMutableArray arrayWithCapacity:matches.count];
-    
+
+    NSArray *matches = [regex matchesInString:_number options:0 range:NSMakeRange(0, _number.length)];
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:matches.count];
+
     for (NSTextCheckingResult *match in matches) {
-        for (int i=1; i < [match numberOfRanges]; i++) {
+        for (int i = 1; i < [match numberOfRanges]; i++) {
             NSRange range = [match rangeAtIndex:i];
-            
+
             if (range.length > 0) {
-                NSString* matchText = [_number substringWithRange:range];
+                NSString *matchText = [_number substringWithRange:range];
                 [result addObject:matchText];
             }
         }
     }
-    
+
     return [result componentsJoinedByString:@" "];
 }
 
 - (NSString *)formattedStringWithTrail
 {
     NSString *string = [self formattedString];
-    NSRegularExpression* regex;
-    
+    NSRegularExpression *regex;
+
     // No trailing space needed
     if ([self isValidLength]) {
         return string;
     }
-    
+
     if (self.cardType == PKCardTypeAmex) {
         regex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d{4}|\\d{4}\\s\\d{6})$" options:0 error:NULL];
     } else {
         regex = [NSRegularExpression regularExpressionWithPattern:@"(?:^|\\s)(\\d{4})$" options:0 error:NULL];
     }
-    
+
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:string options:0 range:NSMakeRange(0, string.length)];
-    
+
     if (numberOfMatches == 0) {
         // Not at the end of a group of digits
         return string;
@@ -152,20 +152,20 @@
 - (BOOL)isValidLuhn
 {
     BOOL odd = true;
-    int sum  = 0;
-    NSMutableArray* digits = [NSMutableArray arrayWithCapacity:_number.length];
-    
-    for (int i=0; i < _number.length; i++) {
+    int sum = 0;
+    NSMutableArray *digits = [NSMutableArray arrayWithCapacity:_number.length];
+
+    for (int i = 0; i < _number.length; i++) {
         [digits addObject:[_number substringWithRange:NSMakeRange(i, 1)]];
     }
-    
-    for (NSString* digitStr in [digits reverseObjectEnumerator]) {
+
+    for (NSString *digitStr in [digits reverseObjectEnumerator]) {
         int digit = [digitStr intValue];
         if ((odd = !odd)) digit *= 2;
         if (digit > 9) digit -= 9;
         sum += digit;
     }
-    
+
     return sum % 10 == 0;
 }
 
@@ -174,7 +174,8 @@
     return _number.length <= [self lengthForCardType];
 }
 
-- (NSInteger)lengthForCardType {
+- (NSInteger)lengthForCardType
+{
     PKCardType type = self.cardType;
     NSInteger length;
     if (type == PKCardTypeAmex) {

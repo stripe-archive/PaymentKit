@@ -11,7 +11,7 @@
 
 @interface PKCardCVC : NSObject
 
-@property (nonatomic, readonly) NSString* string;
+@property (nonatomic, readonly) NSString *string;
 
 + (instancetype)cardCVCWithString:(NSString *)string;
 - (instancetype)initWithString:(NSString *)string;

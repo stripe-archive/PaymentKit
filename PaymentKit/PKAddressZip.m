@@ -29,13 +29,13 @@
     return _zip;
 }
 
-- (BOOL) isValid
+- (BOOL)isValid
 {
-    NSString* stripped = [_zip stringByReplacingOccurrencesOfString:@"\\s"
+    NSString *stripped = [_zip stringByReplacingOccurrencesOfString:@"\\s"
                                                          withString:@""
                                                             options:NSRegularExpressionSearch
                                                               range:NSMakeRange(0, _zip.length)];
-    
+
     return stripped.length > 2;
 }
 
