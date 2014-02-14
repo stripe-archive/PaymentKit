@@ -15,22 +15,22 @@
     self = [super init];
     if (self) {
         // Strip non-digits
-        zip = [string stringByReplacingOccurrencesOfString:@"\\D"
-                                                withString:@""
-                                                   options:NSRegularExpressionSearch
-                                                     range:NSMakeRange(0, string.length)];
+        _zip = [string stringByReplacingOccurrencesOfString:@"\\D"
+                                                 withString:@""
+                                                    options:NSRegularExpressionSearch
+                                                      range:NSMakeRange(0, string.length)];
     }
     return self;
 }
 
 - (BOOL) isValid
 {
-    return zip.length == 5;
+    return _zip.length == 5;
 }
 
 - (BOOL)isPartiallyValid
 {
-    return zip.length <= 5;
+    return _zip.length <= 5;
 }
 
 @end

@@ -8,24 +8,21 @@
 
 #import "PKCardExpiry.h"
 
-@interface PKCardExpiry () {
-    @private
-    NSString* month;
-    NSString* year;
+@implementation PKCardExpiry {
+@private
+    NSString* _month;
+    NSString* _year;
 }
-@end
 
-@implementation PKCardExpiry
-
-+ (id) cardExpiryWithString:(NSString *)string
++ (instancetype) cardExpiryWithString:(NSString *)string
 {
     return [[self alloc] initWithString:string];
 }
 
-- (id) initWithString:(NSString *)string
+- (instancetype) initWithString:(NSString *)string
 {
     if ( !string ) {
-        return [self initWithMonth:@"" andYear:@""];
+        return [self initWithMonth:@"" year:@""];
     }
     
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d{1,2})?[\\s/]*(\\d{1,4})?" options:0 error:NULL];
@@ -45,19 +42,19 @@
             yearStr = [string substringWithRange:yearRange];
     }
     
-    return [self initWithMonth:monthStr andYear:yearStr];
+    return [self initWithMonth:monthStr year:yearStr];
 }
 
-- (id) initWithMonth:(NSString*)monthStr andYear:(NSString*)yearStr
+- (instancetype) initWithMonth:(NSString*)monthStr year:(NSString*)yearStr
 {
     self = [super init];
     if (self) {
-        month = monthStr;
-        year  = yearStr;
+        _month = monthStr;
+        _year  = yearStr;
         
-        if (month.length == 1) {
-            if ( !([month isEqualToString:@"0"] || [month isEqualToString:@"1"]) ){
-                month = [NSString stringWithFormat:@"0%@", month];
+        if (_month.length == 1) {
+            if ( !([_month isEqualToString:@"0"] || [_month isEqualToString:@"1"]) ){
+                _month = [NSString stringWithFormat:@"0%@", _month];
             }
         }
     }
@@ -66,15 +63,15 @@
 
 - (NSString *)formattedString
 {
-    if (year.length > 0)
-        return [NSString stringWithFormat:@"%@/%@", month, year];
+    if (_year.length > 0)
+        return [NSString stringWithFormat:@"%@/%@", _month, _year];
 
-    return [NSString stringWithFormat:@"%@", month];    
+    return [NSString stringWithFormat:@"%@", _month];    
 }
 
 - (NSString *)formattedStringWithTrail
 {
-    if (month.length == 2 && year.length == 0) {
+    if (_month.length == 2 && _year.length == 0) {
         return [NSString stringWithFormat:@"%@/", [self formattedString]];
     } else {
         return [self formattedString];
@@ -88,12 +85,12 @@
 
 - (BOOL)isValidLength
 {
-    return month.length == 2 && (year.length == 2 || year.length == 4);
+    return _month.length == 2 && (_year.length == 2 || _year.length == 4);
 }
 
 - (BOOL)isValidDate
 {
-    if ([self month] <= 0 || [self month] > 12) return false;
+    if ([self month] <= 0 || [self month] > 12) return NO;
     
     NSDate* now = [NSDate date];
     return [[self expiryDate] compare:now] == NSOrderedDescending;
@@ -104,7 +101,7 @@
     if ([self isValidLength]) {
         return [self isValidDate];
     } else {
-        return [self month] <= 12 && year.length <= 4;
+        return [self month] <= 12 && _year.length <= 4;
     }
 }
 
@@ -125,15 +122,14 @@
 
 - (NSUInteger)month
 {
-    if (!month) return 0;
-    return [month integerValue];
+    return [_month integerValue];
 }
 
 - (NSUInteger)year
 {
-    if (!year) return 0;
+    if (!_year) return 0;
     
-    NSString* yearStr = [NSString stringWithString:year];
+    NSString* yearStr = [NSString stringWithString:_year];
     
     if (yearStr.length == 2) {
         static NSDateFormatter *formatter = nil;

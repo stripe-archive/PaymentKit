@@ -25,8 +25,8 @@
 
 @interface PKView () <UITextFieldDelegate> {
 @private
-    BOOL isInitialState;
-    BOOL isValidState;
+    BOOL _isInitialState;
+    BOOL _isValidState;
 }
 
 @property (nonatomic, readonly, assign) UIResponder *firstResponderField;
@@ -39,14 +39,6 @@
 - (void)setupCardExpiryField;
 - (void)setupCardCVCField;
 
-- (void)stateCardNumber;
-- (void)stateMeta;
-- (void)stateCardCVC;
-
-- (void)setPlaceholderViewImage:(UIImage *)image;
-- (void)setPlaceholderToCVC;
-- (void)setPlaceholderToCardType;
-
 - (void)pkTextFieldDidBackSpaceWhileTextIsEmpty:(PKTextField *)textField;
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
@@ -54,16 +46,16 @@
 - (BOOL)cardExpiryShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
 - (BOOL)cardCVCShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
 
-- (void)checkValid;
-- (void)textFieldIsValid:(UITextField *)textField;
-- (void)textFieldIsInvalid:(UITextField *)textField withErrors:(BOOL)errors;
+@property (nonatomic) UIView *opaqueOverGradientView;
+@property (nonatomic) PKCardNumber* cardNumber;
+@property (nonatomic) PKCardExpiry* cardExpiry;
+@property (nonatomic) PKCardCVC* cardCVC;
+@property (nonatomic) PKAddressZip* addressZip;
 @end
 
-@implementation PKView
+#pragma mark -
 
-@synthesize innerView, opaqueOverGradientView, cardNumberField,
-            cardExpiryField, cardCVCField,
-            placeholderView, delegate;
+@implementation PKView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -82,8 +74,8 @@
 
 - (void)setup
 {
-    isInitialState = YES;
-    isValidState   = NO;
+    _isInitialState = YES;
+    _isValidState   = NO;
     
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 46);
     self.backgroundColor = [UIColor clearColor];
@@ -101,20 +93,20 @@
     [self setupCardExpiryField];
     [self setupCardCVCField];
     
-    [self.innerView addSubview:cardNumberField];
+    [self.innerView addSubview:self.cardNumberField];
     
     UIImageView *gradientImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 12, 34)];
     gradientImageView.image = [UIImage imageNamed:@"gradient"];
     [self.innerView addSubview:gradientImageView];
     
-    opaqueOverGradientView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 9, 34)];
-    opaqueOverGradientView.backgroundColor = [UIColor colorWithRed:0.9686 green:0.9686
-                                                              blue:0.9686 alpha:1.0000];
-    opaqueOverGradientView.alpha = 0.0;
-    [self.innerView addSubview:opaqueOverGradientView];
+    self.opaqueOverGradientView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 9, 34)];
+    self.opaqueOverGradientView.backgroundColor = [UIColor colorWithRed:0.9686 green:0.9686
+                                                                   blue:0.9686 alpha:1.0000];
+    self.opaqueOverGradientView.alpha = 0.0;
+    [self.innerView addSubview:self.opaqueOverGradientView];
     
     [self addSubview:self.innerView];
-    [self addSubview:placeholderView];
+    [self addSubview:self.placeholderView];
     
     [self stateCardNumber];
 }
@@ -122,109 +114,107 @@
 
 - (void)setupPlaceholderView
 {
-    placeholderView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 13, 32, 20)];
-    placeholderView.backgroundColor = [UIColor clearColor];
-    placeholderView.image = [UIImage imageNamed:@"placeholder"];
+    self.placeholderView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 13, 32, 20)];
+    self.placeholderView.backgroundColor = [UIColor clearColor];
+    self.placeholderView.image = [UIImage imageNamed:@"placeholder"];
     
     CALayer *clip = [CALayer layer];
     clip.frame = CGRectMake(32, 0, 4, 20);
     clip.backgroundColor = [UIColor clearColor].CGColor;
-    [placeholderView.layer addSublayer:clip];
+    [self.placeholderView.layer addSublayer:clip];
 }
 
 - (void)setupCardNumberField
 {
-    cardNumberField = [[PKTextField alloc] initWithFrame:CGRectMake(12,0,170,20)];
+    self.cardNumberField = [[PKTextField alloc] initWithFrame:CGRectMake(12,0,170,20)];
     
-    cardNumberField.delegate = self;
+    self.cardNumberField.delegate = self;
     
-    cardNumberField.placeholder = @"1234 5678 9012 3456";
-    cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
-    cardNumberField.textColor = DarkGreyColor;
-    cardNumberField.font = DefaultBoldFont;
+    self.cardNumberField.placeholder = @"1234 5678 9012 3456";
+    self.cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
+    self.cardNumberField.textColor = DarkGreyColor;
+    self.cardNumberField.font = DefaultBoldFont;
     
-    [cardNumberField.layer setMasksToBounds:YES];
+    [self.cardNumberField.layer setMasksToBounds:YES];
 }
 
 - (void)setupCardExpiryField
 {
-    cardExpiryField = [[PKTextField alloc] initWithFrame:CGRectMake(kPKViewCardExpiryFieldStartX,0,
-                                                                    60,20)];
+    self.cardExpiryField = [[PKTextField alloc] initWithFrame:CGRectMake(kPKViewCardExpiryFieldStartX,0,60,20)];
 
-    cardExpiryField.delegate = self;
+    self.cardExpiryField.delegate = self;
     
-    cardExpiryField.placeholder = @"MM/YY";
-    cardExpiryField.keyboardType = UIKeyboardTypeNumberPad;
-    cardExpiryField.textColor = DarkGreyColor;
-    cardExpiryField.font = DefaultBoldFont;
+    self.cardExpiryField.placeholder = @"MM/YY";
+    self.cardExpiryField.keyboardType = UIKeyboardTypeNumberPad;
+    self.cardExpiryField.textColor = DarkGreyColor;
+    self.cardExpiryField.font = DefaultBoldFont;
     
-    [cardExpiryField.layer setMasksToBounds:YES];
+    [self.cardExpiryField.layer setMasksToBounds:YES];
 }
 
 - (void)setupCardCVCField
 {
-    cardCVCField = [[PKTextField alloc] initWithFrame:CGRectMake(kPKViewCardCVCFieldStartX,0,
-                                                                 55,20)];
+    self.cardCVCField = [[PKTextField alloc] initWithFrame:CGRectMake(kPKViewCardCVCFieldStartX,0,55,20)];
     
-    cardCVCField.delegate = self;
+    self.cardCVCField.delegate = self;
     
-    cardCVCField.placeholder = @"CVC";
-    cardCVCField.keyboardType = UIKeyboardTypeNumberPad;
-    cardCVCField.textColor = DarkGreyColor;
-    cardCVCField.font = DefaultBoldFont;
+    self.cardCVCField.placeholder = @"CVC";
+    self.cardCVCField.keyboardType = UIKeyboardTypeNumberPad;
+    self.cardCVCField.textColor = DarkGreyColor;
+    self.cardCVCField.font = DefaultBoldFont;
     
-    [cardCVCField.layer setMasksToBounds:YES];
+    [self.cardCVCField.layer setMasksToBounds:YES];
 }
 
-// Accessors
+#pragma mark - Accessors
 
 - (PKCardNumber*)cardNumber
 {
-    return [PKCardNumber cardNumberWithString:cardNumberField.text];
+    return [PKCardNumber cardNumberWithString:self.cardNumberField.text];
 }
 
 - (PKCardExpiry*)cardExpiry
 {
-    return [PKCardExpiry cardExpiryWithString:cardExpiryField.text];
+    return [PKCardExpiry cardExpiryWithString:self.cardExpiryField.text];
 }
 
 - (PKCardCVC*)cardCVC
 {
-    return [PKCardCVC cardCVCWithString:cardCVCField.text];
+    return [PKCardCVC cardCVCWithString:self.cardCVCField.text];
 }
 
-// State
+#pragma mark - State
 
 - (void)stateCardNumber
 {
-    if (!isInitialState) {
+    if (!_isInitialState) {
         // Animate left
-        isInitialState = YES;
+        _isInitialState = YES;
         
         [UIView animateWithDuration:0.05 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
-                             opaqueOverGradientView.alpha = 0.0;
+                             self.opaqueOverGradientView.alpha = 0.0;
                          } completion:^(BOOL finished) {}];
         [UIView animateWithDuration:0.400
                               delay:0
                             options:(UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction)
                          animations:^{
-                             cardExpiryField.frame = CGRectMake(kPKViewCardExpiryFieldStartX,
-                                                                cardExpiryField.frame.origin.y,
-                                                                cardExpiryField.frame.size.width,
-                                                                cardExpiryField.frame.size.height);
-                             cardCVCField.frame = CGRectMake(kPKViewCardCVCFieldStartX,
-                                                             cardCVCField.frame.origin.y,
-                                                             cardCVCField.frame.size.width,
-                                                             cardCVCField.frame.size.height);
-                             cardNumberField.frame = CGRectMake(12,
-                                                                cardNumberField.frame.origin.y,
-                                                                cardNumberField.frame.size.width,
-                                                                cardNumberField.frame.size.height);
+                             self.cardExpiryField.frame = CGRectMake(kPKViewCardExpiryFieldStartX,
+                                                                     self.cardExpiryField.frame.origin.y,
+                                                                     self.cardExpiryField.frame.size.width,
+                                                                     self.cardExpiryField.frame.size.height);
+                             self.cardCVCField.frame = CGRectMake(kPKViewCardCVCFieldStartX,
+                                                                  self.cardCVCField.frame.origin.y,
+                                                                  self.cardCVCField.frame.size.width,
+                                                                  self.cardCVCField.frame.size.height);
+                             self.cardNumberField.frame = CGRectMake(12,
+                                                                     self.cardNumberField.frame.origin.y,
+                                                                     self.cardNumberField.frame.size.width,
+                                                                     self.cardNumberField.frame.size.height);
                          }
                          completion:^(BOOL completed) {
-                             [cardExpiryField removeFromSuperview];
-                             [cardCVCField removeFromSuperview];
+                             [self.cardExpiryField removeFromSuperview];
+                             [self.cardCVCField removeFromSuperview];
                          }];
     }
     
@@ -233,7 +223,7 @@
 
 - (void)stateMeta
 {
-    isInitialState = NO;
+    _isInitialState = NO;
     
     CGSize cardNumberSize = [self.cardNumber.formattedString sizeWithFont:DefaultBoldFont];
     CGSize lastGroupSize = [self.cardNumber.lastGroup sizeWithFont:DefaultBoldFont];
@@ -241,32 +231,32 @@
     
     [UIView animateWithDuration:0.05 delay:0.35 options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         opaqueOverGradientView.alpha = 1.0;
+                         self.opaqueOverGradientView.alpha = 1.0;
                      } completion:^(BOOL finished) {}];
     [UIView animateWithDuration:0.400 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        cardExpiryField.frame = CGRectMake(kPKViewCardExpiryFieldEndX,
-                                           cardExpiryField.frame.origin.y,
-                                           cardExpiryField.frame.size.width,
-                                           cardExpiryField.frame.size.height);
-        cardCVCField.frame = CGRectMake(kPKViewCardCVCFieldEndX,
-                                        cardCVCField.frame.origin.y,
-                                        cardCVCField.frame.size.width,
-                                        cardCVCField.frame.size.height);
-        cardNumberField.frame = CGRectMake(frameX,
-                                           cardNumberField.frame.origin.y,
-                                           cardNumberField.frame.size.width,
-                                           cardNumberField.frame.size.height);
+        self.cardExpiryField.frame = CGRectMake(kPKViewCardExpiryFieldEndX,
+                                                self.cardExpiryField.frame.origin.y,
+                                                self.cardExpiryField.frame.size.width,
+                                                self.cardExpiryField.frame.size.height);
+        self.cardCVCField.frame = CGRectMake(kPKViewCardCVCFieldEndX,
+                                             self.cardCVCField.frame.origin.y,
+                                             self.cardCVCField.frame.size.width,
+                                             self.cardCVCField.frame.size.height);
+        self.cardNumberField.frame = CGRectMake(frameX,
+                                                self.cardNumberField.frame.origin.y,
+                                                self.cardNumberField.frame.size.width,
+                                                self.cardNumberField.frame.size.height);
     } completion:nil];
     
-    [self addSubview:placeholderView];
-    [self.innerView addSubview:cardExpiryField];
-    [self.innerView addSubview:cardCVCField];
-    [cardExpiryField becomeFirstResponder];
+    [self addSubview:self.placeholderView];
+    [self.innerView addSubview:self.cardExpiryField];
+    [self.innerView addSubview:self.cardCVCField];
+    [self.cardExpiryField becomeFirstResponder];
 }
 
 - (void)stateCardCVC
 {
-    [cardCVCField becomeFirstResponder];
+    [self.cardCVCField becomeFirstResponder];
 }
 
 - (BOOL)isValid
@@ -288,37 +278,37 @@
 
 - (void)setPlaceholderViewImage:(UIImage *)image
 {
-    if(![placeholderView.image isEqual:image]) {
-        __block __unsafe_unretained UIView *previousPlaceholderView = placeholderView;
+    if (![self.placeholderView.image isEqual:image]) {
+        __block __unsafe_unretained UIView *previousPlaceholderView = self.placeholderView;
         [UIView animateWithDuration:kPKViewPlaceholderViewAnimationDuration delay:0
                             options:UIViewAnimationOptionCurveEaseInOut
                          animations:^
          {
-             placeholderView.layer.opacity = 0.0;
-             placeholderView.layer.transform = CATransform3DMakeScale(1.2, 1.2, 1.2);
+             self.placeholderView.layer.opacity = 0.0;
+             self.placeholderView.layer.transform = CATransform3DMakeScale(1.2, 1.2, 1.2);
          } completion:^(BOOL finished) {
              [previousPlaceholderView removeFromSuperview];
          }];
-        placeholderView = nil;
+        self.placeholderView = nil;
         
         [self setupPlaceholderView];
-        placeholderView.image = image;
-        placeholderView.layer.opacity = 0.0;
-        placeholderView.layer.transform = CATransform3DMakeScale(0.8, 0.8, 0.8);
-        [self insertSubview:placeholderView belowSubview:previousPlaceholderView];
+        self.placeholderView.image = image;
+        self.placeholderView.layer.opacity = 0.0;
+        self.placeholderView.layer.transform = CATransform3DMakeScale(0.8, 0.8, 0.8);
+        [self insertSubview:self.placeholderView belowSubview:previousPlaceholderView];
         [UIView animateWithDuration:kPKViewPlaceholderViewAnimationDuration delay:0
                             options:UIViewAnimationOptionCurveEaseInOut
                          animations:^
          {
-             placeholderView.layer.opacity = 1.0;
-             placeholderView.layer.transform = CATransform3DIdentity;
+             self.placeholderView.layer.opacity = 1.0;
+             self.placeholderView.layer.transform = CATransform3DIdentity;
          } completion:^(BOOL finished) {}];
     }
 }
 
 - (void)setPlaceholderToCVC
 {
-    PKCardNumber *cardNumber = [PKCardNumber cardNumberWithString:cardNumberField.text];
+    PKCardNumber *cardNumber = [PKCardNumber cardNumberWithString:self.cardNumberField.text];
     PKCardType cardType      = [cardNumber cardType];
     
     if (cardType == PKCardTypeAmex) {
@@ -330,7 +320,7 @@
 
 - (void)setPlaceholderToCardType
 {
-    PKCardNumber *cardNumber = [PKCardNumber cardNumberWithString:cardNumberField.text];
+    PKCardNumber *cardNumber = [PKCardNumber cardNumberWithString:self.cardNumberField.text];
     PKCardType cardType      = [cardNumber cardType];
     NSString* cardTypeName   = @"placeholder";
     
@@ -360,32 +350,32 @@
     [self setPlaceholderViewImage:[UIImage imageNamed:cardTypeName]];
 }
 
-// Delegates
+#pragma mark - Delegates
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if ([textField isEqual:cardCVCField]) {
+    if ([textField isEqual:self.cardCVCField]) {
         [self setPlaceholderToCVC];
     } else {
         [self setPlaceholderToCardType];
     }
     
-    if ([textField isEqual:cardNumberField] && !isInitialState) {
+    if ([textField isEqual:self.cardNumberField] && !_isInitialState) {
         [self stateCardNumber];
     }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString
 {
-    if ([textField isEqual:cardNumberField]) {
+    if ([textField isEqual:self.cardNumberField]) {
         return [self cardNumberFieldShouldChangeCharactersInRange:range replacementString:replacementString];
     }
     
-    if ([textField isEqual:cardExpiryField]) {
+    if ([textField isEqual:self.cardExpiryField]) {
         return [self cardExpiryShouldChangeCharactersInRange:range replacementString:replacementString];
     }
     
-    if ([textField isEqual:cardCVCField]) {
+    if ([textField isEqual:self.cardCVCField]) {
         return [self cardCVCShouldChangeCharactersInRange:range replacementString:replacementString];
     }
     
@@ -402,7 +392,7 @@
 
 - (BOOL)cardNumberFieldShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString
 {
-    NSString *resultString = [cardNumberField.text stringByReplacingCharactersInRange:range withString:replacementString];
+    NSString *resultString = [self.cardNumberField.text stringByReplacingCharactersInRange:range withString:replacementString];
     resultString = [PKTextField textByRemovingUselessSpacesFromString:resultString];
     PKCardNumber *cardNumber = [PKCardNumber cardNumberWithString:resultString];
     
@@ -410,22 +400,22 @@
         return NO;
     
     if (replacementString.length > 0) {
-        cardNumberField.text = [cardNumber formattedStringWithTrail];
+        self.cardNumberField.text = [cardNumber formattedStringWithTrail];
     } else {
-        cardNumberField.text = [cardNumber formattedString];
+        self.cardNumberField.text = [cardNumber formattedString];
     }
     
     [self setPlaceholderToCardType];
     
     if ([cardNumber isValid]) {
-        [self textFieldIsValid:cardNumberField];
+        [self textFieldIsValid:self.cardNumberField];
         [self stateMeta];
         
     } else if ([cardNumber isValidLength] && ![cardNumber isValidLuhn]) {
-        [self textFieldIsInvalid:cardNumberField withErrors:YES];
+        [self textFieldIsInvalid:self.cardNumberField withErrors:YES];
         
     } else if (![cardNumber isValidLength]) {
-        [self textFieldIsInvalid:cardNumberField withErrors:NO];
+        [self textFieldIsInvalid:self.cardNumberField withErrors:NO];
     }
     
     return NO;
@@ -433,7 +423,7 @@
 
 - (BOOL)cardExpiryShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString
 {
-    NSString *resultString = [cardExpiryField.text stringByReplacingCharactersInRange:range withString:replacementString];
+    NSString *resultString = [self.cardExpiryField.text stringByReplacingCharactersInRange:range withString:replacementString];
     resultString = [PKTextField textByRemovingUselessSpacesFromString:resultString];
     PKCardExpiry *cardExpiry = [PKCardExpiry cardExpiryWithString:resultString];
     
@@ -443,19 +433,19 @@
     if ([cardExpiry formattedString].length > 5) return NO;
     
     if (replacementString.length > 0) {
-        cardExpiryField.text = [cardExpiry formattedStringWithTrail];
+        self.cardExpiryField.text = [cardExpiry formattedStringWithTrail];
     } else {
-        cardExpiryField.text = [cardExpiry formattedString];
+        self.cardExpiryField.text = [cardExpiry formattedString];
     }
     
     if ([cardExpiry isValid]) {
-        [self textFieldIsValid:cardExpiryField];
+        [self textFieldIsValid:self.cardExpiryField];
         [self stateCardCVC];
         
     } else if ([cardExpiry isValidLength] && ![cardExpiry isValidDate]) {
-        [self textFieldIsInvalid:cardExpiryField withErrors:YES];
+        [self textFieldIsInvalid:self.cardExpiryField withErrors:YES];
     } else if (![cardExpiry isValidLength]) {
-        [self textFieldIsInvalid:cardExpiryField withErrors:NO];
+        [self textFieldIsInvalid:self.cardExpiryField withErrors:NO];
     }
     
     return NO;
@@ -463,39 +453,40 @@
 
 - (BOOL)cardCVCShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString
 {
-    NSString *resultString = [cardCVCField.text stringByReplacingCharactersInRange:range withString:replacementString];
+    NSString *resultString = [self.cardCVCField.text stringByReplacingCharactersInRange:range withString:replacementString];
     resultString = [PKTextField textByRemovingUselessSpacesFromString:resultString];
     PKCardCVC *cardCVC = [PKCardCVC cardCVCWithString:resultString];
-    PKCardType cardType = [[PKCardNumber cardNumberWithString:cardNumberField.text] cardType];
+    PKCardType cardType = [[PKCardNumber cardNumberWithString:self.cardNumberField.text] cardType];
     
     // Restrict length
     if ( ![cardCVC isPartiallyValidWithType:cardType] ) return NO;
     
     // Strip non-digits
-    cardCVCField.text = [cardCVC string];
+    self.cardCVCField.text = [cardCVC string];
     
     if ([cardCVC isValidWithType:cardType]) {
-        [self textFieldIsValid:cardCVCField];
+        [self textFieldIsValid:self.cardCVCField];
     } else {
-        [self textFieldIsInvalid:cardCVCField withErrors:NO];
+        [self textFieldIsInvalid:self.cardCVCField withErrors:NO];
     }
     
     return NO;
 }
 
-// Validations
+
+#pragma mark - Validations
 
 - (void)checkValid
 {
     if ([self isValid]) {
-        isValidState = YES;
+        _isValidState = YES;
 
         if ([self.delegate respondsToSelector:@selector(paymentView:withCard:isValid:)]) {
             [self.delegate paymentView:self withCard:self.card isValid:YES];
         }
         
-    } else if (![self isValid] && isValidState) {
-        isValidState = NO;
+    } else if (![self isValid] && _isValidState) {
+        _isValidState = NO;
         
         if ([self.delegate respondsToSelector:@selector(paymentView:withCard:isValid:)]) {
             [self.delegate paymentView:self withCard:self.card isValid:NO];

@@ -18,17 +18,12 @@
 @property (nonatomic, readonly) NSString * formattedString;
 @property (nonatomic, readonly) NSString * formattedStringWithTrail;
 
-+ (id) cardNumberWithString:(NSString *)string;
-- (id) initWithString:(NSString *)string;
-- (PKCardType)cardType;
-- (NSString *)last4;
-- (NSString *)lastGroup;
-- (NSString *)string;
-- (NSString *)formattedString;
-- (NSString *)formattedStringWithTrail;
-- (BOOL)isValid;
-- (BOOL)isValidLength;
-- (BOOL)isValidLuhn;
-- (BOOL)isPartiallyValid;
+@property (nonatomic, readonly, getter = isValid) BOOL valid;
+@property (nonatomic, readonly, getter = isValidLength) BOOL validLength;
+@property (nonatomic, readonly, getter = isValidLuhn) BOOL validLuhn;
+@property (nonatomic, readonly, getter = isPartiallyValid) BOOL partiallyValid;
+
++ (instancetype) cardNumberWithString:(NSString *)string;
+- (instancetype) initWithString:(NSString *)string;
 
 @end

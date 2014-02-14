@@ -8,9 +8,16 @@
 
 #import "PaymentViewController.h"
 
-@implementation PaymentViewController
+@interface PaymentViewController()
 
-@synthesize paymentView;
+@property IBOutlet PKView* paymentView;
+
+@end
+
+
+#pragma mark -
+
+@implementation PaymentViewController
 
 - (void)viewDidLoad
 {
