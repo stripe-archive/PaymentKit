@@ -226,9 +226,8 @@
                              [cardExpiryField removeFromSuperview];
                              [cardCVCField removeFromSuperview];
                          }];
+        [self.cardNumberField becomeFirstResponder];
     }
-    
-    [self.cardNumberField becomeFirstResponder];
 }
 
 - (void)stateMeta
@@ -267,6 +266,30 @@
 - (void)stateCardCVC
 {
     [cardCVCField becomeFirstResponder];
+}
+
+// Proxy UIResponder methods
+
+- (BOOL)becomeFirstResponder
+{
+    if (isInitialState) {
+        return [cardNumberField becomeFirstResponder];
+    } else if ([self.cardExpiry isValid]) {
+        return [cardCVCField becomeFirstResponder];
+    } else {
+        return [cardExpiryField becomeFirstResponder];
+    }
+}
+
+- (BOOL)resignFirstResponder
+{
+    if ([cardNumberField isFirstResponder]) {
+        return [cardNumberField resignFirstResponder];
+    } else if ([cardCVCField isFirstResponder]) {
+        return [cardCVCField resignFirstResponder];
+    } else {
+        return [cardExpiryField resignFirstResponder];
+    }
 }
 
 - (BOOL)isValid

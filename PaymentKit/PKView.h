@@ -25,6 +25,10 @@
 
 - (BOOL)isValid;
 
+// Proxy UIResponder methods
+- (BOOL)becomeFirstResponder;
+- (BOOL)resignFirstResponder;
+
 @property (nonatomic, readonly) UIView *opaqueOverGradientView;
 @property (nonatomic, readonly) PKCardNumber* cardNumber;
 @property (nonatomic, readonly) PKCardExpiry* cardExpiry;
