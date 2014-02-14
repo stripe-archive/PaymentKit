@@ -84,6 +84,7 @@
 {
     STAssertTrue([CNUMBER(@"378282246310005") isValid], @"Detects Amex");
     STAssertTrue([CNUMBER(@"371449635398431") isValid], @"Detects Amex");
+    STAssertTrue([CNUMBER(@"30569309025904") isValid], @"Detects Diners Club");
     STAssertTrue([CNUMBER(@"6011111111111117") isValid], @"Detects Discover");
     STAssertTrue([CNUMBER(@"6011000990139424") isValid], @"Detects Discover");
     STAssertTrue([CNUMBER(@"3530111333300000") isValid], @"Detects JCB");
@@ -96,11 +97,36 @@
     STAssertTrue(![CNUMBER(@"424242424242") isValid], @"Assert fails length test invalid");
 }
 
-- (void)testIsPartiallyValid
+- (void)testIsPartiallyValidWhenGivenValidNumber
 {
-    STAssertTrue([CNUMBER(@"378282246310005") isPartiallyValid], @"Assert fails Luhn invalid");
-    STAssertTrue([CNUMBER(@"424242424242") isPartiallyValid], @"Assert fails length test invalid");
-    STAssertTrue(![CNUMBER(@"3782822463100053") isPartiallyValid], @"Assert fails Luhn invalid");
+    STAssertTrue([CNUMBER(@"378282246310005") isPartiallyValid], @"Detects Amex");
+    STAssertTrue([CNUMBER(@"371449635398431") isPartiallyValid], @"Detects Amex");
+    STAssertTrue([CNUMBER(@"30569309025904") isPartiallyValid], @"Detects Diners Club");
+    STAssertTrue([CNUMBER(@"6011111111111117") isPartiallyValid], @"Detects Discover");
+    STAssertTrue([CNUMBER(@"6011000990139424") isPartiallyValid], @"Detects Discover");
+    STAssertTrue([CNUMBER(@"3530111333300000") isPartiallyValid], @"Detects JCB");
+    STAssertTrue([CNUMBER(@"5555555555554444") isPartiallyValid], @"Detects MasterCard");
+    STAssertTrue([CNUMBER(@"4111111111111111") isPartiallyValid], @"Detects Visa");
+    STAssertTrue([CNUMBER(@"4012888888881881") isPartiallyValid], @"Detects Visa");
+}
+
+- (void)testIsPartiallyValidWhenGivenValidNumberMissingDigits
+{
+    STAssertTrue([CNUMBER(@"3") isPartiallyValid], @"Too short to determine type");    
+    STAssertTrue([CNUMBER(@"411111") isPartiallyValid], @"Visa many digits short");
+    STAssertTrue([CNUMBER(@"37828224631000") isPartiallyValid], @"Amex one digit short");
+    STAssertTrue([CNUMBER(@"3056930902590") isPartiallyValid], @"Diners Club one digit short");
+    STAssertTrue([CNUMBER(@"601111111111111") isPartiallyValid], @"Discover one digit short");
+    STAssertTrue([CNUMBER(@"353011133330000") isPartiallyValid], @"JCB one digit short");
+    STAssertTrue([CNUMBER(@"555555555555444") isPartiallyValid], @"MasterCard one digit short");
+    STAssertTrue([CNUMBER(@"411111111111111") isPartiallyValid], @"Visa one digit short");
+}
+
+- (void)testIsPartiallyValidIsFalseWhenOverMaxDigitLengthForCardType
+{
+    STAssertTrue(![CNUMBER(@"3782822463100053") isPartiallyValid], @"Amex cannot be more than 15 digits");
+    STAssertTrue(![CNUMBER(@"305693090259042") isPartiallyValid], @"Diners Club cannot be more than 14 digits");
+    STAssertTrue(![CNUMBER(@"41111111111111111") isPartiallyValid], @"Visa cannot be more than 16 digits");
 }
 
 @end
