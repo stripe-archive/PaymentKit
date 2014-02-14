@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A160D8018ADCE0C002A84C8 /* STPaymentLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A160D7E18ADCE0C002A84C8 /* STPaymentLocalizable.strings */; };
+		4A160D8118ADCE16002A84C8 /* STPaymentLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A160D7E18ADCE0C002A84C8 /* STPaymentLocalizable.strings */; };
 		4C332B4316FA5297009C782D /* textfield.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C332B4116FA5297009C782D /* textfield.png */; };
 		4C332B4416FA5297009C782D /* textfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C332B4216FA5297009C782D /* textfield@2x.png */; };
 		4C332B4B16FA6240009C782D /* gradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C332B4A16FA6240009C782D /* gradient@2x.png */; };
@@ -65,6 +67,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A160D7F18ADCE0C002A84C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/STPaymentLocalizable.strings; sourceTree = "<group>"; };
 		4C332B4116FA5297009C782D /* textfield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textfield.png; sourceTree = "<group>"; };
 		4C332B4216FA5297009C782D /* textfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield@2x.png"; sourceTree = "<group>"; };
 		4C332B4A16FA6240009C782D /* gradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient@2x.png"; sourceTree = "<group>"; };
@@ -163,6 +166,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A160D7D18ADCE0C002A84C8 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				4A160D7E18ADCE0C002A84C8 /* STPaymentLocalizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		4C332B4516FA529C009C782D /* TextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +301,7 @@
 		FAA360F416C9F21C00049C6F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4A160D7D18ADCE0C002A84C8 /* Localization */,
 				4C332B4516FA529C009C782D /* TextField */,
 				FAA360F516C9F21C00049C6F /* Cards */,
 			);
@@ -406,6 +418,7 @@
 				FAA3610E16C9F21C00049C6F /* diners.png in Resources */,
 				FAA3610F16C9F21C00049C6F /* diners@2x.png in Resources */,
 				FAA3611016C9F21C00049C6F /* discover.png in Resources */,
+				4A160D8018ADCE0C002A84C8 /* STPaymentLocalizable.strings in Resources */,
 				FAA3611116C9F21C00049C6F /* discover@2x.png in Resources */,
 				FAA3611216C9F21C00049C6F /* jcb.png in Resources */,
 				FAA3611316C9F21C00049C6F /* jcb@2x.png in Resources */,
@@ -427,6 +440,7 @@
 			files = (
 				FA6A2F9416C2D6F400915AEB /* InfoPlist.strings in Resources */,
 				FADC4C1D16E1B3080048064A /* PaymentKit Test-Info.plist in Resources */,
+				4A160D8118ADCE16002A84C8 /* STPaymentLocalizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +499,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		4A160D7E18ADCE0C002A84C8 /* STPaymentLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4A160D7F18ADCE0C002A84C8 /* en */,
+			);
+			name = STPaymentLocalizable.strings;
+			sourceTree = "<group>";
+		};
 		FA45AC7916AE350D0003A41D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
