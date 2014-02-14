@@ -37,7 +37,7 @@
 @property IBOutlet PKTextField* cardExpiryField;
 @property IBOutlet PKTextField* cardCVCField;
 @property IBOutlet UIImageView* placeholderView;
-@property id <PKViewDelegate> delegate;
+@property (weak) id <PKViewDelegate> delegate;
 @property (readonly) PKCard* card;
 
 @end
