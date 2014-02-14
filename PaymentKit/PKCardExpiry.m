@@ -91,9 +91,24 @@
 - (BOOL)isValidDate
 {
     if ([self month] <= 0 || [self month] > 12) return NO;
+
+    return [self isValidWithDate:[NSDate date]];
+}
+
+- (BOOL)isValidWithDate:(NSDate *)dateToCompare
+{
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [gregorian components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:dateToCompare];
+    BOOL valid = NO;
     
-    NSDate* now = [NSDate date];
-    return [[self expiryDate] compare:now] == NSOrderedDescending;
+    if (components.year < self.year) {
+        valid = YES;
+    }
+    else if (components.year == self.year)
+    {
+        valid = components.month <= self.month;
+    }
+    return valid;
 }
 
 - (BOOL)isPartiallyValid
@@ -107,17 +122,26 @@
 
 - (NSDate*)expiryDate
 {
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setDay:1];    
-    [comps setMonth:[self month]];
-    [comps setYear:[self year]];
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    [components setDay:1];
+    [components setMonth:[self month]];
+    [components setYear:[self year]];
     
     static NSCalendar *gregorian = nil;
     if (!gregorian) {
         gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     }
 
-    return [gregorian dateFromComponents:comps];
+    // Move to the last day of the month.
+    NSRange monthRange = [gregorian rangeOfUnit:NSCalendarUnitDay
+                                         inUnit:NSCalendarUnitMonth
+                                        forDate:[gregorian dateFromComponents:components]];
+
+    [components setDay:monthRange.length];
+    [components setHour:23];
+    [components setMinute:59];
+    
+    return [gregorian dateFromComponents:components];
 }
 
 - (NSUInteger)month
