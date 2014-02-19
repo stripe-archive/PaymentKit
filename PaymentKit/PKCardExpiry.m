@@ -26,7 +26,6 @@
     }
 
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^(\\d{1,2})?[\\s/]*(\\d{1,4})?" options:0 error:NULL];
-
     NSTextCheckingResult *match = [regex firstMatchInString:string options:0 range:NSMakeRange(0, string.length)];
 
     NSString *monthStr = [NSString string];
@@ -34,12 +33,14 @@
 
     if (match) {
         NSRange monthRange = [match rangeAtIndex:1];
-        if (monthRange.length > 0)
+        if (monthRange.length > 0) {
             monthStr = [string substringWithRange:monthRange];
+        }
 
         NSRange yearRange = [match rangeAtIndex:2];
-        if (yearRange.length > 0)
+        if (yearRange.length > 0) {
             yearStr = [string substringWithRange:yearRange];
+        }
     }
 
     return [self initWithMonth:monthStr year:yearStr];
@@ -47,8 +48,7 @@
 
 - (instancetype)initWithMonth:(NSString *)monthStr year:(NSString *)yearStr
 {
-    self = [super init];
-    if (self) {
+   if (self = [super init]) {
         _month = monthStr;
         _year = yearStr;
 
@@ -145,12 +145,14 @@
 
 - (NSUInteger)month
 {
-    return [_month integerValue];
+    return (NSUInteger) [_month integerValue];
 }
 
 - (NSUInteger)year
 {
-    if (!_year) return 0;
+    if (!_year) {
+        return 0;
+    }
 
     NSString *yearStr = [NSString stringWithString:_year];
 
@@ -166,7 +168,7 @@
         yearStr = [NSString stringWithFormat:@"%@%@", prefix, yearStr];
     }
 
-    return [yearStr integerValue];
+    return (NSUInteger) [yearStr integerValue];
 }
 
 @end

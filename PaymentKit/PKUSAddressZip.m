@@ -12,8 +12,7 @@
 
 - (id)initWithString:(NSString *)string
 {
-    self = [super init];
-    if (self) {
+   if (self = [super init]) {
         // Strip non-digits
         _zip = [string stringByReplacingOccurrencesOfString:@"\\D"
                                                  withString:@""

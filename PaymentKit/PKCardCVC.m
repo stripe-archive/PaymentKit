@@ -20,8 +20,7 @@
 
 - (instancetype)initWithString:(NSString *)string
 {
-    self = [super init];
-    if (self) {
+   if (self = [super init]) {
         // Strip non-digits
         if (string) {
             _cvc = [string stringByReplacingOccurrencesOfString:@"\\D"

@@ -20,8 +20,7 @@
 
 - (instancetype)initWithString:(NSString *)string
 {
-    self = [super init];
-    if (self) {
+   if (self = [super init]) {
         // Strip non-digits
         _number = [string stringByReplacingOccurrencesOfString:@"\\D"
                                                     withString:@""
@@ -33,10 +32,11 @@
 
 - (PKCardType)cardType
 {
-    if (_number.length < 2) return PKCardTypeUnknown;
+    if (_number.length < 2) {
+        return PKCardTypeUnknown;
+    }
 
     NSString *firstChars = [_number substringWithRange:NSMakeRange(0, 2)];
-
     NSInteger range = [firstChars integerValue];
 
     if (range >= 40 && range <= 49) {

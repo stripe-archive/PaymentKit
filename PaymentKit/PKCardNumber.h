@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "PKCardType.h"
+#import "PKComponent.h"
 
-@interface PKCardNumber : NSObject
+@interface PKCardNumber : PKComponent
 
 @property (nonatomic, readonly) PKCardType cardType;
 @property (nonatomic, readonly) NSString *last4;

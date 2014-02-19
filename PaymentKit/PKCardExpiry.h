@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PKComponent.h"
 
-@interface PKCardExpiry : NSObject
+@interface PKCardExpiry : PKComponent
 
 @property (nonatomic, readonly) NSUInteger month;
 @property (nonatomic, readonly) NSUInteger year;
@@ -17,9 +18,7 @@
 
 + (instancetype)cardExpiryWithString:(NSString *)string;
 - (instancetype)initWithString:(NSString *)string;
-- (BOOL)isValid;
 - (BOOL)isValidLength;
 - (BOOL)isValidDate;
-- (BOOL)isPartiallyValid;
 
 @end

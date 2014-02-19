@@ -17,8 +17,7 @@
 
 - (instancetype)initWithString:(NSString *)string
 {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         _zip = [string copy];
     }
     return self;
