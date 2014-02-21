@@ -10,8 +10,19 @@
 
 @class PKTextField;
 
+@protocol PKTextFieldDelegate <UITextFieldDelegate>
+
+@optional
+
+- (void)pkTextFieldDidBackSpaceWhileTextIsEmpty:(PKTextField *)textField;
+
+@end
+
 @interface PKTextField : UITextField
 
 + (NSString*)textByRemovingUselessSpacesFromString:(NSString*)string;
 
+@property (nonatomic, weak) id<PKTextFieldDelegate> delegate;
+
 @end
+
