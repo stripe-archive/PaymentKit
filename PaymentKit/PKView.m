@@ -221,8 +221,26 @@
 {
     _isInitialState = NO;
 
-    CGSize cardNumberSize = [self.cardNumber.formattedString sizeWithFont:DefaultBoldFont];
-    CGSize lastGroupSize = [self.cardNumber.lastGroup sizeWithFont:DefaultBoldFont];
+    CGSize cardNumberSize;
+    CGSize lastGroupSize;
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
+    if ([self.cardNumber.formattedString respondsToSelector:@selector(sizeWithAttributes:)]) {
+        NSDictionary *attributes = @{NSFontAttributeName: DefaultBoldFont};
+
+        cardNumberSize = [self.cardNumber.formattedString sizeWithAttributes:attributes];
+        lastGroupSize = [self.cardNumber.lastGroup sizeWithAttributes:attributes];
+    } else {
+        cardNumberSize = [self.cardNumber.formattedString sizeWithFont:DefaultBoldFont];
+        lastGroupSize = [self.cardNumber.lastGroup sizeWithFont:DefaultBoldFont];
+    }
+#else
+    NSDictionary *attributes = @{NSFontAttributeName: DefaultBoldFont};
+
+    cardNumberSize = [self.cardNumber.formattedString sizeWithAttributes:attributes];
+    lastGroupSize = [self.cardNumber.lastGroup sizeWithAttributes:attributes];
+#endif
+
     CGFloat frameX = self.cardNumberField.frame.origin.x - (cardNumberSize.width - lastGroupSize.width);
 
     [UIView animateWithDuration:0.05 delay:0.35 options:UIViewAnimationOptionCurveEaseInOut
