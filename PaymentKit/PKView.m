@@ -22,7 +22,7 @@
 #import "PKView.h"
 #import "PKTextField.h"
 
-@interface PKView () <UITextFieldDelegate> {
+@interface PKView () <PKTextFieldDelegate> {
 @private
     BOOL _isInitialState;
     BOOL _isValidState;
