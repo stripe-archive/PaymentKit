@@ -65,7 +65,6 @@
 		FAA3611816C9F21C00049C6F /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610616C9F21C00049C6F /* visa.png */; };
 		FAA3611916C9F21C00049C6F /* visa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA3610716C9F21C00049C6F /* visa@2x.png */; };
 		FAADE6CF16BC44D9006FF4D1 /* PKAddressZip.m in Sources */ = {isa = PBXBuildFile; fileRef = FAADE6CE16BC44D9006FF4D1 /* PKAddressZip.m */; };
-		FADC4C1D16E1B3080048064A /* PaymentKit Test-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA6A2F9116C2D6F400915AEB /* PaymentKit Test-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -173,10 +172,10 @@
 		347D15CA8C87A3417C8F0DA4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				347D118D23A60619342D3892 /* PKView.m */,
 				347D1725B7473FB930E67F3E /* PKView.h */,
-				347D1979110780A062468336 /* PKTextField.m */,
+				347D118D23A60619342D3892 /* PKView.m */,
 				347D124F084FD525A2870677 /* PKTextField.h */,
+				347D1979110780A062468336 /* PKTextField.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -391,7 +390,8 @@
 		FA45AC6316AE350D0003A41D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastTestingUpgradeCheck = 0510;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Stripe;
 			};
 			buildConfigurationList = FA45AC6616AE350D0003A41D /* Build configuration list for PBXProject "PaymentKit Example" */;
@@ -453,7 +453,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA6A2F9416C2D6F400915AEB /* InfoPlist.strings in Resources */,
-				FADC4C1D16E1B3080048064A /* PaymentKit Test-Info.plist in Resources */,
 				4A160D8118ADCE16002A84C8 /* STPaymentLocalizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
