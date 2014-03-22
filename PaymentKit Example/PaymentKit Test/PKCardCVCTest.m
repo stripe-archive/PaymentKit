@@ -12,16 +12,6 @@
 
 @implementation PKCardCVCTest
 
-//@property (readonly) NSString* string;
-//
-//+ (id)cardCVCWithString:(NSString *)string;
-//- (id)initWithString:(NSString *)string;
-//- (NSString*)string;
-//- (BOOL)isValid;
-//- (BOOL)isValidWithType:(PKCardType)type;
-//- (BOOL)isPartiallyValid;
-//- (BOOL)isPartiallyValidWithType:(PKCardType)type;
-
 - (void) testStripsNonIntegers
 {
     

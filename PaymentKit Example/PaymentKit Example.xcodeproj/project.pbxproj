@@ -36,7 +36,6 @@
 		FA6A2F8D16C2D6F400915AEB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA45AC7016AE350D0003A41D /* UIKit.framework */; };
 		FA6A2F8E16C2D6F400915AEB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA45AC7216AE350D0003A41D /* Foundation.framework */; };
 		FA6A2F9416C2D6F400915AEB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA6A2F9216C2D6F400915AEB /* InfoPlist.strings */; };
-		FA6A2F9716C2D6F400915AEB /* PKTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6A2F9616C2D6F400915AEB /* PKTest.m */; };
 		FA6A2F9E16C2D89600915AEB /* PKCardNumberTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6A2F9D16C2D89600915AEB /* PKCardNumberTest.m */; };
 		FA6A2F9F16C2D9F000915AEB /* PKCardNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = FA45ACA316AF1EE80003A41D /* PKCardNumber.m */; };
 		FA6A2FA216C2E00E00915AEB /* PKCardCVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6A2FA116C2E00E00915AEB /* PKCardCVCTest.m */; };
@@ -108,8 +107,6 @@
 		FA6A2F8A16C2D6F400915AEB /* PaymentKit Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PaymentKit Test.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6A2F9116C2D6F400915AEB /* PaymentKit Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PaymentKit Test-Info.plist"; sourceTree = "<group>"; };
 		FA6A2F9316C2D6F400915AEB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
-		FA6A2F9516C2D6F400915AEB /* PKTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PKTest.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		FA6A2F9616C2D6F400915AEB /* PKTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PKTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		FA6A2F9816C2D6F400915AEB /* PaymentKit Test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "PaymentKit Test-Prefix.pch"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		FA6A2F9C16C2D89600915AEB /* PKCardNumberTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PKCardNumberTest.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		FA6A2F9D16C2D89600915AEB /* PKCardNumberTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PKCardNumberTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -286,8 +283,6 @@
 		FA6A2F8F16C2D6F400915AEB /* PaymentKit Test */ = {
 			isa = PBXGroup;
 			children = (
-				FA6A2F9516C2D6F400915AEB /* PKTest.h */,
-				FA6A2F9616C2D6F400915AEB /* PKTest.m */,
 				FA6A2F9016C2D6F400915AEB /* Supporting Files */,
 				FA6A2F9C16C2D89600915AEB /* PKCardNumberTest.h */,
 				FA6A2F9D16C2D89600915AEB /* PKCardNumberTest.m */,
@@ -498,7 +493,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA6A2F9716C2D6F400915AEB /* PKTest.m in Sources */,
 				FA6A2F9E16C2D89600915AEB /* PKCardNumberTest.m in Sources */,
 				FA6A2F9F16C2D9F000915AEB /* PKCardNumber.m in Sources */,
 				FA6A2FA216C2E00E00915AEB /* PKCardCVCTest.m in Sources */,

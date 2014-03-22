@@ -19,18 +19,6 @@
 
 @implementation PKCardExpiryTest
 
-//@property (readonly) NSUInteger month;
-//@property (readonly) NSUInteger year;
-//@property (readonly) NSString* formattedString;
-//@property (readonly) NSString* formattedStringWithTrail;
-//
-//+ (id)cardExpiryWithString:(NSString *)string;
-//- (id)initWithString:(NSString *)string;
-//- (BOOL)isValid;
-//- (BOOL)isValidLength;
-//- (BOOL)isValidDate;
-//- (BOOL)isPartiallyValid;
-
 - (void)testFromString
 {
     XCTAssertEqual([CEXPIRY(@"01") month], (NSUInteger) 1, @"Strips month");
