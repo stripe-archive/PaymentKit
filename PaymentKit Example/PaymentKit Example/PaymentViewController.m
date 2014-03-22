@@ -25,7 +25,7 @@
     
     self.title = @"Change Card";
     
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:nil target:self action:@selector(save:)];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(save:)];
     saveButton.enabled = NO;
     self.navigationItem.rightBarButtonItem = saveButton;
     
