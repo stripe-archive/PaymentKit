@@ -33,11 +33,11 @@
 
 - (void)testFromString
 {
-    STAssertEquals([CEXPIRY(@"01") month], 1u, @"Strips month");
-    STAssertEquals([CEXPIRY(@"05/") month], 5u, @"Strips month");
+    STAssertEquals([CEXPIRY(@"01") month], (NSUInteger) 1, @"Strips month");
+    STAssertEquals([CEXPIRY(@"05/") month], (NSUInteger) 5, @"Strips month");
     
-    STAssertEquals([CEXPIRY(@"03 / 2020") year], 2020u, @"Strips year");
-    STAssertEquals([CEXPIRY(@"03/20") year], 2020u, @"Strips year");
+    STAssertEquals([CEXPIRY(@"03 / 2020") year], (NSUInteger) 2020, @"Strips year");
+    STAssertEquals([CEXPIRY(@"03/20") year], (NSUInteger) 2020, @"Strips year");
 }
 
 - (void)testFormattedString
