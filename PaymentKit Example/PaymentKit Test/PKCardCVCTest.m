@@ -25,32 +25,32 @@
 - (void) testStripsNonIntegers
 {
     
-    STAssertEqualObjects([CCVC(@"123") string], @"123", @"Strips non integers");
-    STAssertEqualObjects([CCVC(@"12d3") string], @"123", @"Strips non integers");
+    XCTAssertEqualObjects([CCVC(@"123") string], @"123", @"Strips non integers");
+    XCTAssertEqualObjects([CCVC(@"12d3") string], @"123", @"Strips non integers");
 }
 
 - (void) testIsValid
 {
-    STAssertTrue([CCVC(@"123") isValid], @"Test is valid");
-    STAssertTrue(![CCVC(@"12334") isValid], @"Test is valid");
-    STAssertTrue(![CCVC(@"34") isValid], @"Test is valid");
+    XCTAssertTrue([CCVC(@"123") isValid], @"Test is valid");
+    XCTAssertTrue(![CCVC(@"12334") isValid], @"Test is valid");
+    XCTAssertTrue(![CCVC(@"34") isValid], @"Test is valid");
 }
 
 - (void) testIsPartiallyValid
 {
-    STAssertTrue([CCVC(@"123") isPartiallyValid], @"Test is valid");
-    STAssertTrue(![CCVC(@"12334") isPartiallyValid], @"Test is valid");
-    STAssertTrue([CCVC(@"1234") isPartiallyValid], @"Test is valid");
-    STAssertTrue([CCVC(@"34")isPartiallyValid], @"Test is valid");
+    XCTAssertTrue([CCVC(@"123") isPartiallyValid], @"Test is valid");
+    XCTAssertTrue(![CCVC(@"12334") isPartiallyValid], @"Test is valid");
+    XCTAssertTrue([CCVC(@"1234") isPartiallyValid], @"Test is valid");
+    XCTAssertTrue([CCVC(@"34")isPartiallyValid], @"Test is valid");
 }
 
 - (void) testIsPartiallyValidWithType
 {
-    STAssertTrue([CCVC(@"123") isPartiallyValidWithType:PKCardTypeVisa], @"Test is valid");
-    STAssertTrue(![CCVC(@"1234") isPartiallyValidWithType:PKCardTypeVisa], @"Test is valid");
+    XCTAssertTrue([CCVC(@"123") isPartiallyValidWithType:PKCardTypeVisa], @"Test is valid");
+    XCTAssertTrue(![CCVC(@"1234") isPartiallyValidWithType:PKCardTypeVisa], @"Test is valid");
 
-    STAssertTrue([CCVC(@"123") isPartiallyValidWithType:PKCardTypeAmex], @"Test is valid");
-    STAssertTrue([CCVC(@"1234") isPartiallyValidWithType:PKCardTypeAmex], @"Test is valid");
+    XCTAssertTrue([CCVC(@"123") isPartiallyValidWithType:PKCardTypeAmex], @"Test is valid");
+    XCTAssertTrue([CCVC(@"1234") isPartiallyValidWithType:PKCardTypeAmex], @"Test is valid");
 }
 
 @end
