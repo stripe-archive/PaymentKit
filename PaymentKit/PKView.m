@@ -141,7 +141,7 @@
 {
     self.cardExpiryField = [[PKTextField alloc] initWithFrame:CGRectMake(kPKViewCardExpiryFieldStartX, 0, 60, 20)];
     self.cardExpiryField.delegate = self;
-    self.cardExpiryField.placeholder = NSLocalizedStringWithDefaultValue(@"placeholder.card_expiry", @"STPaymentLocalizable", [NSBundle mainBundle], @"MM/DD", nil);
+    self.cardExpiryField.placeholder = NSLocalizedStringWithDefaultValue(@"placeholder.card_expiry", @"STPaymentLocalizable", [NSBundle mainBundle], @"MM/YY", nil);
     self.cardExpiryField.keyboardType = UIKeyboardTypeNumberPad;
     self.cardExpiryField.textColor = DarkGreyColor;
     self.cardExpiryField.font = DefaultBoldFont;
