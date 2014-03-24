@@ -1,5 +1,4 @@
-1.0.5 (2014-03-24)
-==================
+=== 1.0.5 (2014-03-24)
 
 - Localization defaults are now provided if you don't include the file (fixes the placeholder.card_number issue).
 - The strings localization file is now PaymentKit.strings (but STPaymentLocalizable.strings is still supported).
@@ -7,7 +6,7 @@
 - Added changelog.
 
 1.0.4 (2014-03-21)
-==================
+===
 
 - The included example now supports iOS 7.
 - Fixed: some tests would fail in 64-bit mode.
@@ -15,7 +14,7 @@
 - Removed some dead code.
 
 1.0.3 (2014-03-21)
-==================
+===
 
 - Added the ability to localize the placeholder text.
 - Added the 'PKComponent' superclass to make dealing with card components (number, cvc, expiry, zip) easier.
@@ -28,4 +27,4 @@
 - Fixed: the current month couldn't be used as an expiry.
 - Lots of general code modernization and cleanup.
 
-Special thanks to: Ray Lillywhite, Andrii Zhytskyi, Simon Blommegard, Tyler Stromberg, Klaas Pieter Annemam, Micah Hainline, and Nate.
+**Special thanks to:** Ray Lillywhite, Andrii Zhytskyi, Simon Blommegard, Tyler Stromberg, Klaas Pieter Annemam, Micah Hainline, and Nate.
