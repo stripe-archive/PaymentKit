@@ -98,6 +98,15 @@ That's all! No further reading is required, unless you want more flexibility by 
 
 Included are a number of `UITextFieldDelegate` delegates: `PKCardCVCDelegate`, `PKCardExpiryDelegate` and `PKCardNumberDelegate`. You can set these as the delegates of `UITextField` inputs, which ensures that input is limited and formatted.
 
+## Localization
+
+You can localize the placeholders shown in the form by adding a `PaymentKit.strings` file to your project:
+
+    "placeholder.card_number" = "1234 5678 9012 3456";
+    "placeholder.card_expiry" = "MM/YY";
+    "placeholder.card_cvc" = "CVC";
+
+
 ## PKCardNumber
 
 #### `+ (id) cardNumberWithString:(NSString *)string`

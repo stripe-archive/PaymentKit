@@ -10,8 +10,6 @@
 		347D10220CD2551B2976ADBA /* PKComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D1B3599CFA227F6AB7FCA /* PKComponent.m */; };
 		347D16FCD9EB38A658D4B045 /* PKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D1979110780A062468336 /* PKTextField.m */; };
 		347D1C9D79EE33CD287B94EE /* PKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D118D23A60619342D3892 /* PKView.m */; };
-		4A160D8018ADCE0C002A84C8 /* STPaymentLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A160D7E18ADCE0C002A84C8 /* STPaymentLocalizable.strings */; };
-		4A160D8118ADCE16002A84C8 /* STPaymentLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A160D7E18ADCE0C002A84C8 /* STPaymentLocalizable.strings */; };
 		4A83384818B53C330035888A /* PKComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D1B3599CFA227F6AB7FCA /* PKComponent.m */; };
 		4C332B4316FA5297009C782D /* textfield.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C332B4116FA5297009C782D /* textfield.png */; };
 		4C332B4416FA5297009C782D /* textfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C332B4216FA5297009C782D /* textfield@2x.png */; };
@@ -72,7 +70,6 @@
 		347D1725B7473FB930E67F3E /* PKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKView.h; sourceTree = "<group>"; };
 		347D1979110780A062468336 /* PKTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTextField.m; sourceTree = "<group>"; };
 		347D1B3599CFA227F6AB7FCA /* PKComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKComponent.m; sourceTree = "<group>"; };
-		4A160D7F18ADCE0C002A84C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/STPaymentLocalizable.strings; sourceTree = "<group>"; };
 		4A8CD3EB18DD327700796758 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		4C332B4116FA5297009C782D /* textfield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textfield.png; sourceTree = "<group>"; };
 		4C332B4216FA5297009C782D /* textfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield@2x.png"; sourceTree = "<group>"; };
@@ -173,14 +170,6 @@
 				347D1979110780A062468336 /* PKTextField.m */,
 			);
 			name = UI;
-			sourceTree = "<group>";
-		};
-		4A160D7D18ADCE0C002A84C8 /* Localization */ = {
-			isa = PBXGroup;
-			children = (
-				4A160D7E18ADCE0C002A84C8 /* STPaymentLocalizable.strings */,
-			);
-			path = Localization;
 			sourceTree = "<group>";
 		};
 		4C332B4516FA529C009C782D /* TextField */ = {
@@ -307,7 +296,6 @@
 		FAA360F416C9F21C00049C6F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4A160D7D18ADCE0C002A84C8 /* Localization */,
 				4C332B4516FA529C009C782D /* TextField */,
 				FAA360F516C9F21C00049C6F /* Cards */,
 			);
@@ -425,7 +413,6 @@
 				FAA3610E16C9F21C00049C6F /* diners.png in Resources */,
 				FAA3610F16C9F21C00049C6F /* diners@2x.png in Resources */,
 				FAA3611016C9F21C00049C6F /* discover.png in Resources */,
-				4A160D8018ADCE0C002A84C8 /* STPaymentLocalizable.strings in Resources */,
 				FAA3611116C9F21C00049C6F /* discover@2x.png in Resources */,
 				FAA3611216C9F21C00049C6F /* jcb.png in Resources */,
 				FAA3611316C9F21C00049C6F /* jcb@2x.png in Resources */,
@@ -446,7 +433,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA6A2F9416C2D6F400915AEB /* InfoPlist.strings in Resources */,
-				4A160D8118ADCE16002A84C8 /* STPaymentLocalizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,14 +492,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4A160D7E18ADCE0C002A84C8 /* STPaymentLocalizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4A160D7F18ADCE0C002A84C8 /* en */,
-			);
-			name = STPaymentLocalizable.strings;
-			sourceTree = "<group>";
-		};
 		FA45AC7916AE350D0003A41D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
