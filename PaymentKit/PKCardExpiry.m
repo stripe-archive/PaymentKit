@@ -159,7 +159,9 @@
     if (yearStr.length == 2) {
         static NSDateFormatter *formatter = nil;
         if (!formatter) {
+            NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
             formatter = [[NSDateFormatter alloc] init];
+            [formatter setCalendar:gregorian];
             [formatter setDateFormat:@"yyyy"];
         }
 
