@@ -21,10 +21,24 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.text = kPKTextFieldSpaceChar;
-        [self addObserver:self forKeyPath:@"text" options:0 context:NULL];
+        [self setup];
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if(self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (void)setup
+{
+    self.text = kPKTextFieldSpaceChar;
+    [self addObserver:self forKeyPath:@"text" options:0 context:NULL];
 }
 
 - (void)dealloc
