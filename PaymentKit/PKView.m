@@ -231,8 +231,6 @@ static NSString *const kPKOldLocalizedStringsTableName = @"STPaymentLocalizable"
                              [self.cardCVCField removeFromSuperview];
                          }];
     }
-
-    [self.cardNumberField becomeFirstResponder];
 }
 
 - (void)stateMeta
@@ -284,7 +282,6 @@ static NSString *const kPKOldLocalizedStringsTableName = @"STPaymentLocalizable"
     [self addSubview:self.placeholderView];
     [self.innerView addSubview:self.cardExpiryField];
     [self.innerView addSubview:self.cardCVCField];
-    [self.cardExpiryField becomeFirstResponder];
 }
 
 - (void)stateCardCVC
@@ -307,6 +304,34 @@ static NSString *const kPKOldLocalizedStringsTableName = @"STPaymentLocalizable"
     card.expYear = [self.cardExpiry year];
 
     return card;
+}
+
+- (void)setCard:(PKCard *)card
+{
+    PKCardNumber *number = [PKCardNumber cardNumberWithString:card.number];
+    
+    if (![number isValid]){
+        return;
+    }
+    
+    self.cardNumberField.text = [number formattedString];
+    [self stateMeta];
+    
+    if (card.cvc){
+        PKCardCVC *cvc = [PKCardCVC cardCVCWithString:card.cvc];
+        
+        if ([cvc isValid]){
+            self.cardCVCField.text = card.cvc;
+        }
+    }
+    
+    PKCardExpiry *expiry = [[PKCardExpiry alloc]initWithExpMonth:card.expMonth expYear:card.expYear];
+    
+    if ([expiry isValid]){
+        self.cardExpiryField.text = expiry.formattedString;
+    }
+    
+    [self checkValid];
 }
 
 - (void)setPlaceholderViewImage:(UIImage *)image
@@ -419,7 +444,11 @@ static NSString *const kPKOldLocalizedStringsTableName = @"STPaymentLocalizable"
     if (textField == self.cardCVCField)
         [self.cardExpiryField becomeFirstResponder];
     else if (textField == self.cardExpiryField)
+    {
         [self stateCardNumber];
+        [self.cardNumberField becomeFirstResponder];
+    }
+    
 }
 
 - (BOOL)cardNumberFieldShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString
@@ -442,6 +471,7 @@ static NSString *const kPKOldLocalizedStringsTableName = @"STPaymentLocalizable"
     if ([cardNumber isValid]) {
         [self textFieldIsValid:self.cardNumberField];
         [self stateMeta];
+        [self.cardExpiryField becomeFirstResponder];
 
     } else if ([cardNumber isValidLength] && ![cardNumber isValidLuhn]) {
         [self textFieldIsInvalid:self.cardNumberField withErrors:YES];
