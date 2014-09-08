@@ -46,17 +46,28 @@
     return [self initWithMonth:monthStr year:yearStr];
 }
 
+-(instancetype)initWithExpMonth:(NSUInteger)month expYear:(NSUInteger)year
+{
+    NSString *monthString = [NSString stringWithFormat:@"%u", month];
+    NSString *yearString = [NSString stringWithFormat:@"%u", year];
+    if (monthString.length == 1) {
+         monthString = [NSString stringWithFormat:@"0%@", monthString];
+    }
+    
+    return [self initWithMonth:monthString year:yearString];
+}
+
 - (instancetype)initWithMonth:(NSString *)monthStr year:(NSString *)yearStr
 {
    if (self = [super init]) {
         _month = monthStr;
         _year = yearStr;
+       if (_month.length == 1) {
+           if (!([_month isEqualToString:@"0"] || [_month isEqualToString:@"1"])) {
+               _month = [NSString stringWithFormat:@"0%@", _month];
+           }
+       }
 
-        if (_month.length == 1) {
-            if (!([_month isEqualToString:@"0"] || [_month isEqualToString:@"1"])) {
-                _month = [NSString stringWithFormat:@"0%@", _month];
-            }
-        }
     }
     return self;
 }
