@@ -1,14 +1,14 @@
 //
 //  ViewController.h
-//  PKPayment Example
+//  PTKPayment Example
 //
 //  Created by Alex MacCaw on 1/21/13.
 //  Copyright (c) 2013 Stripe. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "PKView.h"
+#import "PTKView.h"
 
-@interface PaymentViewController : UIViewController <PKViewDelegate>
+@interface PaymentViewController : UIViewController <PTKViewDelegate>
 
 @end

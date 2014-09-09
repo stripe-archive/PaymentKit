@@ -1,28 +1,28 @@
 //
-//  PKCardNumberTest.m
-//  PKPayment Example
+//  PTKCardNumberTest.m
+//  PTKPayment Example
 //
 //  Created by Alex MacCaw on 2/6/13.
 //  Copyright (c) 2013 Stripe. All rights reserved.
 //
 
-#import "PKCardNumberTest.h"
-#import "PKCardNumber.h"
-#define CNUMBER(string) [PKCardNumber cardNumberWithString:string]
+#import "PTKCardNumberTest.h"
+#import "PTKCardNumber.h"
+#define CNUMBER(string) [PTKCardNumber cardNumberWithString:string]
 
-@implementation PKCardNumberTest
+@implementation PTKCardNumberTest
 
 - (void)testCardType
 {
-    XCTAssertEqual([CNUMBER(@"378282246310005") cardType], PKCardTypeAmex, @"Detects Amex");
-    XCTAssertEqual([CNUMBER(@"371449635398431") cardType], PKCardTypeAmex, @"Detects Amex");
-    XCTAssertEqual([CNUMBER(@"30569309025904") cardType], PKCardTypeDinersClub, @"Detects Diners Club");
-    XCTAssertEqual([CNUMBER(@"6011111111111117") cardType], PKCardTypeDiscover, @"Detects Discover");
-    XCTAssertEqual([CNUMBER(@"6011000990139424") cardType], PKCardTypeDiscover, @"Detects Discover");
-    XCTAssertEqual([CNUMBER(@"3530111333300000") cardType], PKCardTypeJCB, @"Detects JCB");
-    XCTAssertEqual([CNUMBER(@"5555555555554444") cardType], PKCardTypeMasterCard, @"Detects MasterCard");
-    XCTAssertEqual([CNUMBER(@"4111111111111111") cardType], PKCardTypeVisa, @"Detects Visa");
-    XCTAssertEqual([CNUMBER(@"4012888888881881") cardType], PKCardTypeVisa, @"Detects Visa");
+    XCTAssertEqual([CNUMBER(@"378282246310005") cardType], PTKCardTypeAmex, @"Detects Amex");
+    XCTAssertEqual([CNUMBER(@"371449635398431") cardType], PTKCardTypeAmex, @"Detects Amex");
+    XCTAssertEqual([CNUMBER(@"30569309025904") cardType], PTKCardTypeDinersClub, @"Detects Diners Club");
+    XCTAssertEqual([CNUMBER(@"6011111111111117") cardType], PTKCardTypeDiscover, @"Detects Discover");
+    XCTAssertEqual([CNUMBER(@"6011000990139424") cardType], PTKCardTypeDiscover, @"Detects Discover");
+    XCTAssertEqual([CNUMBER(@"3530111333300000") cardType], PTKCardTypeJCB, @"Detects JCB");
+    XCTAssertEqual([CNUMBER(@"5555555555554444") cardType], PTKCardTypeMasterCard, @"Detects MasterCard");
+    XCTAssertEqual([CNUMBER(@"4111111111111111") cardType], PTKCardTypeVisa, @"Detects Visa");
+    XCTAssertEqual([CNUMBER(@"4012888888881881") cardType], PTKCardTypeVisa, @"Detects Visa");
 }
 
 - (void)testLast4

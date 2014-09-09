@@ -2,7 +2,7 @@
 
 PaymentKit is a utility library for writing payment forms in iOS apps.
 
-Just add `PKView` to your application, and it'll take care accepting card numbers, expiry, cvc and zip.
+Just add `PTKView` to your application, and it'll take care accepting card numbers, expiry, cvc and zip.
 Alternatively, we've provided a bunch of classes that you can use yourself to add formatting, validation and restricting input of `UITextField`s.
 
 In short, PaymentKit should greatly simplify your life when dealing with iOS payments.
@@ -36,28 +36,28 @@ In short, PaymentKit should greatly simplify your life when dealing with iOS pay
 **2)** Create a new `ViewController`, for example `PaymentViewController`.
 
     #import <UIKit/UIKit.h>
-    #import "PKView.h"
+    #import "PTKView.h"
 
-    @interface PaymentViewController : UIViewController <PKViewDelegate>
-    @property IBOutlet PKView* paymentView;
+    @interface PaymentViewController : UIViewController <PTKViewDelegate>
+    @property IBOutlet PTKView* paymentView;
     @end
 
-Notice we're importing `PKView.h`, the class conforms to `PKViewDelegate`, and lastly we have a `paymentView` property of type `PKView`.
+Notice we're importing `PTKView.h`, the class conforms to `PTKViewDelegate`, and lastly we have a `paymentView` property of type `PTKView`.
 
-**3)** Instantiate and add `PKView`. We recommend you use the same frame.
+**3)** Instantiate and add `PTKView`. We recommend you use the same frame.
 
     - (void)viewDidLoad
     {
         [super viewDidLoad];
 
-        self.paymentView = [[PKView alloc] initWithFrame:CGRectMake(15, 25, 290, 55)];
+        self.paymentView = [[PTKView alloc] initWithFrame:CGRectMake(15, 25, 290, 55)];
         self.paymentView.delegate = self;
         [self.view addSubview:self.paymentView];
     }
 
-**4)** Implement `PKViewDelegate` method `paymentView:withCard:isValid:`. This gets passed a `PKCard` instance, and a `BOOL` indicating whether the card is valid. You can enable or disable a navigational button depending on the value of `valid`, for example:
+**4)** Implement `PTKViewDelegate` method `paymentView:withCard:isValid:`. This gets passed a `PTKCard` instance, and a `BOOL` indicating whether the card is valid. You can enable or disable a navigational button depending on the value of `valid`, for example:
 
-    - (void) paymentView:(PKView*)paymentView withCard:(PKCard *)card isValid:(BOOL)valid
+    - (void) paymentView:(PTKView*)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid
     {
         NSLog(@"Card number: %@", card.number);
         NSLog(@"Card expiry: %lu/%lu", (unsigned long)card.expMonth, (unsigned long)card.expYear);
@@ -76,27 +76,27 @@ That's all! No further reading is required, unless you want more flexibility by 
 ## API Example
 
     // Format a card number
-    [[PKCardNumber cardNumberWithString:@"4242424242424242"] formattedString]; //=> '4242 4242 4242 4242'
-    [[PKCardNumber cardNumberWithString:@"4242424242"] formattedString]; //=> '4242 4242 42'
+    [[PTKCardNumber cardNumberWithString:@"4242424242424242"] formattedString]; //=> '4242 4242 4242 4242'
+    [[PTKCardNumber cardNumberWithString:@"4242424242"] formattedString]; //=> '4242 4242 42'
 
     // Amex support
-    [[PKCardNumber cardNumberWithString:@"378282246310005"] formattedString]; //=> '3782 822463 10005'
-    [[PKCardNumber cardNumberWithString:@"378282246310005"] cardType] == PKCardTypeAmex; //=> YES
+    [[PTKCardNumber cardNumberWithString:@"378282246310005"] formattedString]; //=> '3782 822463 10005'
+    [[PTKCardNumber cardNumberWithString:@"378282246310005"] cardType] == PTKCardTypeAmex; //=> YES
 
     // Check a card number is valid using the Luhn algorithm
-    [[PKCardNumber cardNumberWithString:@"4242424242424242"] isValid]; //=> YES
-    [[PKCardNumber cardNumberWithString:@"4242424242424243"] isValid]; //=> NO
+    [[PTKCardNumber cardNumberWithString:@"4242424242424242"] isValid]; //=> YES
+    [[PTKCardNumber cardNumberWithString:@"4242424242424243"] isValid]; //=> NO
 
     // Check to see if a card expiry is valid
-    [[PKCardExpiry cardExpiryWithString:@"05 / 20"] isValid]; //=> YES
-    [[PKCardExpiry cardExpiryWithString:@"05 / 02"] isValid]; //=> NO
+    [[PTKCardExpiry cardExpiryWithString:@"05 / 20"] isValid]; //=> YES
+    [[PTKCardExpiry cardExpiryWithString:@"05 / 02"] isValid]; //=> NO
 
     // Return a card expiry's month
-    [[PKCardExpiry cardExpiryWithString:@"05 / 02"] month]; //=> 5
+    [[PTKCardExpiry cardExpiryWithString:@"05 / 02"] month]; //=> 5
 
 ## API Delegates
 
-Included are a number of `UITextFieldDelegate` delegates: `PKCardCVCDelegate`, `PKCardExpiryDelegate` and `PKCardNumberDelegate`. You can set these as the delegates of `UITextField` inputs, which ensures that input is limited and formatted.
+Included are a number of `UITextFieldDelegate` delegates: `PTKCardCVCDelegate`, `PTKCardExpiryDelegate` and `PTKCardNumberDelegate`. You can set these as the delegates of `UITextField` inputs, which ensures that input is limited and formatted.
 
 ## Localization
 
@@ -107,34 +107,34 @@ You can localize the placeholders shown in the form by adding a `PaymentKit.stri
     "placeholder.card_cvc" = "CVC";
 
 
-## PKCardNumber
+## PTKCardNumber
 
 #### `+ (id) cardNumberWithString:(NSString *)string`
 #### `- (id) initWithString:(NSString *)string`
 
-Create a `PKCardNumber` object, passing a `NSString` representing the card number. For example:
+Create a `PTKCardNumber` object, passing a `NSString` representing the card number. For example:
 
-    PKCardNumber* cardNumber = [PKCardNumber cardNumberWithString:@"4242424242424242"];
+    PTKCardNumber* cardNumber = [PTKCardNumber cardNumberWithString:@"4242424242424242"];
 
-#### `- (PKCardType)cardType`
+#### `- (PTKCardType)cardType`
 
-Returns a `PKCardType` representing the card type (Visa, Amex etc).
+Returns a `PTKCardType` representing the card type (Visa, Amex etc).
 
-    PKCardType cardType = [[PKCardNumber cardNumberWithString:@"4242424242424242"] cardType];
+    PTKCardType cardType = [[PTKCardNumber cardNumberWithString:@"4242424242424242"] cardType];
 
-    if (cardType == PKCardTypeAmex) {
+    if (cardType == PTKCardTypeAmex) {
 
     }
 
 Available types are:
 
-    PKCardTypeVisa
-    PKCardTypeMasterCard
-    PKCardTypeAmex
-    PKCardTypeDiscover
-    PKCardTypeJCB
-    PKCardTypeDinersClub
-    PKCardTypeUnknown
+    PTKCardTypeVisa
+    PTKCardTypeMasterCard
+    PTKCardTypeAmex
+    PTKCardTypeDiscover
+    PTKCardTypeJCB
+    PTKCardTypeDinersClub
+    PTKCardTypeUnknown
 
 #### `- (NSString *)string`
 
@@ -144,7 +144,7 @@ Returns the card number as a string.
 
 Returns a formatted card number, in the same space format as it appears on the card.
 
-    NSString* number = [[PKCardNumber cardNumberWithString:@"4242424242424242"] formattedString];
+    NSString* number = [[PTKCardNumber cardNumberWithString:@"4242424242424242"] formattedString];
     number //=> '4242 4242 4242 4242'
 
 #### `- (NSString *)formattedStringWithTrail`
@@ -167,14 +167,14 @@ Returns a `BOOL` indicating whether the number passed a [Luhn check](http://en.w
 
 Returns a `BOOL` indicating whether the number is too long or not.
 
-## PKCardCVC
+## PTKCardCVC
 
 #### `+ (id) cardCVCWithString:(NSString *)string`
 #### `- (id) initWithString:(NSString *)string`
 
-Returns a `PKCardCVC` instance, representing the card CVC. For example:
+Returns a `PTKCardCVC` instance, representing the card CVC. For example:
 
-    PKCardCVC* cardCVC = [PKCardCVC cardCVCWithString:@"123"];
+    PTKCardCVC* cardCVC = [PTKCardCVC cardCVCWithString:@"123"];
 
 #### `- (NSString*)string`
 
@@ -184,7 +184,7 @@ Returns the CVC as a string.
 
 Returns a `BOOL` indicating whether the CVC is valid universally.
 
-#### `- (BOOL)isValidWithType:(PKCardType)type`
+#### `- (BOOL)isValidWithType:(PTKCardType)type`
 
 Returns a `BOOL` indicating whether the CVC is valid for a particular card type.
 
@@ -192,20 +192,20 @@ Returns a `BOOL` indicating whether the CVC is valid for a particular card type.
 
 Returns a `BOOL` indicating whether the cvc is too long or not.
 
-## PKCardExpiry
+## PTKCardExpiry
 
 #### `+ (id)cardExpiryWithString:(NSString *)string`
 #### `- (id)initWithString:(NSString *)string`
 
-Create a `PKCardExpiry` object, passing a `NSString` representing the card expiry. For example:
+Create a `PTKCardExpiry` object, passing a `NSString` representing the card expiry. For example:
 
-    PKCardExpiry* cardExpiry = [PKCardExpiry cardExpiryWithString:@"10 / 2015"];
+    PTKCardExpiry* cardExpiry = [PTKCardExpiry cardExpiryWithString:@"10 / 2015"];
 
 #### `- (NSString *)formattedString`
 
 Returns a formatted representation of the card expiry. For example:
 
-    [[PKCardExpiry cardExpiryWithString:@"10/2015"] formattedString]; //=> "10 / 2015"
+    [[PTKCardExpiry cardExpiryWithString:@"10/2015"] formattedString]; //=> "10 / 2015"
 
 #### `- (NSString *)formattedStringWithTrail`
 
