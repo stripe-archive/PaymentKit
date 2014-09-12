@@ -48,8 +48,8 @@
 
 -(instancetype)initWithExpMonth:(NSUInteger)month expYear:(NSUInteger)year
 {
-    NSString *monthString = [NSString stringWithFormat:@"%lu", month];
-    NSString *yearString = [NSString stringWithFormat:@"%lu", year];
+    NSString *monthString = [NSString stringWithFormat:@"%lu", (unsigned long)month];
+    NSString *yearString = [NSString stringWithFormat:@"%lu", (unsigned long)year];
     if (monthString.length == 1) {
          monthString = [NSString stringWithFormat:@"0%@", monthString];
     }
