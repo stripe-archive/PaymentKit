@@ -1,23 +1,23 @@
 //
-//  PKCardExpiryTest.m
-//  PKPayment Example
+//  PTKCardExpiryTest.m
+//  PTKPayment Example
 //
 //  Created by Alex MacCaw on 2/6/13.
 //  Copyright (c) 2013 Stripe. All rights reserved.
 //
 
-#import "PKCardExpiryTest.h"
-#import "PKCardExpiry.h"
-#define CEXPIRY(string) [PKCardExpiry cardExpiryWithString:string]
+#import "PTKCardExpiryTest.h"
+#import "PTKCardExpiry.h"
+#define CEXPIRY(string) [PTKCardExpiry cardExpiryWithString:string]
 
-@interface PKCardExpiry ()
+@interface PTKCardExpiry ()
 
 - (BOOL)isValidWithDate:(NSDate *)dateToCompare;
 - (NSDate*)expiryDate;
 
 @end
 
-@implementation PKCardExpiryTest
+@implementation PTKCardExpiryTest
 
 - (void)testFromString
 {
@@ -77,7 +77,7 @@
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
-    PKCardExpiry *cardExpiry = CEXPIRY(@"02/14");
+    PTKCardExpiry *cardExpiry = CEXPIRY(@"02/14");
 
     NSDate *dateToCompare = [dateFormatter dateFromString:@"2014-01-31 23:59"];
     XCTAssertTrue([cardExpiry isValidWithDate:dateToCompare], @"Is valid");
