@@ -24,6 +24,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 
 #import "PTKView.h"
 #import "PTKTextField.h"
+#import "PTKCardType.h"
 
 @interface PTKView () <PTKTextFieldDelegate> {
 @private
@@ -118,7 +119,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 {
     self.placeholderView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 13, 32, 20)];
     self.placeholderView.backgroundColor = [UIColor clearColor];
-    self.placeholderView.image = [UIImage imageNamed:@"placeholder"];
+    self.placeholderView.image = [UIImage imageNamed:kPTKCardTypeIconNamePlaceholder];
 
     CALayer *clip = [CALayer layer];
     clip.frame = CGRectMake(32, 0, 4, 20);
@@ -369,9 +370,9 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     PTKCardType cardType = [cardNumber cardType];
 
     if (cardType == PTKCardTypeAmex) {
-        [self setPlaceholderViewImage:[UIImage imageNamed:@"cvc-amex"]];
+        [self setPlaceholderViewImage:[UIImage imageNamed:kPTKCardTypeIconNameCvcAmex]];
     } else {
-        [self setPlaceholderViewImage:[UIImage imageNamed:@"cvc"]];
+        [self setPlaceholderViewImage:[UIImage imageNamed:kPTKCardTypeIconNameCvc]];
     }
 }
 
@@ -379,26 +380,26 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 {
     PTKCardNumber *cardNumber = [PTKCardNumber cardNumberWithString:self.cardNumberField.text];
     PTKCardType cardType = [cardNumber cardType];
-    NSString *cardTypeName = @"placeholder";
+    NSString *cardTypeName = kPTKCardTypeIconNamePlaceholder;
 
     switch (cardType) {
         case PTKCardTypeAmex:
-            cardTypeName = @"amex";
+            cardTypeName = kPTKCardTypeIconNameAmex;
             break;
         case PTKCardTypeDinersClub:
-            cardTypeName = @"diners";
+            cardTypeName = kPTKCardTypeIconNameDiners;
             break;
         case PTKCardTypeDiscover:
-            cardTypeName = @"discover";
+            cardTypeName = kPTKCardTypeIconNameDiscover;
             break;
         case PTKCardTypeJCB:
-            cardTypeName = @"jcb";
+            cardTypeName = kPTKCardTypeIconNameJcb;
             break;
         case PTKCardTypeMasterCard:
-            cardTypeName = @"mastercard";
+            cardTypeName = kPTKCardTypeIconNameMastercard;
             break;
         case PTKCardTypeVisa:
-            cardTypeName = @"visa";
+            cardTypeName = kPTKCardTypeIconNameVisa;
             break;
         default:
             break;
