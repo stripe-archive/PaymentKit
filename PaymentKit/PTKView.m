@@ -599,6 +599,8 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 
 - (BOOL)resignFirstResponder;
 {
+    [super resignFirstResponder];
+    
     return [self.firstResponderField resignFirstResponder];
 }
 
