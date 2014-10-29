@@ -126,7 +126,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 {
     self.cardNumberField = [[PTKTextField alloc] initWithFrame:CGRectMake(12, 0, 170, 20)];
     self.cardNumberField.delegate = self;
-    self.cardNumberField.placeholder = [self.class localizedStringWithKey:@"placeholder.card_number" defaultValue:@"1234 5678 9012 3456"];
+    self.cardNumberField.placeholder = [self.class localizedStringWithKey:@"placeholder.card_number" defaultValue:@"0000 0000 0000 0000"];
     self.cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
     self.cardNumberField.textColor = self.customFontColor;
     self.cardNumberField.font = self.customFont;
@@ -238,16 +238,16 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
     if ([self.cardNumber.formattedString respondsToSelector:@selector(sizeWithAttributes:)]) {
-        NSDictionary *attributes = @{NSFontAttributeName: self.customFont};
+        NSDictionary *attributes = @{NSFontAttributeName: DefaultBoldFont};
 
         cardNumberSize = [self.cardNumber.formattedString sizeWithAttributes:attributes];
         lastGroupSize = [self.cardNumber.lastGroup sizeWithAttributes:attributes];
     } else {
-        cardNumberSize = [self.cardNumber.formattedString sizeWithFont:self.customFont];
-        lastGroupSize = [self.cardNumber.lastGroup sizeWithFont:self.customFont];
+        cardNumberSize = [self.cardNumber.formattedString sizeWithFont:DefaultBoldFont];
+        lastGroupSize = [self.cardNumber.lastGroup sizeWithFont:DefaultBoldFont];
     }
 #else
-    NSDictionary *attributes = @{NSFontAttributeName: self.customFont};
+    NSDictionary *attributes = @{NSFontAttributeName: DefaultBoldFont};
 
     cardNumberSize = [self.cardNumber.formattedString sizeWithAttributes:attributes];
     lastGroupSize = [self.cardNumber.lastGroup sizeWithAttributes:attributes];
