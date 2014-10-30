@@ -417,10 +417,16 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     if ([textField isEqual:self.cardNumberField] && !_isInitialState) {
         [self stateCardNumber];
     }
+    
+    textField.textColor = self.customFontColor;
+    textField.font = self.customFont;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString
 {
+    textField.textColor = self.customFontColor;
+    textField.font = self.customFont;
+    
     if ([textField isEqual:self.cardNumberField]) {
         return [self cardNumberFieldShouldChangeCharactersInRange:range replacementString:replacementString];
     }
@@ -446,6 +452,8 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
         [self.cardNumberField becomeFirstResponder];
     }
     
+    textField.textColor = self.customFontColor;
+    textField.font = self.customFont;
 }
 
 - (BOOL)cardNumberFieldShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString
@@ -562,6 +570,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 
 - (void)textFieldIsInvalid:(UITextField *)textField withErrors:(BOOL)errors
 {
+    textField.font = self.customFont;
     if (errors) {
         textField.textColor = RedColor;
     } else {
