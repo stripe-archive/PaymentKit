@@ -221,6 +221,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
                                      self.cardNumberField.frame.origin.y,
                                      self.cardNumberField.frame.size.width,
                                      self.cardNumberField.frame.size.height);
+                             self.cardNumberField.font = self.customFont;
                          }
                          completion:^(BOOL completed) {
                              [self.cardExpiryField removeFromSuperview];
@@ -554,7 +555,8 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 
 - (void)textFieldIsValid:(UITextField *)textField
 {
-    textField.textColor = DarkGreyColor;
+    textField.font = self.customFont;
+    textField.textColor = self.customFontColor;
     [self checkValid];
 }
 
@@ -563,7 +565,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     if (errors) {
         textField.textColor = RedColor;
     } else {
-        textField.textColor = DarkGreyColor;
+        textField.textColor = self.customFontColor;
     }
 
     [self checkValid];
