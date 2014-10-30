@@ -78,7 +78,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     _isInitialState = YES;
     _isValidState = NO;
 
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 46);
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 320, 46);
     self.backgroundColor = [UIColor clearColor];
 
     self.innerView = [[UIView alloc] initWithFrame:CGRectMake(40, 12, self.frame.size.width - 40, 20)];
@@ -128,7 +128,6 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     self.cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
     self.cardNumberField.textColor = self.customFontColor;
     self.cardNumberField.font = self.customFont;
-    self.cardNumberField.alpha = 0.4f;
 
     [self.cardNumberField.layer setMasksToBounds:YES];
 }
@@ -141,7 +140,6 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     self.cardExpiryField.keyboardType = UIKeyboardTypeNumberPad;
     self.cardExpiryField.textColor = self.customFontColor;
     self.cardExpiryField.font = self.customFont;
-    self.cardExpiryField.alpha = 0.4f;
 
     [self.cardExpiryField.layer setMasksToBounds:YES];
 }
@@ -154,7 +152,6 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     self.cardCVCField.keyboardType = UIKeyboardTypeNumberPad;
     self.cardCVCField.textColor = self.customFontColor;
     self.cardCVCField.font = self.customFont;
-    self.cardCVCField.alpha = 0.4f;
 
     [self.cardCVCField.layer setMasksToBounds:YES];
 }
@@ -421,14 +418,12 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     
     textField.textColor = self.customFontColor;
     textField.font = self.customFont;
-    textField.alpha = 1.0f;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString
 {
     textField.textColor = self.customFontColor;
     textField.font = self.customFont;
-    textField.alpha = 1.0f;
     
     if ([textField isEqual:self.cardNumberField]) {
         return [self cardNumberFieldShouldChangeCharactersInRange:range replacementString:replacementString];
@@ -457,7 +452,6 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     
     textField.textColor = self.customFontColor;
     textField.font = self.customFont;
-    textField.alpha = 0.4f;
 }
 
 - (BOOL)cardNumberFieldShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString
