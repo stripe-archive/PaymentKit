@@ -2,7 +2,7 @@
 
 PaymentKit is a utility library for writing payment forms in iOS apps.
 
-Just add `PTKView` to your application, and it'll take care accepting card numbers, expiry, cvc and zip.
+Just add `PTKView` to your application, and it'll take care accepting card numbers, expiry and cvc.
 Alternatively, we've provided a bunch of classes that you can use yourself to add formatting, validation and restricting input of `UITextField`s.
 
 In short, PaymentKit should greatly simplify your life when dealing with iOS payments.
