@@ -424,6 +424,18 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 
 - (BOOL)cardNumberFieldShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString
 {
+    // If the last character is a space and we're replacing it with nothing, then let's remove the next character as well
+    // Some of these checks may be extraneous, but they shouldn't hurt; and they might be needed in the case of cut/copy/paste. Also, the user could be editing the middle of the number
+    if (self.cardNumberField.text.length > 0 &&
+        range.location == self.cardNumberField.text.length-1 &&
+        range.length == 1 &&
+        [replacementString isEqualToString:@""] &&
+        [[self.cardNumberField.text substringWithRange:range] isEqualToString:@" "]) {
+        
+        range.location--;
+        range.length++;
+    }
+    
     NSString *resultString = [self.cardNumberField.text stringByReplacingCharactersInRange:range withString:replacementString];
     resultString = [PTKTextField textByRemovingUselessSpacesFromString:resultString];
     PTKCardNumber *cardNumber = [PTKCardNumber cardNumberWithString:resultString];
