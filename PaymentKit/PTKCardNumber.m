@@ -41,7 +41,7 @@
 
     if (range >= 40 && range <= 49) {
         return PTKCardTypeVisa;
-    } else if (range >= 50 && range <= 59) {
+    } else if (range >= 51 && range <= 55) {
         return PTKCardTypeMasterCard;
     } else if (range == 34 || range == 37) {
         return PTKCardTypeAmex;
@@ -51,6 +51,8 @@
         return PTKCardTypeJCB;
     } else if (range == 30 || range == 36 || range == 38 || range == 39) {
         return PTKCardTypeDinersClub;
+    } else if (range == 50 || (range >= 56 && range <= 69)) {
+        return PTKCardTypeMaestro;
     } else {
         return PTKCardTypeUnknown;
     }
