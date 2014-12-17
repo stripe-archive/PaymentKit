@@ -25,6 +25,8 @@
 
 - (BOOL)isValid;
 
+- (void)checkValid;
+
 @property (nonatomic, readonly) PTKCardNumber *cardNumber;
 @property (nonatomic, readonly) PTKCardExpiry *cardExpiry;
 @property (nonatomic, readonly) PTKCardCVC *cardCVC;

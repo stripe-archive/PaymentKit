@@ -526,18 +526,12 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 
 - (void)checkValid
 {
-    if ([self isValid]) {
-        _isValidState = YES;
+    BOOL isValid = self.isValid;
+    if(isValid || isValid != _isValidState) {
+        _isValidState = isValid;
 
         if ([self.delegate respondsToSelector:@selector(paymentView:withCard:isValid:)]) {
-            [self.delegate paymentView:self withCard:self.card isValid:YES];
-        }
-
-    } else if (![self isValid] && _isValidState) {
-        _isValidState = NO;
-
-        if ([self.delegate respondsToSelector:@selector(paymentView:withCard:isValid:)]) {
-            [self.delegate paymentView:self withCard:self.card isValid:NO];
+            [self.delegate paymentView:self withCard:self.card isValid:isValid];
         }
     }
 }
