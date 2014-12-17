@@ -35,6 +35,7 @@
 @property (strong, nonatomic) UIFont *defaultFont;
 @property (strong, nonatomic) UIColor *textColor, *textErrorColor;
 @property (assign, nonatomic) UIEdgeInsets contentInsets;
+@property (assign, nonatomic) BOOL showingMeta;
 
 @property IBOutlet UIView *innerView;
 @property IBOutlet UIView *separatorView;
