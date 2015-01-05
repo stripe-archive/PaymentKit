@@ -16,6 +16,8 @@ typedef enum {
     PTKCardTypeDiscover,
     PTKCardTypeJCB,
     PTKCardTypeDinersClub,
+    PTKCardTypeMaestro,
+    PTKCardTypeChinaUnionPay,
     PTKCardTypeUnknown
 } PTKCardType;
 
