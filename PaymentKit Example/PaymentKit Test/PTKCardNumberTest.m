@@ -23,6 +23,10 @@
     XCTAssertEqual([CNUMBER(@"5555555555554444") cardType], PTKCardTypeMasterCard, @"Detects MasterCard");
     XCTAssertEqual([CNUMBER(@"4111111111111111") cardType], PTKCardTypeVisa, @"Detects Visa");
     XCTAssertEqual([CNUMBER(@"4012888888881881") cardType], PTKCardTypeVisa, @"Detects Visa");
+    XCTAssertEqual([CNUMBER(@"6759649826438453") cardType], PTKCardTypeMaestro, @"Detects Maestro");
+    XCTAssertEqual([CNUMBER(@"6799990100000000019") cardType], PTKCardTypeMaestro, @"Detects Maestro");
+    XCTAssertEqual([CNUMBER(@"6240008631401148") cardType], PTKCardTypeChinaUnionPay, @"Detects China UnionPay");
+    XCTAssertEqual([CNUMBER(@"6269992058134322") cardType], PTKCardTypeChinaUnionPay, @"Detects China UnionPay");
 }
 
 - (void)testLast4
