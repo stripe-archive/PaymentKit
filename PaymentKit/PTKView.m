@@ -294,8 +294,19 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 
 - (BOOL)isValid
 {
-    return [self.cardNumber isValid] && [self.cardExpiry isValid] &&
-            [self.cardCVC isValidWithType:self.cardNumber.cardType];
+    return [self.cardNumber isValid] &&
+            [self.cardExpiry isValid] &&
+            [self.cardCVC isValidWithType:self.cardNumber.cardType] &&
+            [self cardTypeIsAccepted:self.cardNumber.cardType];
+}
+
+- (BOOL)cardTypeIsAccepted:(PTKCardType)type
+{
+    if ([self.delegate respondsToSelector:@selector(paymentView:shouldAcceptCardType:)]){
+        return [self.delegate paymentView:self shouldAcceptCardType:type];
+    }
+
+    return YES;
 }
 
 - (PTKCard *)card
@@ -438,6 +449,17 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     }
 
     [self setPlaceholderToCardType];
+
+    if (cardNumber.cardType != PTKCardTypeUnknown) {
+        if (![self cardTypeIsAccepted:cardNumber.cardType]) {
+            [self textFieldIsInvalid:self.cardNumberField withErrors:YES];
+            self.cardNumberField.text = [resultString substringToIndex:2];
+            return NO;
+        }
+
+        [self textFieldIsValid:self.cardNumberField];
+    }
+
 
     if ([cardNumber isValid]) {
         [self textFieldIsValid:self.cardNumberField];
