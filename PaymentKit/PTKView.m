@@ -337,6 +337,10 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
         self.cardExpiryField.text = expiry.formattedString;
     }
     
+    self.cardNumberField.font = self.customFont;
+    self.cardExpiryField.font = self.customFont;
+    self.cardCVCField.font = self.customFont;
+
     [self checkValid];
 }
 
