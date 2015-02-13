@@ -13,6 +13,7 @@
 
 #define kPTKViewCardExpiryFieldStartX 84 + 200
 #define kPTKViewCardCVCFieldStartX 177 + 200
+#define kPTKViewCardNumberFieldStartX 12
 
 #define kPTKViewCardExpiryFieldEndX 84
 #define kPTKViewCardCVCFieldEndX 177
@@ -122,7 +123,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 
 - (void)setupCardNumberField
 {
-    self.cardNumberField = [[PTKTextField alloc] initWithFrame:CGRectMake(12, 0, 200, 20)];
+    self.cardNumberField = [[PTKTextField alloc] initWithFrame:CGRectMake(kPTKViewCardNumberFieldStartX, 0, 200, 20)];
     self.cardNumberField.delegate = self;
     self.cardNumberField.placeholder = [self.class localizedStringWithKey:@"placeholder.card_number" defaultValue:@"0000 0000 0000 0000"];
     self.cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
@@ -215,7 +216,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
                                      self.cardCVCField.frame.origin.y,
                                      self.cardCVCField.frame.size.width,
                                      self.cardCVCField.frame.size.height);
-                             self.cardNumberField.frame = CGRectMake(12,
+                             self.cardNumberField.frame = CGRectMake(kPTKViewCardNumberFieldStartX,
                                      self.cardNumberField.frame.origin.y,
                                      self.cardNumberField.frame.size.width,
                                      self.cardNumberField.frame.size.height);
@@ -252,8 +253,9 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     lastGroupSize = [self.cardNumber.lastGroup sizeWithAttributes:attributes];
 #endif
 
-    CGFloat frameX = self.cardNumberField.frame.origin.x - (cardNumberSize.width - lastGroupSize.width);
-
+    //Always use the startX so that the card number field doesn't disappear in case this method is called twice
+    CGFloat frameX = kPTKViewCardNumberFieldStartX - (cardNumberSize.width - lastGroupSize.width);
+    
     [UIView animateWithDuration:0.05 delay:0.35 options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          self.opaqueOverGradientView.alpha = 1.0;
