@@ -232,7 +232,9 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
                          }];
     }
 
-    [self.cardNumberField becomeFirstResponder];
+    if (!self.hidden) {
+        [self.cardNumberField becomeFirstResponder];
+    }
 }
 
 - (void)stateMeta
@@ -600,7 +602,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 - (BOOL)resignFirstResponder;
 {
     [super resignFirstResponder];
-    
+
     return [self.firstResponderField resignFirstResponder];
 }
 
