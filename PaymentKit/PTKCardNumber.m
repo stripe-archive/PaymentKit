@@ -38,15 +38,33 @@
 
     NSString *firstChars = [_number substringWithRange:NSMakeRange(0, 2)];
     NSInteger range = [firstChars integerValue];
-
+    
     if (range >= 40 && range <= 49) {
         return PTKCardTypeVisa;
     } else if (range >= 50 && range <= 59) {
         return PTKCardTypeMasterCard;
     } else if (range == 34 || range == 37) {
         return PTKCardTypeAmex;
-    } else if (range == 60 || range == 62 || range == 64 || range == 65) {
+    } else if ([_number hasPrefix:@"6011"] || [_number hasPrefix:@"65"]) {
         return PTKCardTypeDiscover;
+    } else if ([_number hasPrefix:@"622"]) {
+        // If 622126-622925 its Discover
+        NSString *sixChars = [_number substringWithRange:NSMakeRange(0, 6)];
+        NSInteger sixCharsInt = [sixChars integerValue];
+        if ((sixCharsInt >= 622126) && (sixCharsInt <= 622925)) {
+            return PTKCardTypeDiscover;
+        }
+        
+        return PTKCardTypeUnknown;
+        
+    } else if (range == 64) {
+        // If 644-649 its Discover
+        NSInteger discoverCheckInt = [[_number substringWithRange:NSMakeRange(0, 3)] integerValue];
+        if ((discoverCheckInt >= 644) && (discoverCheckInt <= 649)) {
+            return PTKCardTypeDiscover;
+        }
+        return PTKCardTypeUnknown;
+        
     } else if (range == 35) {
         return PTKCardTypeJCB;
     } else if (range == 30 || range == 36 || range == 38 || range == 39) {
