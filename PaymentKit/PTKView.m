@@ -502,8 +502,10 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     if ([cardNumber isValid]) {
         [self textFieldIsValid:self.cardNumberField];
         [self stateMeta];
-        [self.cardExpiryField becomeFirstResponder];
-
+        
+        if ([self.cardNumber isValid] && (![self.cardExpiry isValid] || ![self.cardCVC isValid])) {
+            [self.cardExpiryField becomeFirstResponder];
+        }
     } else if ([cardNumber isValidLength] && ![cardNumber isValidLuhn]) {
         [self textFieldIsInvalid:self.cardNumberField withErrors:YES];
 
@@ -576,6 +578,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 
         if ([self.delegate respondsToSelector:@selector(paymentView:withCard:isValid:)]) {
             [self.delegate paymentView:self withCard:self.card isValid:YES];
+            [self.cardCVCField endEditing:YES];
         }
 
     } else if (![self isValid] && _isValidState) {
@@ -637,7 +640,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     if (self.firstInvalidField)
         return self.firstInvalidField;
 
-    return self.cardCVCField;
+    return nil;
 }
 
 - (BOOL)isFirstResponder;
