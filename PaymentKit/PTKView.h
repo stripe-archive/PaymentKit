@@ -20,6 +20,7 @@
 @optional
 - (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid;
 - (BOOL)paymentView:(PTKView *)paymentView shouldAcceptCardType:(PTKCardType)type;
+- (BOOL)shouldResignFirstResponderOnValidInput;
 @end
 
 @interface PTKView : UIView
