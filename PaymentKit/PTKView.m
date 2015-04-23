@@ -303,15 +303,6 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     return YES;
 }
 
-- (BOOL)resignOnValidInput
-{
-    if ([self.delegate respondsToSelector:@selector(shouldResignFirstResponderOnValidInput)]) {
-        return [self.delegate shouldResignFirstResponderOnValidInput];
-    }
-    
-    return NO;
-}
-
 - (PTKCard *)card
 {
     PTKCard *card = [[PTKCard alloc] init];
@@ -511,7 +502,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
         [self textFieldIsValid:self.cardNumberField];
         [self stateMeta];
         
-        if (![self resignOnValidInput] || ([self.cardNumber isValid] && (![self.cardExpiry isValid] || ![self.cardCVC isValid]))) {
+        if (!self.shouldResignFirstResponderOnValidInput || ([self.cardNumber isValid] && (![self.cardExpiry isValid] || ![self.cardCVC isValid]))) {
             // Become first responder if we should not resign on valid input otherwise we check the validity of fields
             [self.cardExpiryField becomeFirstResponder];
         }
@@ -648,7 +639,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     if (self.firstInvalidField)
         return self.firstInvalidField;
 
-    if ([self resignOnValidInput]) {
+    if (self.shouldResignFirstResponderOnValidInput) {
         // There is no invalid field, we return nil instead of CVC as a firstResponder
         return nil;
     } else {

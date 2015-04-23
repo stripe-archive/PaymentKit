@@ -20,7 +20,6 @@
 @optional
 - (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid;
 - (BOOL)paymentView:(PTKView *)paymentView shouldAcceptCardType:(PTKCardType)type;
-- (BOOL)shouldResignFirstResponderOnValidInput;
 @end
 
 @interface PTKView : UIView
@@ -43,5 +42,6 @@
 @property (nonatomic, strong) UIColor *customFontColor;
 @property (nonatomic, weak) id <PTKViewDelegate> delegate;
 @property (nonatomic, readwrite) PTKCard *card;
+@property (nonatomic, assign) BOOL shouldResignFirstResponderOnValidInput;
 
 @end
