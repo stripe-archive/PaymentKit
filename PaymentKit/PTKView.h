@@ -43,4 +43,12 @@
 @property (nonatomic, weak) id <PTKViewDelegate> delegate;
 @property (nonatomic, readwrite) PTKCard *card;
 
+/**
+ *  Should Resign First Responder On Valid Input property let paymentView to resign when all the inputs are valid
+ *
+ *  @return Should Resign First Responder On Valid Input as a boolean.
+ */
+
+@property (nonatomic, assign) BOOL shouldResignFirstResponderOnValidInput;
+
 @end
