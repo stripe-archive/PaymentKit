@@ -435,6 +435,12 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     resultString = [PTKTextField textByRemovingUselessSpacesFromString:resultString];
     PTKCardNumber *cardNumber = [PTKCardNumber cardNumberWithString:resultString];
 
+    if (self.cardNumber.isValid && replacementString.length > 0 && self.cardNumberField.text.length == range.location) {
+        [self stateMeta];
+        [self cardExpiryShouldChangeCharactersInRange:NSMakeRange(0, 0)
+                                    replacementString:replacementString];
+    }
+
     if (![cardNumber isPartiallyValid])
         return NO;
 
@@ -468,6 +474,12 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     NSString *resultString = [self.cardExpiryField.text stringByReplacingCharactersInRange:range withString:replacementString];
     resultString = [PTKTextField textByRemovingUselessSpacesFromString:resultString];
     PTKCardExpiry *cardExpiry = [PTKCardExpiry cardExpiryWithString:resultString];
+
+    if (self.cardExpiry.isValid && replacementString.length > 0 && self.cardExpiryField.text.length == range.location) {
+        [self stateCardCVC];
+        [self cardCVCShouldChangeCharactersInRange:NSMakeRange(0, 0)
+                                 replacementString:replacementString];
+    }
 
     if (![cardExpiry isPartiallyValid]) return NO;
 
