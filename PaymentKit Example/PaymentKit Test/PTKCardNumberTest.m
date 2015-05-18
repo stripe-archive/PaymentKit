@@ -19,10 +19,15 @@
     XCTAssertEqual([CNUMBER(@"30569309025904") cardType], PTKCardTypeDinersClub, @"Detects Diners Club");
     XCTAssertEqual([CNUMBER(@"6011111111111117") cardType], PTKCardTypeDiscover, @"Detects Discover");
     XCTAssertEqual([CNUMBER(@"6011000990139424") cardType], PTKCardTypeDiscover, @"Detects Discover");
+    XCTAssertEqual([CNUMBER(@"6221270990139424") cardType], PTKCardTypeDiscover, @"Detects Discover");
+    XCTAssertEqual([CNUMBER(@"6461270990139424") cardType], PTKCardTypeDiscover, @"Detects Discover");
     XCTAssertEqual([CNUMBER(@"3530111333300000") cardType], PTKCardTypeJCB, @"Detects JCB");
     XCTAssertEqual([CNUMBER(@"5555555555554444") cardType], PTKCardTypeMasterCard, @"Detects MasterCard");
     XCTAssertEqual([CNUMBER(@"4111111111111111") cardType], PTKCardTypeVisa, @"Detects Visa");
     XCTAssertEqual([CNUMBER(@"4012888888881881") cardType], PTKCardTypeVisa, @"Detects Visa");
+    
+    XCTAssertEqual([CNUMBER(@"6001270990139424") cardType], PTKCardTypeUnknown, @"Detects Discover");
+    XCTAssertEqual([CNUMBER(@"6229260990139424") cardType], PTKCardTypeUnknown, @"Detects Discover");
 }
 
 - (void)testLast4
