@@ -12,6 +12,8 @@
 
 @implementation PTKTextField
 
+@dynamic delegate;
+
 + (NSString *)textByRemovingUselessSpacesFromString:(NSString *)string
 {
     return [string stringByReplacingOccurrencesOfString:kPTKTextFieldSpaceChar withString:@""];
