@@ -25,14 +25,22 @@
 
 - (BOOL)isValid;
 
-@property (nonatomic, readonly) UIView *opaqueOverGradientView;
+- (void)checkValid;
+
 @property (nonatomic, readonly) PTKCardNumber *cardNumber;
 @property (nonatomic, readonly) PTKCardExpiry *cardExpiry;
 @property (nonatomic, readonly) PTKCardCVC *cardCVC;
 @property (nonatomic, readonly) PTKAddressZip *addressZip;
 
+@property (strong, nonatomic) UIFont *defaultFont;
+@property (strong, nonatomic) UIColor *textColor, *textErrorColor;
+@property (assign, nonatomic) UIEdgeInsets contentInsets;
+@property (assign, nonatomic) BOOL showingMeta;
+
 @property IBOutlet UIView *innerView;
-@property IBOutlet UIView *clipView;
+@property IBOutlet UIView *separatorView;
+@property IBOutlet UIImageView *backgroundImageView;
+
 @property IBOutlet PTKTextField *cardNumberField;
 @property IBOutlet PTKTextField *cardExpiryField;
 @property IBOutlet PTKTextField *cardCVCField;
