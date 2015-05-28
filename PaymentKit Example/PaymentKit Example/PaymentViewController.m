@@ -37,6 +37,7 @@
     self.paymentView.delegate = self;
     
     [self.view addSubview:self.paymentView];
+    [self.paymentView becomeFirstResponder];
 }
 
 
