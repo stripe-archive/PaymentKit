@@ -19,6 +19,7 @@
 @protocol PTKViewDelegate <NSObject>
 @optional
 - (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid;
+- (BOOL)paymentView:(PTKView *)paymentView shouldAcceptCardType:(PTKCardType)type;
 @end
 
 @interface PTKView : UIView
@@ -37,7 +38,17 @@
 @property IBOutlet PTKTextField *cardExpiryField;
 @property IBOutlet PTKTextField *cardCVCField;
 @property IBOutlet UIImageView *placeholderView;
+@property (nonatomic, strong) UIFont *customFont;
+@property (nonatomic, strong) UIColor *customFontColor;
 @property (nonatomic, weak) id <PTKViewDelegate> delegate;
-@property (readonly) PTKCard *card;
+@property (nonatomic, readwrite) PTKCard *card;
+
+/**
+ *  Should Resign First Responder On Valid Input property let paymentView to resign when all the inputs are valid
+ *
+ *  @return Should Resign First Responder On Valid Input as a boolean.
+ */
+
+@property (nonatomic, assign) BOOL shouldResignFirstResponderOnValidInput;
 
 @end
