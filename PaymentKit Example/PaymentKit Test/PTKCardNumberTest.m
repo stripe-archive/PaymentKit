@@ -30,8 +30,8 @@
     XCTAssertEqual([CNUMBER(@"6229260990139424") cardType], PTKCardTypeUnknown, @"Detects Discover");
 
     // These test two code paths that would previously crash
-    XCTAssertEqual([CNUMBER(@"622") cardType], PTKCardTypeUnknown, @"Detects Discover");
-    XCTAssertEqual([CNUMBER(@"624") cardType], PTKCardTypeUnknown, @"Detects Discover");
+    XCTAssertEqual([CNUMBER(@"622") cardType], PTKCardTypeUnknown, @"Doesn't crash");
+    XCTAssertEqual([CNUMBER(@"624") cardType], PTKCardTypeUnknown, @"Doesn't crash");
 }
 
 - (void)testLast4
