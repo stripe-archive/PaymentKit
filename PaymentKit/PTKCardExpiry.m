@@ -97,8 +97,9 @@
 
 - (BOOL)isValidWithDate:(NSDate *)dateToCompare
 {
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [gregorian components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:dateToCompare];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth
+                                                fromDate:dateToCompare];
     BOOL valid = NO;
 
     if (components.year < self.year) {
@@ -128,7 +129,7 @@
 
     static NSCalendar *gregorian = nil;
     if (!gregorian) {
-        gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     }
 
     // Move to the last day of the month.
