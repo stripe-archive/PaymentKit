@@ -19,6 +19,7 @@
 @protocol PTKViewDelegate <NSObject>
 @optional
 - (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid;
+- (BOOL)paymentView:(PTKView *)paymentView shouldAcceptCardType:(PTKCardType)type;
 @end
 
 @interface PTKView : UIView
