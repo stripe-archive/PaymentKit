@@ -7,6 +7,9 @@ Alternatively, we've provided a bunch of classes that you can use yourself to ad
 
 In short, PaymentKit should greatly simplify your life when dealing with iOS payments.
 
+## Brief note:
+We're aware of the large number of outstanding issues here, and are working on a large release to address them. Watch this space! If you'd like updates here, feel free to watch https://github.com/stripe/PaymentKit/issues/88 . Thanks for your patience!
+
 ![PaymentKitView](http://stripe.github.com/PaymentKit/screenshot_ios7.png)
 
 *Note: If you also want to send the card data to Stripe, check out [our iOS bindings](https://github.com/stripe/stripe-ios), which are built on PaymentKit.*
