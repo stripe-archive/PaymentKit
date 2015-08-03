@@ -191,7 +191,7 @@
 
 - (BOOL)isPartiallyValid
 {
-    return _number.length <= [self lengthForCardType];
+    return _number.length < [self lengthForCardType];
 }
 
 - (NSInteger)lengthForCardType
