@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:PaymentKit Example.xcodeproj">
+      location = "self:PaymentKit.xcodeproj">
    </FileRef>
 </Workspace>
