@@ -22,6 +22,8 @@
 #define kPTKViewCardExpiryFieldEndX 84
 #define kPTKViewCardCVCFieldEndX 177
 
+#define kPTKViewDefaultSize CGSizeMake(290, 46)
+
 static NSString *const kPTKLocalizedStringsTableName = @"PaymentKit";
 static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable";
 
@@ -79,7 +81,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     _isInitialState = YES;
     _isValidState = NO;
 
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 46);
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, kPTKViewDefaultSize.width, kPTKViewDefaultSize.height);
     self.backgroundColor = [UIColor clearColor];
 
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds];
@@ -601,6 +603,14 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     [super resignFirstResponder];
     
     return [self.firstResponderField resignFirstResponder];
+}
+
+#pragma mark -
+#pragma mark UIView
+
+- (CGSize)intrinsicContentSize
+{
+    return kPTKViewDefaultSize;
 }
 
 @end
