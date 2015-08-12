@@ -20,7 +20,7 @@ We're aware of the large number of outstanding issues here, and are working on a
 
 ### Install with CocoaPods
 
-[CocoaPods](http://cocoapods.org/) is a library dependency management tool for Objective-C. To use PaymentKit with CocoaPods, simply add the following to your Podfile and run pod install:
+[CocoaPods](http://cocoapods.org/) is a library dependency management tool for Objective-C and Swift. To use PaymentKit with CocoaPods, simply add the following to your Podfile and run pod install:
 
     pod 'PaymentKit', :git => 'https://github.com/stripe/PaymentKit.git'
 
