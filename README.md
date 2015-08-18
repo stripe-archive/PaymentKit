@@ -6,7 +6,7 @@ PaymentKit is a utility library for writing payment forms in iOS apps.
 
 We've moved development of PaymentKit's components into our [main iOS SDK](https://github.com/stripe/stripe-ios/). This will make it easier for us to keep them up-to-date, and make installation and integration simpler for most apps. Despite this, please note that you don't have to be a Stripe user to use these components - the UI we've built has no dependencies on the Stripe API.
 
-### How to migrate
+### Migration
 
 If you're using Cocoapods, to install our iOS SDK, just add `pod 'Stripe'` to your `Podfile`. For other means of integration, check out our [installation guide](https://stripe.com/docs/mobile/ios).
 
