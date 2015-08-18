@@ -16,11 +16,15 @@
 
 @class PTKView, PTKTextField;
 
+__attribute__((deprecated("We've moved development of PaymentKit into github.com/stripe/stripe-ios. You should migrate to use that instead. For help, see https://github.com/stripe/paymentkit#migration .")))
 @protocol PTKViewDelegate <NSObject>
+
 @optional
 - (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid;
+
 @end
 
+__attribute__((deprecated("We've moved development of PaymentKit into github.com/stripe/stripe-ios. You should migrate to use that instead. For help, see https://github.com/stripe/paymentkit#migration .")))
 @interface PTKView : UIView
 
 - (BOOL)isValid;

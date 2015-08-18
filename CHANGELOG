@@ -1,3 +1,7 @@
+1.2 (2014-09-09)
+==================
+- Development on this repository has moved to github.com/stripe/stripe-ios. This release adds deprecation headers to PTKView, and adds a migration guide to the README.
+
 1.1 (2014-09-09)
 ==================
 
