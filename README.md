@@ -15,7 +15,7 @@ We've renamed `PTKView` to `STPPaymentCardTextField`. We've also provided a comp
 - Remove any references to 'PaymentKit' in your `Podfile`, if you're using Cocoapods.
 - Rename any instances of `PTKView` in your application to `STPPaymentCardTextField`.
 - Remove any lines that read `#import 'PTKView.h'`, and replace them with `#import <Stripe/Stripe.h>`.
-- Any classes that implement the `PTKViewDelegate` protocol should now adopt the `STPPaymentCardTextField` protocol instead.
+- Any classes that implement the `PTKViewDelegate` protocol should now adopt the `STPPaymentCardTextFieldDelegate` protocol instead.
 - Adjust your `PTKViewDelegate` methods as follows:
 
 ```objc
@@ -27,7 +27,7 @@ We've renamed `PTKView` to `STPPaymentCardTextField`. We've also provided a comp
 }
 
 // After
-- (void)paymentCardTextFieldDidChange:(STPPaymentCardTextField *)textField {}
+- (void)paymentCardTextFieldDidChange:(STPPaymentCardTextField *)textField {
     if (textField.isValid) {
         STPCard *card = [[STPCard alloc] init];
         card.number = textField.cardNumber;
