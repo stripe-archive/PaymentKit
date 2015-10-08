@@ -439,8 +439,13 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString
 {
-    textField.textColor = self.customFontColor;
-    textField.font = self.customFont;
+    if (self.customFontColor) {
+        textField.textColor = self.customFontColor;
+    }
+    
+    if (self.customFont) {
+        textField.font = self.customFont;
+    }
     
     if ([textField isEqual:self.cardNumberField]) {
         return [self cardNumberFieldShouldChangeCharactersInRange:range replacementString:replacementString];
