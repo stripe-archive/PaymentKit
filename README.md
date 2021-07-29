@@ -1,3 +1,10 @@
+> <img src="https://stripe.dev/images/badges/archived.png" width="250">
+>
+> This project is deprecated and is no longer being actively maintained.
+> Please use the [Stripe iOS SDK][stripe-ios] instead.
+
+[stripe-ios]: https://github.com/stripe/stripe-ios
+
 # PaymentKit
 
 PaymentKit is a utility library for writing payment forms in iOS apps.
