@@ -35,7 +35,7 @@
                                                             options:NSRegularExpressionSearch
                                                               range:NSMakeRange(0, _zip.length)];
 
-    return stripped.length > 2;
+    return stripped.length > 2 && stripped.length < 10;
 }
 
 - (BOOL)isPartiallyValid
